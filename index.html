@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Math Helpp</title>
+  <script src="/script.js"></script>
+  <style>
+    body {
+      background: #000000;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+    .c-button {
+      width: 200px;
+      padding: 10px;
+      margin-top: 10px;
+      font-family: Monospace;
+      font-weight: bold;
+      color: #ffffff;
+      background: #000000;
+      border: 2px solid green;
+      border-radius: 10px;
+    }
+    .c-button:hover {
+      background: #444444;
+    }
+    .c-button:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px #cbd6ee;
+    }
+
+    #urlInput,
+    #searchInput,
+    #titleInput,
+    #iconInput {
+      width: 200px;
+      padding: 10px;
+      margin-top: 10px;
+      font-family: Monospace;
+      font-weight: bold;
+      color: #ffffff;
+      background: #000000;
+      border: 2px solid green;
+      border-radius: 10px;
+    }
+  </style>
+  <script>
+    function openUrl() {
+      showTime();
+      var urlInputElement = document.getElementById("urlInput");
+      var url = urlInputElement.value.trim();
+
+      // Check if the input does not contain "https://"
+      if (!url.includes("https://")) {
+        // Add "https://" to the start of the input
+        url = "https://" + url;
+      }
+
+      if (url !== "https://") {
+        var titleInputElement = document.getElementById("titleInput");
+        var title = titleInputElement.value.trim();
+
+        var iconInputElement = document.getElementById("iconInput");
+        var icon = iconInputElement.value.trim();
+
+        var win = window.open("about:blank");
+        var iframe = win.document.createElement('iframe');
+        iframe.src = url;
+        iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms');
+        iframe.style="position:fixed;width:100vw;height:100vh;top:0px;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;";
+        win.document.body.appendChild(iframe);
+
+        if (title !== "") {
+          win.document.title = title;
+        }
+
+        if (icon !== "") {
+          var iconElement = win.document.createElement('link');
+          iconElement.rel = 'icon';
+          iconElement.type = 'image/x-icon';
+          iconElement.href = icon;
+          win.document.head.appendChild(iconElement);
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <input type="text" id="urlInput" placeholder="Enter URL">
+    <input type="text" id="titleInput" placeholder="Tab Title">
+    <input type="text" id="iconInput" placeholder="Tab Icon URL">
+    <button class="c-button" onclick="openUrl()">Open</button>
+    <br/>
+    <input type="text" id="searchInput" placeholder="Search Google (WIP)">
+    <button class="c-button" onclick="searchGoogle()">Doesn't work yet.</button>
+  </div>
+  <span id="time" style="color: white; margin: 10px; position: absolute; bottom: 0px; left: 0px;">0</span>
+  <script>
+  function showTime() {
+    var currentDate = new Date();
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var month = monthNames[currentDate.getMonth()];
+    var day = currentDate.getDate();
+    var year = currentDate.getFullYear();
+
+    var hour = currentDate.getHours();
+    var minute = currentDate.getMinutes();
+    var second = currentDate.getSeconds();
+    var period = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12 || 12;
+
+    var formattedTime = month + ' ' + day + ' ' + hour + ':' + (minute < 10 ? '0' + minute : minute) + ':' + (second < 10 ? '0' + second : second) + ' ' + period;
+    document.getElementById('time').innerHTML = formattedTime;
+}
+
+showTime();
+setInterval(function () {
+    showTime();
+}, 1000);
+
+  </script>
+</body>
+</html>
