@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,17 +11,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow-x: hidden;
+        overflow-y: hidden;
       }
 
-      h1 {
-        position: relative;
-        top: 0;
-        left: 0;
-        text-align: center;
-        width: 100%;
-        margin-bottom: 20px;
-      }
-
+      h1,
       h4 {
         position: relative;
         text-align: center;
@@ -47,11 +42,55 @@
         border: 3px solid #9752a2;
         cursor: pointer;
       }
+      
+      .bottom {
+        width: 100%;
+        height: 40vh;
+        background: #31a89b;
+        position: absolute;
+        bottom: 0;
+      }
+      
+      .bottom:before {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 100%;
+        width: 100%;
+        height: 300px;
+        background-color: #31a89b;
+        right: -25%;
+        top: -20px;
+        clip-path: polygon(0 0, 100% 0, 62% 10%, 0 10%);
+      }
+      
+      .bottom:after {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 100%;
+        width: 100%;
+        height: 300px;
+        background-color: #5729b8;
+        left: -25%;
+        top: -280px;
+        clip-path: polygon(38% 90%, 100% 90%, 100% 100%, 0% 100%);
+      }
+      
+      .brothis {
+        color: #dddddd;
+        font-size: 12px;
+        position: absolute;
+        right: 25%;
+        top: 5px;
+        transform: rotate(-10deg);
+      }
     </style>
   </head>
   <body>
     <h1>🚧 THIS SITE IS UNDER CONSTRUCTION 🚧</h1>
     <h4>↓↓↓ Try the one page we <strong style="text-decoration: underline;">do</strong> have ↓↓↓</h4>
     <button class="eagler-hack" onclick="location.href = '/dragonX2';">DragonX - EaglerCraftX Hack Client</button>
+    <div class="bottom"><p class="brothis">bro this curve took me so long</p></div>
   </body>
 </html>
