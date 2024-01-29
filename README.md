@@ -1,1 +1,3 @@
-# dont README, i have nothing to offer
+# website for all the stuff idk
+
+#### dont readme i have nothing to offer
