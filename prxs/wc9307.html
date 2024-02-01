@@ -32,7 +32,7 @@
         background-color: #282628;
       }
       
-      .urlbar {
+      #urlbar {
         background: #040204;
         height: 30px;
         width: calc(100% - 87px);
@@ -50,16 +50,79 @@
         width: 100%;
         background-color: transparent;
       }
+      
+      #temporary {
+        height: 100%;
+        width: 100%;
+        border: none;
+      }
     </style>
   </head>
   <body style="background: #181218; margin: 0; width: 100%;">
     <div class="controls-wrapper">
-      <i class="icon fa fa-home" title="Home"></i>
-      <i class="icon fa fa-arrow-rotate-right" title="Reload"></i>
-      <input placeholder="Enter a valid URL..." class="urlbar">
+      <i class="icon fa fa-home" title="Home" onclick="gohome()"></i>
+      <i class="icon fa fa-arrow-rotate-right" title="Reload" onclick="reloadpage()"></i>
+      <input placeholder="Enter a valid URL..." id="urlbar">
     </div>
     <div id="webFrame">
-      
+      <!-- iframe is temporary until i figure out how to source multiple files -->
+      <iframe id="temporary" src="https://example.com"></iframe>
     </div>
+    <script>
+      const frame = document.getElementById('temporary');
+      const urlbar = document.getElementById('urlbar');
+    
+      function gohome() {
+        frame.src = "https://wraithcode69.github.io";
+      };
+      
+      function reloadpage() {
+        frame.src = frame.src;
+      };
+      
+      urlbar.addEventListener("keydown", function(event) {
+        if (event.keyCode === 13) {
+          setsrc();
+          this.blur();
+        }
+      });
+      
+      function setsrc() {
+        let url = urlbar.value;
+        let urlPattern = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})(\/\S*)?$/;
+        
+        if (!urlPattern.test(url) && !url == "") {
+          urlbar.value = "Invalid URL";
+          return;
+        }
+        
+        if (!url.startsWith("https://") && !url.startsWith("http://") && !url == "") {
+          url = "https://" + url;
+        };
+        
+        if (url.startsWith("http://")) {
+          urlbar.value = "no. http bad."
+          return;
+        };
+        
+        if (url == "") {
+          return;
+        };
+        
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              console.log("Valid URL with a reachable website: " + url);
+              // Proceed with setting the source
+              frame.src = url;
+            } else {
+              urlbar.value = "Website does not exist";
+            }
+          })
+          .catch(error => {
+            urlbar.value = "Error checking url, website likely does not exist";
+          });
+      };
+    </script>
   </body>
 </html>
