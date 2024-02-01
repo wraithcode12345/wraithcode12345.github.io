@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -77,12 +78,18 @@
       }
 
       #launch {
-        margin-top: 100px;
+        margin-top: 70px;
         margin-left: 20px;
         background: #282628;
         color: #ffffff;
         height: 35px;
         width: 100px;
+        border: none;
+      }
+      
+      #launch:hover {
+        cursor: pointer;
+        background: #313131;
       }
     </style>
   </head>
@@ -116,7 +123,14 @@
   var launchButton = document.getElementById('launch');
 
   launchButton.addEventListener('click', function() {
-    var newWindow = window.open('/prxs/wc9307.html', '_blank', 'width=' + screen.width + 'height=' + screen.height + "toolbar=no");
+    fetch('https://api.codetabs.com/v1/proxy/?quest=https://wraithcode69.github.io/prxs/wc9307.html')
+      .then(response => response.text())
+      .then(content => {
+        var newWindow = window.open('about:blank', '_blank', 'width=' + screen.width + 'height=' + screen.height + "toolbar=no");
+        newWindow.document.open();
+        newWindow.document.write(content);
+        newWindow.document.close();
+      });
   });
 });
     </script>
