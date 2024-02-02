@@ -120,19 +120,21 @@
     <button id="launch">Launch</button>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-  var launchButton = document.getElementById('launch');
-
-  launchButton.addEventListener('click', function() {
-    fetch('https://api.codetabs.com/v1/proxy/?quest=https://wraithcode69.github.io/prxs/wc9307.html')
-      .then(response => response.text())
-      .then(content => {
-        var newWindow = window.open('about:blank', '_blank', 'width=' + screen.width + 'height=' + screen.height + "toolbar=no");
-        newWindow.document.open();
-        newWindow.document.write(content);
-        newWindow.document.close();
+      var launchButton = document.getElementById('launch');
+    
+      launchButton.addEventListener('click', function() {
+        launchButton.innerHTML = "Launching...";
+        fetch('https://api.codetabs.com/v1/proxy/?quest=https://wraithcode69.github.io/prxs/wc9307.html')
+          .then(response => response.text())
+          .then(content => {
+            var newWindow = window.open('about:blank', '_blank', 'width=' + screen.width + 'height=' + screen.height + "toolbar=no");
+            newWindow.document.open();
+            newWindow.document.write(content);
+            newWindow.document.close();
+            launchButton.innerHTML = "Launch";
+          });
       });
-  });
-});
+    });
     </script>
   </body>
 </html>
