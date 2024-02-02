@@ -111,20 +111,20 @@
           return;
         };
         
-        fetch(url)
-          .then(response => {
-            if (response.ok) {
-              console.log("Valid URL with a reachable website: " + url);
-              // Proceed with setting the source
-              frame.src = url;
-            } else {
-              urlbar.value = "Website does not exist";
-            }
-          })
-          .catch(error => {
-            urlbar.value = "Error checking url, website likely does not exist";
+        if (url == "https://classroom.google.com") {
+          urlbar.value = "No way is google classroom blocked.";
+          return;
+        }
+        ;
+        
+        
+        try {
+          new URL(url);
+            frame.src = url;
+          } catch (error) {
+            urlbar.value = "Error checking URL, website likely does not exist";
             frame.src = "https://wraithcode69.github.io/prxs/404.html";
-          });
+          }
       };
     </script>
   </body>
