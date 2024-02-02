@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>M's Treats</title
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+      body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        font-family: "Sans-Serif", Tahoma, Verdana;
+        background: linear-gradient(131deg, #fbbc7f 0%, #bf67e3 33%, #83ff7e 67%, #fff386 100%);
+      }
+      
+      nav {
+        height: 50px;
+        width: 100%;
+        background: #696969;
+        display: flex;
+        box-shadow: 0 -50px 20px 50px #000000;
+      }
+      
+      nav button {
+        height: 100%;
+        width: 20%;
+        display: block;
+        border: none;
+        border-radius: none;
+        position: relative;
+        cursor: pointer;
+      }
+      
+      nav button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none; /* To allow button clicks */
+        transition: opacity 0.3s ease;
+      }
+      
+      nav button:hover:before {
+        opacity: 1;
+      }
+      
+      h1 {
+        font-size: 75px;
+        color: #ffffff;
+        text-shadow: 5px 5px 5px #696969;
+        margin: 0;
+        margin-top: 100px;
+        width: 100%;
+        text-align: center;
+      }
+      
+      p {
+        font-size: 30px;
+        color: #ffffff;
+        text-shadow: 5px 5px 5px #717171;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button style="background: linear-gradient(#dddddd 0%, #ffffff 100%);" onclick="location.href=''">Home <i class="fa fa-home"></i></button>
+      <button style="background: linear-gradient(#8f37b3 0%, #bf67e3 100%);" onclick="location.href=''">Boba <i class="fa fa-mug-saucer"></i></button>
+      <button style="background: linear-gradient(#53cf4e 0%, #83ff7e 100%);" onclick="location.href=''">Limeade <i class="fa fa-bottle-water"></i></button>
+      <button style="background: linear-gradient(#cfc356 0%, #fff386 100%);" onclick="location.href=''">Hot Cocoa <i class="fa fa-mug-hot"></i></button>
+      <button style="background: linear-gradient(#cb8c4f 0%, #fbbc7f 100%);" onclick="location.href=''">Ice Cream <i class="fa fa-ice-cream"></i></button>
+    </nav>
+    
+    <h1>M's Treats</h1>
+    <p>Lorem ipsum dolor sit amet</p>
+  </body>
+</html>
