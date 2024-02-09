@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wraithcode</title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <style>
+      :root {
+        --accent: #05336b;
+      }
+    
+      body {
+        background: #101010;
+        height: 100vh;
+        width: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        font-family: "Sans-Serif", Tahoma, Verdana;
+      }
+      
+      .background {
+        height: 100%;
+        margin: 0;
+        position: absolute;
+        z-index: -999;
+      }
+      
+      .bottom {
+        height: 60px;
+        width: calc(100% - 2px);
+        background: #00000044;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding-left: 2px;
+      }
+      
+      .timestuff {
+        height: 100%;
+        width: auto;
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        padding-right: 2px;
+      }
+      
+      .btmicon {
+        font-size: 40px;
+        color: #ffffff;
+        display: block;
+        margin-left: 3px;
+        margin-right: 3px;
+        transition: 0.2s ease;
+      }
+      
+      .btmicon:hover {
+        font-size: 46px;
+        margin-left: 0px;
+        margin-right: 0px;
+        cursor: pointer;
+      }
+      
+      #timeMenu {
+        height: 100px;
+        width: 260px;
+        background: #00000044;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 70px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.2s ease-in-out;
+        z-index: 999;
+      }
+      
+      #mainMenu {
+        height: 250px;
+        width: 300px;
+        background: #00000044;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 70px;
+        left: 10px;
+        display: flex;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.2s ease-in-out;
+      }
+      
+      #notifications {
+        height: calc(100% - 61px);
+        width: 300px;
+        background: #00000044;
+        border-bottom: 1px solid #ffffff;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.1s ease-in-out;
+      }
+      
+      .desktopItemsFrame {
+        height: calc(100% - 60px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        webkit-user-drag: drag;
+      }
+      
+      .desktopItem {
+        height: 80px;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #ffffff;
+        font-weight: bold;
+        margin: 10px;
+        cursor: move;
+      }
+      
+      .desktopicon {
+        font-size: 50px;
+        color: #ffffff;
+        display: block;
+      }
+      
+      .desktopItem p {
+        margin: 0;
+        margin-top: 5px;
+        text-align: center;
+      }
+      
+      .nfps{position:relative;}
+      
+      .nfps:before {
+        content: "69";
+        font-size: 14px;
+        font-family: "Sans-Serif", Tahoma, Verdana;
+        height: 16px;
+        width: auto;
+        padding-left: 2px;
+        padding-right: 2px;
+        border-radius: 8px;
+        background: #ff0000;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .timn-left, .timn-right {
+        height: 40px;
+        width: auto;
+        background: #343434;
+        margin-right: 3px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.1s ease-in-out;
+      }
+      
+      .timn-right {
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+      }
+      
+      .timn-left {
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      
+      .timn-right i {
+        font-size: 18px;
+      }
+      
+      .tps {
+        color: #ffffff;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        cursor: pointer;
+        font-size: 20px;
+        transition: 0.1s ease-in-out;
+        margin: 10px;
+      }
+      
+      .tpp {
+        color: #ffffff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        cursor: pointer;
+        font-size: 20px;
+        transition: 0.1s ease-in-out;
+        margin: 10px;
+      }
+      
+      .tps:hover, .tpp:hover {
+        font-size: 24px;
+      }
+      
+      #batteryPercentage {
+        color: #ffffff;
+        font-weight: bold;
+        position: absolute;
+        bottom: 0;
+        left: 32px;
+        margin: 10px;
+      }
+      
+      .slider {
+        width: calc(100% - 20px);
+        height: 10px;
+        background-color: #00000066;
+        position: relative;
+        top: calc(100% - 60px);
+        left: 10px;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+      }
+    
+      .handle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: var(--accent);
+        border-radius: 50%;
+        cursor: pointer;
+        color: #ffffff;
+        font-size: 20px;
+      }
+      
+      .yau {
+        color: #ffffff;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        top: 10px;
+        font-size: 13px;
+      }
+      
+      .notifications-title {
+        width: 100%;
+        height: 50px;
+        margin: 0;
+        margin-top: 20px;
+        color: #ffffff;
+        text-align: center;
+        text-decoration: underline;
+        border-bottom: 2px solid #ffffff44;
+      }
+    </style>
+  </head>
+  <body>
+    <img class="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
+    <div id="opacityElem" style="position: absolute; bottom: 0; left: 0; z-index: 9999; height: 100%; width: 100%; background-color: #000000; pointer-events: none; opacity: 0;"></div>
+    
+    <div class="desktopItemsFrame">
+      <div class="desktopItem">
+        <i class="desktopicon material-symbols-outlined" onclick="">folder_open</i>
+        <p>File Manager</p>
+      </div>
+      <div class="desktopItem">
+        <i class="desktopicon material-symbols-outlined" onclick="">terminal</i>
+        <p>Terminal</p>
+      </div>
+    </div>
+    
+    <div class="bottom">
+      <i class="btmicon material-symbols-outlined" onclick="openMenu()" title="Menu">circle</i>
+      
+      <div class="timestuff">
+        <i class="nfps btmicon material-symbols-outlined" onclick="openNotifications()" title="Notifications">notifications</i>
+        <div class="timn-left"><p>Feb 9</p></div>
+        <div class="timn-right" onclick="openTimeMenu()" id="timnrt"><p id="time">Enable Javascript</p>&nbsp;<i class="material-symbols-outlined" id="percentageIcon">battery_full</i></div>
+      </div>
+    </div>
+    <div id="timeMenu">
+      <p class="yau">You are using Wraithcode OS v1.0</p>
+      <div class="slider" id="slider">
+        <i class="handle material-symbols-outlined">brightness_high</i>
+      </div>
+      <i class="tpp material-symbols-outlined" onclick="openPower">power_settings_new</i>  
+      <span id="batteryPercentage">test</span>
+      <i class="tps material-symbols-outlined">settings</i>
+    </div>
+    <div id="mainMenu">
+      <i class="btmicon material-symbols-outlined" onclick="openPowerPopup()" title="App Store">local_mall</i>
+    </div>
+    <div id="notifications">
+      <h1 class="notifications-title">Notifications </h1>
+    </div>
+    
+    <script>
+      var tiMn = document.getElementById('timeMenu');
+      var mainMenu = document.getElementById('mainMenu');
+      var ntMenu = document.getElementById('notifications');
+      var chngbg = document.getElementById('timnrt');
+      
+      function openTimeMenu() {
+        if (tiMn.style.opacity == "1") {
+          tiMn.style.opacity = "0";
+          tiMn.style.pointerEvents = "none";
+          timnrt.style.backgroundColor = "#343434";
+          return;
+        } else {
+          tiMn.style.pointerEvents = "all";
+          tiMn.style.opacity = "1";
+          timnrt.style.backgroundColor = "var(--accent)";
+          mainMenu.style.opacity = "0";
+          mainMenu.style.pointerEvents = "none";
+          ntMenu.style.opacity = "0";
+          ntMenu.style.pointerEvents = "none";
+        }
+      };
+      
+      function openMenu() {
+        if (mainMenu.style.opacity == "1") {
+          mainMenu.style.opacity = "0";
+          mainMenu.style.pointerEvents = "none";
+          return;
+        } else {
+          mainMenu.style.pointerEvents = "all";
+          mainMenu.style.opacity = "1";
+          tiMn.style.opacity = "0";
+          tiMn.style.pointerEvents = "none";
+          timnrt.style.backgroundColor = "#343434";
+          ntMenu.style.opacity = "0";
+          ntMenu.style.pointerEvents = "none";
+        }
+      };
+      
+      function openNotifications() {
+        if (ntMenu.style.opacity == "1") {
+          ntMenu.style.opacity = "0";
+          ntMenu.style.pointerEvents = "none";
+          return;
+        } else {
+          ntMenu.style.pointerEvents = "all";
+          ntMenu.style.opacity = "1";
+          mainMenu.style.opacity = "0";
+          mainMenu.style.pointerEvents = "none";
+          tiMn.style.opacity = "0";
+          tiMn.style.pointerEvents = "none";
+          timnrt.style.backgroundColor = "#343434";
+        }
+      };
+      // time updating
+      function updateTime() {
+       const time = document.getElementById("time");
+        const t = new Date();
+        let hours = t.getHours();
+        let minutes = t.getMinutes();
+        let seconds = t.getSeconds();
+        let period = hours >= 12 ? "PM" : "AM";
+          if (hours > 12) {
+            hours -= 12;
+          } else if (hours === 0) {
+            hours = 12;
+          }
+          if (minutes < 10) {
+            minutes = `0${minutes}`;
+          }
+          if (seconds < 10) {
+            seconds = `0${seconds}`;
+          }
+          time.textContent = `${hours}:${minutes}:${seconds} ${period}`;
+        }
+        setInterval(updateTime, 1000);
+      
+      // battery icon and text reading
+      navigator.getBattery().then(function(battery) {
+        updateBatteryStatus(battery);
+        
+        battery.addEventListener('levelchange', function() {
+          updateBatteryStatus(battery);
+        });
+        
+        battery.addEventListener('chargingchange', function() {
+          updateBatteryStatus(battery);
+        });
+      });
+      
+      var batteryIcon = document.getElementById("percentageIcon");
+      
+      function updateBatteryStatus(battery) {
+        let batteryPercentage = (battery.level * 100).toFixed(0); // Convert to percentage
+        document.getElementById("batteryPercentage").innerText = "Battery: " + batteryPercentage + "%";
+        if (batteryPercentage <= 100 && batteryPercentage > 94) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_full";
+          } else {
+            batteryIcon.innerText = "battery_full";
+          }
+        } else if (batteryPercentage <= 94 && batteryPercentage > 70) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_90";
+          } else {
+            batteryIcon.innerText = "battery_6_bar";
+          }
+        } else if (batteryPercentage <= 70 && batteryPercentage > 50) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_80";
+          } else {
+            batteryIcon.innerText = "battery_5_bar";
+          }
+        } else if (batteryPercentage <= 50 && batteryPercentage > 40) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_60";
+          } else {
+            batteryIcon.innerText = "battery_4_bar";
+          }
+        } else if (batteryPercentage <= 40 && batteryPercentage > 30) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_50";
+          } else {
+            batteryIcon.innerText = "battery_3_bar";
+          }
+        } else if (batteryPercentage <= 30 && batteryPercentage > 20) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_30";
+          } else {
+            batteryIcon.innerText = "battery_2_bar";
+          }
+        } else if (batteryPercentage <= 20 && batteryPercentage > 10) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_20";
+          } else {
+            batteryIcon.innerText = "battery_1_bar";
+          }
+        } else if (batteryPercentage <= 10 && batteryPercentage > 5) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_full";
+          } else {
+            batteryIcon.innerText = "battery_0_bar";
+          }
+        } else if (batteryPercentage <= 5) {
+          if (battery.charging) {
+            batteryIcon.innerText = "battery_charging_full";
+          } else {
+            batteryIcon.innerText = "battery_alert";
+          }
+        } else {
+          batterIcon.innerText = "battery_error";
+        }
+      }
+      // brightness slider
+      const handle = document.querySelector('.handle');
+      const slider = document.getElementById('slider');
+      const brightnessMask = document.getElementById('opacityElem');
+      let value = 0;
+    
+      let isDragging = false;
+    
+      handle.addEventListener('mousedown', () => {
+        isDragging = true;
+      });
+    
+      const updateValue = () => {
+        const handlePos = parseFloat(handle.style.left) / slider.offsetWidth;
+        value = handlePos;
+        brightnessMask.style.opacity = value - 0.05;
+      };
+      var w = document.documentElement.clientWidth;
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          let posX = e.clientX - slider.offsetLeft - 10 - w + 280;
+          if (posX < 0) {
+            posX = 0;
+          } else if (posX > slider.offsetWidth) {
+            posX = slider.offsetWidth;
+          }
+          handle.style.left = posX - 10 + 'px';
+    
+          slider.style.background = `linear-gradient(to right, var(--accent) ${posX + 10}px, #00000066 ${posX}px)`;
+    
+          updateValue();
+        }
+      });
+    
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    </script>
+  </body>
+</html>
