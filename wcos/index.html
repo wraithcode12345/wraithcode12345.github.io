@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -88,16 +89,20 @@
       
       #mainMenu {
         height: 250px;
-        width: 300px;
+        width: auto;
+        max-width: 260px;
         background: #00000044;
         border-radius: 10px;
         position: absolute;
         bottom: 70px;
         left: 10px;
         display: flex;
+        flex-wrap: wrap;
+        flex-basis: ;
         pointer-events: none;
         opacity: 0;
         transition: 0.2s ease-in-out;
+        overflow: scroll;
       }
       
       #notifications {
@@ -288,6 +293,46 @@
         text-decoration: underline;
         border-bottom: 2px solid #ffffff44;
       }
+      
+      .appDiv {
+        height: 80px;
+        width: 80px;
+        margin: 3px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .appDiv i {
+        font-size: 40px;
+        margin: 0;
+        user-select: none;
+        transition: 0.15s ease-in-out;
+      }
+      
+      .appDiv p {
+        font-weight: bold;
+        font-size: 14px;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        user-select: none;
+        transition: 0.15s ease-in-out;
+      }
+      
+      .appDiv:hover {
+        cursor: pointer;
+      }
+      
+      .appDiv:hover i {
+        font-size: 42px;
+      }
+      
+      .appDiv:hover p {
+        font-size: 16px;
+      }
     </style>
   </head>
   <body>
@@ -300,8 +345,8 @@
         <p>File Manager</p>
       </div>
       <div class="desktopItem">
-        <i class="desktopicon material-symbols-outlined" onclick="">terminal</i>
-        <p>Terminal</p>
+        <i class="desktopicon material-symbols-outlined" onclick="">info</i>
+        <p>About</p>
       </div>
     </div>
     
@@ -324,7 +369,46 @@
       <i class="tps material-symbols-outlined">settings</i>
     </div>
     <div id="mainMenu">
-      <i class="btmicon material-symbols-outlined" onclick="openPowerPopup()" title="App Store">local_mall</i>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">local_mall</i>
+        <p>App Store</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">terminal</i>
+        <p>Terminal</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">photo_camera</i>
+        <p>Camera</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">calculate</i>
+        <p>Calculator</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">assignment</i>
+        <p>Notepad</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">circle</i>
+        <p>null</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">circle</i>
+        <p>null</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">circle</i>
+        <p>null</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">circle</i>
+        <p>null</p>
+      </div>
+      <div class="appDiv">
+        <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">circle</i>
+        <p>null</p>
+      </div>
     </div>
     <div id="notifications">
       <h1 class="notifications-title">Notifications </h1>
