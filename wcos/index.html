@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -59,6 +60,7 @@
         margin-left: 3px;
         margin-right: 3px;
         transition: 0.2s ease;
+        user-select: none;
       }
       
       .btmicon:hover {
@@ -70,7 +72,7 @@
       
       #timeMenu {
         height: 100px;
-        width: 260px;
+        width: 360px;
         background: #00000044;
         border-radius: 10px;
         position: absolute;
@@ -112,12 +114,11 @@
         transition: 0.1s ease-in-out;
       }
       
-      .desktopItemsFrame {
+      #desktopItemsFrame {
         height: calc(100% - 60px);
         width: 100%;
         display: flex;
         flex-direction: column;
-        webkit-user-drag: drag;
       }
       
       .desktopItem {
@@ -130,19 +131,20 @@
         color: #ffffff;
         font-weight: bold;
         margin: 10px;
-        cursor: move;
       }
       
       .desktopicon {
         font-size: 50px;
         color: #ffffff;
         display: block;
+        user-select: none;
       }
       
       .desktopItem p {
         margin: 0;
         margin-top: 5px;
         text-align: center;
+        user-select: none;
       }
       
       .nfps{position:relative;}
@@ -179,6 +181,7 @@
         font-weight: bold;
         font-size: 15px;
         transition: 0.1s ease-in-out;
+        user-select: none;
       }
       
       .timn-right {
@@ -197,6 +200,7 @@
       
       .timn-right i {
         font-size: 18px;
+        user-select: none;
       }
       
       .tps {
@@ -208,6 +212,7 @@
         font-size: 20px;
         transition: 0.1s ease-in-out;
         margin: 10px;
+        user-select: none;
       }
       
       .tpp {
@@ -219,6 +224,7 @@
         font-size: 20px;
         transition: 0.1s ease-in-out;
         margin: 10px;
+        user-select: none;
       }
       
       .tps:hover, .tpp:hover {
@@ -232,6 +238,8 @@
         bottom: 0;
         left: 32px;
         margin: 10px;
+        font-size: 14px;
+        user-select: none;
       }
       
       .slider {
@@ -255,6 +263,7 @@
         cursor: pointer;
         color: #ffffff;
         font-size: 20px;
+        user-select: none;
       }
       
       .yau {
@@ -266,6 +275,7 @@
         position: absolute;
         top: 10px;
         font-size: 13px;
+        user-select: none;
       }
       
       .notifications-title {
@@ -284,7 +294,7 @@
     <img class="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
     <div id="opacityElem" style="position: absolute; bottom: 0; left: 0; z-index: 9999; height: 100%; width: 100%; background-color: #000000; pointer-events: none; opacity: 0;"></div>
     
-    <div class="desktopItemsFrame">
+    <div id="desktopItemsFrame">
       <div class="desktopItem">
         <i class="desktopicon material-symbols-outlined" onclick="">folder_open</i>
         <p>File Manager</p>
@@ -300,7 +310,7 @@
       
       <div class="timestuff">
         <i class="nfps btmicon material-symbols-outlined" onclick="openNotifications()" title="Notifications">notifications</i>
-        <div class="timn-left"><p>Feb 9</p></div>
+        <div class="timn-left"><p id="date">[Date]</p></div>
         <div class="timn-right" onclick="openTimeMenu()" id="timnrt"><p id="time">Enable Javascript</p>&nbsp;<i class="material-symbols-outlined" id="percentageIcon">battery_full</i></div>
       </div>
     </div>
@@ -374,6 +384,14 @@
           timnrt.style.backgroundColor = "#343434";
         }
       };
+      // date updating
+      const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      function updateDate() {
+        const d = new Date();
+        let month = months[d.getMonth()];
+        let day = d.getDate();
+        document.getElementById("date").innerText = month + " " + day;
+      }
       // time updating
       function updateTime() {
        const time = document.getElementById("time");
@@ -394,8 +412,13 @@
             seconds = `0${seconds}`;
           }
           time.textContent = `${hours}:${minutes}:${seconds} ${period}`;
+          updateDate();
         }
-        setInterval(updateTime, 1000);
+      setInterval(updateTime, 1000);
+      // this so we dont see the placeholders
+      document.addEventListener("DOMContentLoaded", () => {
+        updateTime();
+      });
       
       // battery icon and text reading
       navigator.getBattery().then(function(battery) {
@@ -408,13 +431,33 @@
         battery.addEventListener('chargingchange', function() {
           updateBatteryStatus(battery);
         });
+        
+        battery.addEventListener('chargingtimechange', function() {
+          updateBatteryStatus(battery);
+        });
+        
+        battery.addEventListener('dischargingtimechange', function() {
+          updateBatteryStatus(battery);
+        });
       });
       
       var batteryIcon = document.getElementById("percentageIcon");
       
       function updateBatteryStatus(battery) {
         let batteryPercentage = (battery.level * 100).toFixed(0); // Convert to percentage
-        document.getElementById("batteryPercentage").innerText = "Battery: " + batteryPercentage + "%";
+        if (battery.charging) {
+          var CtimeRemaining = battery.chargingTime;
+          var TRChours = Math.floor(CtimeRemaining / 3600);
+          var TRCminutes = Math.floor((CtimeRemaining % 3600) / 60);
+          document.getElementById("batteryPercentage").innerText = "Battery: " + batteryPercentage + "% - " + TRChours + ":" + (TRCminutes < 10 ? "0" : "") + TRCminutes + " until full";
+          batteryIcon.title = batteryPercentage + "% - " + TRChours + ":" + (TRCminutes < 10 ? "0" : "") + TRCminutes + " until full";
+        } else {
+          var timeRemaining = battery.dischargingTime;
+          var TRhours = Math.floor(timeRemaining / 3600);
+          var TRminutes = Math.floor((timeRemaining % 3600) / 60);
+          document.getElementById("batteryPercentage").innerText = "Battery: " + batteryPercentage + "% - " + TRhours + ":" + (TRminutes < 10 ? "0" : "") + TRminutes + " left";
+          batteryIcon.title = batteryPercentage + "% - " + TRhours + ":" + (TRminutes < 10 ? "0" : "") + TRminutes + " left";
+        }
         if (batteryPercentage <= 100 && batteryPercentage > 94) {
           if (battery.charging) {
             batteryIcon.innerText = "battery_charging_full";
@@ -493,7 +536,7 @@
       var w = document.documentElement.clientWidth;
       document.addEventListener('mousemove', (e) => {
         if (isDragging) {
-          let posX = e.clientX - slider.offsetLeft - 10 - w + 280;
+          let posX = e.clientX - slider.offsetLeft - 10 - w + 380;
           if (posX < 0) {
             posX = 0;
           } else if (posX > slider.offsetWidth) {
@@ -510,6 +553,9 @@
       document.addEventListener('mouseup', () => {
         isDragging = false;
       });
+      
+      // make desktop item dragging later
+      
     </script>
   </body>
 </html>
