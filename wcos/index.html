@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,6 +19,7 @@
         display: flex;
         overflow: hidden;
         font-family: "Sans-Serif", Tahoma, Verdana;
+        color: #ffffff !important;
       }
       
       .background {
@@ -84,7 +86,8 @@
         pointer-events: none;
         opacity: 0;
         transition: 0.2s ease-in-out;
-        z-index: 999;
+        z-index: 1000;
+        backdrop-filter: blur(8px);
       }
       
       #mainMenu {
@@ -103,6 +106,8 @@
         opacity: 0;
         transition: 0.2s ease-in-out;
         overflow: scroll;
+        z-index: 999;
+        backdrop-filter: blur(8px);
       }
       
       #notifications {
@@ -117,6 +122,8 @@
         pointer-events: none;
         opacity: 0;
         transition: 0.1s ease-in-out;
+        z-index: 999;
+        backdrop-filter: blur(8px);
       }
       
       #desktopItemsFrame {
@@ -310,6 +317,7 @@
         margin: 0;
         user-select: none;
         transition: 0.15s ease-in-out;
+        pointer-events: none;
       }
       
       .appDiv p {
@@ -320,6 +328,7 @@
         text-align: center;
         user-select: none;
         transition: 0.15s ease-in-out;
+        pointer-events: none;
       }
       
       .appDiv:hover {
@@ -340,9 +349,10 @@
         position: absolute;
         display: flex;
         place-self: center center;
-        left: 11%;
+        margin: 13%;
         background: #ffffff;
-        padding: 10px;
+        overflow: scroll;
+        border: none;
       }
     </style>
   </head>
@@ -381,7 +391,7 @@
       <i class="tps material-symbols-outlined">settings</i>
     </div>
     <div id="mainMenu">
-      <div class="appDiv" onclick="openWindow(appstore)">
+      <div class="appDiv" onclick="openWindow('appstore')">
         <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">local_mall</i>
         <p>App Store</p>
       </div>
@@ -649,19 +659,31 @@
       
       // windows, CONTINUE CODING LATER, THIS IS UNFINISHED AND DYSFUNCTIONAL
       function openWindow(grab) {
-      var source = "https://wraithcode2050.github.io/wcos/pages/" + grab + ".html";
-    
-      fetch('https://api.codetabs.com/v1/proxy/?quest=' + source)
-        .then(response => response.text())
-        .then(content => {
-          var newWindow = document.createElement("div");
-          newWindow.className = "windowScreen"; // corrected property name
-          newWindow.innerHTML = "";
-          newWindow.innerHTML = content; // simplified code
-          document.body.appendChild(newWindow); // corrected code
-        });
-    };
-      
+  var source = "https://wraithcode2050.github.io/wcos/pages/" + grab + ".html";
+
+  // Create a new iframe element
+  var iframe = document.createElement('iframe');
+  iframe.classList.add('windowScreen');
+
+  // Fetch the content using the Fetch API
+  fetch(source)
+    .then(response => response.text())
+    .then(data => {
+      // Create a new div element
+      var div = document.createElement('div');
+      div.innerHTML = data;
+
+      // Append the div to the iframe's content document
+      var doc = iframe.contentDocument || iframe.contentWindow.document;
+      doc.body.appendChild(div);
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
+
+  // Append the iframe to the document body
+  document.body.appendChild(iframe);
+}
     </script>
   </body>
 </html>
