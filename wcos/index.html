@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,11 +22,13 @@
       
       .background {
         height: 100%;
+        min-width: 100%;
         margin: 0;
         position: absolute;
         top: 0;
         left: 0;
         z-index: -999;
+        user-select: none;
       }
       
       .bottom {
@@ -333,9 +333,21 @@
       .appDiv:hover p {
         font-size: 16px;
       }
+      
+      .windowScreen {
+        width: 74%;
+        aspect-ratio: 2/1;
+        position: absolute;
+        display: flex;
+        place-self: center center;
+        left: 11%;
+        background: #ffffff;
+        padding: 10px;
+      }
     </style>
   </head>
   <body>
+    <!-- <div class="windowScreen">Loading...</div> -->
     <img class="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
     <div id="opacityElem" style="position: absolute; bottom: 0; left: 0; z-index: 9999; height: 100%; width: 100%; background-color: #000000; pointer-events: none; opacity: 0;"></div>
     
@@ -369,23 +381,23 @@
       <i class="tps material-symbols-outlined">settings</i>
     </div>
     <div id="mainMenu">
-      <div class="appDiv">
+      <div class="appDiv" onclick="openWindow(appstore)">
         <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">local_mall</i>
         <p>App Store</p>
       </div>
-      <div class="appDiv">
+      <div class="appDiv" onclick="openWindow(terminal)">
         <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">terminal</i>
         <p>Terminal</p>
       </div>
-      <div class="appDiv">
+      <div class="appDiv" onclick="openWindow(camera)">
         <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">photo_camera</i>
         <p>Camera</p>
       </div>
-      <div class="appDiv">
+      <div class="appDiv" onclick="openWindow(calculator)" onclick="openWindow()">
         <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">calculate</i>
         <p>Calculator</p>
       </div>
-      <div class="appDiv">
+      <div class="appDiv" onclick="openWindow(notepad)">
         <i class="material-symbols-outlined" onclick="openPowerPopup()" title="App Store">assignment</i>
         <p>Notepad</p>
       </div>
@@ -503,7 +515,6 @@
       document.addEventListener("DOMContentLoaded", () => {
         updateTime();
       });
-      
       // battery icon and text reading
       navigator.getBattery().then(function(battery) {
         updateBatteryStatus(battery);
@@ -511,22 +522,18 @@
         battery.addEventListener('levelchange', function() {
           updateBatteryStatus(battery);
         });
-        
         battery.addEventListener('chargingchange', function() {
           updateBatteryStatus(battery);
         });
-        
         battery.addEventListener('chargingtimechange', function() {
           updateBatteryStatus(battery);
         });
-        
         battery.addEventListener('dischargingtimechange', function() {
           updateBatteryStatus(battery);
         });
       });
       
       var batteryIcon = document.getElementById("percentageIcon");
-      
       function updateBatteryStatus(battery) {
         let batteryPercentage = (battery.level * 100).toFixed(0); // Convert to percentage
         if (battery.charging) {
@@ -639,6 +646,21 @@
       });
       
       // make desktop item dragging later
+      
+      // windows, CONTINUE CODING LATER, THIS IS UNFINISHED AND DYSFUNCTIONAL
+      function openWindow(grab) {
+      var source = "https://wraithcode2050.github.io/wcos/pages/" + grab + ".html";
+    
+      fetch('https://api.codetabs.com/v1/proxy/?quest=' + source)
+        .then(response => response.text())
+        .then(content => {
+          var newWindow = document.createElement("div");
+          newWindow.className = "windowScreen"; // corrected property name
+          newWindow.innerHTML = "";
+          newWindow.innerHTML = content; // simplified code
+          document.body.appendChild(newWindow); // corrected code
+        });
+    };
       
     </script>
   </body>
