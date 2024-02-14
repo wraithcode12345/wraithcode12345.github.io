@@ -8,6 +8,7 @@
     <style>
       :root {
         --accent: #05336b;
+        --accent-secondary: #ffffff;
       }
     
       body {
@@ -362,16 +363,57 @@
         font-size: 16px;
       }
       
-      .windowScreen {
-        width: 74%;
-        aspect-ratio: 2/1;
+      .windowContainer {
         position: absolute;
+        top: calc(50% - 151px);
+        left: calc(50% - 226px);
+        border: 1px solid var(--accent-secondary);
+        background-color: #696969;
+        height: 300px;
+        width: 450px;
+      }
+  
+      .windowHeader {
         display: flex;
-        place-self: center center;
-        margin: 13%;
-        background: #ffffff;
+        align-items: center;
+        padding-left: 8px;
+        font-size: 16px;
+        background-color: var(--accent);
+        color: #fff;
+        cursor: move;
+        border-bottom: 1px solid var(--accent-secondary);
+        position: relative;
+        height: 35px;
+      }
+      
+      .windowScreen {
+        width: 100%;
+        height: calc(100% - 36px);
+        position: absolute;
+        background: #696969;
         overflow: scroll;
         border: none;
+      }
+      
+      .windowCloseButton {
+        background: var(--accent);
+        border: none;
+        height: 22px;
+        margin: 4px;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        font-size: 22px;
+        color: #ffffff;
+      }
+      
+      .shelfItem {
+        height: 40px;
+        width: 40px;
+        margin-left: 5px;
+        border-radius: 50%;
+        border: 1px solid #ffffff;
       }
     </style>
   </head>
@@ -393,7 +435,11 @@
     
     <div class="bottom">
       <!-- logo svg for opening main menu -->
-      <svg class="openmenusvg" onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40" height="40" viewBox="0 0 500 500" xml:space="preserve"><g transform="matrix(0 2.4450152263 -2.4145376805 0 250 250.6428450974)" id="BBoCIjWeNpD-oepGyYhBG"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0 2.2899005837 -2.2613565692 0 249.999990396 250.6428450974)" id="Ry5z70r05mvY0j23QgIPC"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(58,18,84); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0.9341563044 0 0 0.9341563044 97.8707185774 273.1164515745)" id="A_K1mSeeMG6vLmACWiRmX"  ><path style="stroke: rgb(0,0,0); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"  transform=" translate(-87.1479471902, -274.2308431526)" d="M 87.14694719023055 274.2308431526191 L 87.14894719023056 274.2308431526191" stroke-linecap="round" /></g><g transform="matrix(2.5020046551 0 0 2.5136164266 249.999990396 264.2400248225)" id="Izyp3VL5IgeClk7jxXpGn"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M 0 40.30374 L -46.14991 -40.30375 L 46.14992 -40.30375 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 150.382987277 309.3476520153)" id="AI5qpZDcCF9qm15XXpQIf"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.18; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -22.9302 -40.36379 L -23.074949999999998 13.320369999999997 L 23.07496 40.363789999999995 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 349.6169935151 309.3476520153)" id="WecekGZwKx48t5ckYQd7W"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.4; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -23.07496 40.36379 L 23.074949999999998 13.325390000000002 L 23.074949999999998 -40.363789999999995 z" stroke-linecap="round" /></g></svg>
+      <svg class="openmenusvg" onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40" height="40" viewBox="0 0 500 500" xml:space="preserve"><g transform="matrix(0 2.4450152263 -2.4145376805 0 250 250.6428450974)" id="BBoCIjWeNpD-oepGyYhBG"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0 2.2899005837 -2.2613565692 0 249.999990396 250.6428450974)" id="Ry5z70r05mvY0j23QgIPC"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(58,18,84); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0.9341563044 0 0 0.9341563044 97.8707185774 273.1164515745)" id="A_K1mSeeMG6vLmACWiRmX"  ><path style="stroke: rgb(0,0,0); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"  transform=" translate(-87.1479471902, -274.2308431526)" d="M 87.14694719023055 274.2308431526191 L 87.14894719023056 274.2308431526191" stroke-linecap="round" /></g><g transform="matrix(2.5020046551 0 0 2.5136164266 249.999990396 264.2400248225)" id="Izyp3VL5IgeClk7jxXpGn"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M 0 40.30374 L -46.14991 -40.30375 L 46.14992 -40.30375 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 150.382987277 309.3476520153)" id="AI5qpZDcCF9qm15XXpQIf"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.18; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -22.9302 -40.36379 L -23.074949999999998 13.320369999999997 L 23.07496 40.363789999999995 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 349.6169935151 309.3476520153)" id="WecekGZwKx48t5ckYQd7W"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.4; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -23.07496 40.36379 L 23.074949999999998 13.325390000000002 L 23.074949999999998 -40.363789999999995 z" stroke-linecap="round" /></g></svg>
+      
+      <div class="shelfItemsContainer">
+        <img class="shelfItem" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Red_square.svg">
+      </div>
       
       <div class="timestuff">
         <i class="nfps btmicon material-symbols-outlined" onclick="openNotifications()" title="Notifications">notifications</i>
@@ -679,30 +725,97 @@
       
       // windows, CONTINUE CODING LATER, THIS IS UNFINISHED AND DYSFUNCTIONAL
       function openWindow(grab) {
-  var source = "https://wraithcode2050.github.io/wcos/pages/" + grab + ".html";
+    var source = "https://wraithcode2050.github.io/wcos/localpages/" + grab + ".html";
 
-  // Create a new iframe element
-  var iframe = document.createElement('iframe');
-  iframe.classList.add('windowScreen');
+    var windowDiv = document.createElement('div');
+    windowDiv.classList.add('windowContainer');
 
-  // Fetch the content using the Fetch API
-  fetch(source)
-    .then(response => response.text())
-    .then(data => {
-      // Create a new div element
-      var div = document.createElement('div');
-      div.innerHTML = data;
+    var header = document.createElement('div');
+    header.classList.add('windowHeader');
+    header.innerText = "Local App: " + grab;
+    windowDiv.appendChild(header);
+    
+    var closeButton = document.createElement('button');
+    closeButton.innerText = 'close';
+    closeButton.classList.add('windowCloseButton');
+    closeButton.classList.add('material-symbols-outlined');
+    closeButton.onclick = function() {
+        windowDiv.remove();
+    }
+    header.appendChild(closeButton);
 
-      // Append the div to the iframe's content document
-      var doc = iframe.contentDocument || iframe.contentWindow.document;
-      doc.body.appendChild(div);
-    })
-    .catch(error => {
-      console.log('Error:', error);
-    });
+    var iframe = document.createElement('iframe');
+    iframe.classList.add('windowScreen');
 
-  // Append the iframe to the document body
-  document.body.appendChild(iframe);
+    fetch(source)
+      .then(response => response.text())
+      .then(data => {
+        if (data.includes("<isvalidapp></isvalidapp>")) {
+          var div = document.createElement('div');
+          div.innerHTML = data;
+
+          var doc = iframe.contentDocument || iframe.contentWindow.document;
+          doc.body.appendChild(div);
+        } else {
+          fetch("https://wraithcode2050.github.io/wcos/localpages/appinvalid.html")
+            .then(response => response.text())
+            .then(data => {
+              var div = document.createElement('div');
+              div.innerHTML = data;
+
+              var doc = iframe.contentDocument || iframe.contentWindow.document;
+              doc.body.appendChild(div);
+            })
+          .catch(error => {
+            alert('Error:', error);
+          });
+        }
+      })
+      .catch(error => {
+        console.log('Error:', error);
+  });
+
+  windowDiv.appendChild(iframe);
+  document.body.appendChild(windowDiv);
+
+  dragElement(windowDiv);
+}
+
+function dragElement(elmnt) {
+  var zIndex = 3; // Initial zIndex for the top window
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  elmnt.querySelector('.windowHeader').addEventListener('mousedown', dragMouseDown);
+  
+  function dragMouseDown(e) {
+    e.preventDefault();
+    zIndex++; // Increment zIndex for the current window
+    elmnt.style.zIndex = zIndex;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.addEventListener('mouseup', closeDragElement);
+    document.addEventListener('mousemove', elementDrag);
+  }
+  
+  function elementDrag(e) {
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+  
+  function closeDragElement() {
+    document.removeEventListener('mouseup', closeDragElement);
+    document.removeEventListener('mousemove', elementDrag);
+  }
+}
+
+// Call the dragElement function for each window element
+var windows = document.getElementsByClassName('window');
+for (var i = 0; i < windows.length; i++) {
+  dragElement(windows[i]);
 }
     </script>
   </body>
