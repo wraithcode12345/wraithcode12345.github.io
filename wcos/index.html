@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -957,9 +956,15 @@
           pos2 = pos4 - e.clientY;
           pos3 = e.clientX;
           pos4 = e.clientY;
-          elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+          
+          var newTop = elmnt.offsetTop - pos2;
+          if (newTop < 0) {
+              newTop = 0;
+          }
+          
+          elmnt.style.top = newTop + "px";
           elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
+      }
         
         function closeDragElement() {
           document.removeEventListener('mouseup', closeDragElement);
@@ -975,7 +980,15 @@
       
       function openSettingsWindow() {
         var settingsWindow = document.getElementById('settingsWindow');
+        settingsWindow.style.top = "calc(50% - 151px)";
+        settingsWindow.style.left = "calc(50% - 226px)";
         settingsWindow.style.display = "block";
+        
+        // Check if dragMouseDown event listener has already been attached because it was being go wheeeeeee
+        if (!settingsWindow.querySelector('.windowHeader').hasAttribute('data-draggable')) {
+          dragElement(settingsWindow);
+          settingsWindow.querySelector('.windowHeader').setAttribute('data-draggable', 'true');
+        }
       }
       function closeSettingsWindow() {
         var settingsWindow = document.getElementById('settingsWindow');
@@ -994,8 +1007,20 @@
       function changeWallpaper(source) {
         var backgroundElement = document.getElementById("background");
         
+        // Save the selected wallpaper source in localStorage
+        localStorage.setItem("selectedWallpaper", source);
+        
         backgroundElement.src = "https://wraithcode2050.github.io/wcos/wallpapers/" + source;
       }
+      
+      document.addEventListener('DOMContentLoaded', (e) => {
+        var savedWallpaper = localStorage.getItem("selectedWallpaper");
+        if (savedWallpaper) {
+          // If there is a saved wallpaper, apply it
+          var backgroundElement = document.getElementById("background");
+          backgroundElement.src = "https://wraithcode2050.github.io/wcos/wallpapers/" + savedWallpaper;
+        }
+      });
     </script>
   </body>
 </html>
