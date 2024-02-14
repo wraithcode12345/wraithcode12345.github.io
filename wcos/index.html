@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,6 +10,8 @@
       :root {
         --accent: #05336b;
         --accent-secondary: #ffffff;
+        --accent-tertiary: #232342;
+        --accent-quadrary: #000000;
       }
     
       body {
@@ -22,7 +25,7 @@
         color: #ffffff !important;
       }
       
-      .background {
+      #background {
         height: 100%;
         min-width: 100%;
         margin: 0;
@@ -96,7 +99,7 @@
       #timeMenu {
         height: 100px;
         width: 360px;
-        background: #00000044;
+        background: #00000055;
         border-radius: 10px;
         position: absolute;
         bottom: 70px;
@@ -114,7 +117,7 @@
         height: 250px;
         width: auto;
         max-width: 260px;
-        background: #00000044;
+        background: #00000055;
         border-radius: 10px;
         position: absolute;
         bottom: 70px;
@@ -128,12 +131,12 @@
         overflow: scroll;
         z-index: 999;
         backdrop-filter: blur(8px);
-      }
+      } #mainMenu::-webkit-scrollbar { display: none; }
       
       #notifications {
         height: calc(100% - 61px);
         width: 300px;
-        background: #00000044;
+        background: #00000055;
         border-bottom: 1px solid #ffffff;
         position: absolute;
         top: 0;
@@ -371,6 +374,7 @@
         background-color: #696969;
         height: 300px;
         width: 450px;
+        resize: both;
       }
   
       .windowHeader {
@@ -390,7 +394,7 @@
         width: 100%;
         height: calc(100% - 36px);
         position: absolute;
-        background: #696969;
+        background: var(--accent-tertiary);
         overflow: scroll;
         border: none;
       }
@@ -415,11 +419,104 @@
         border-radius: 50%;
         border: 1px solid #ffffff;
       }
+      
+      .settingsNav {
+        height: 100%;
+        width: 200px;
+        background: var(--accent);
+        margin: 0;
+        border-right: 1px solid var(--accent-secondary);
+      }
+      
+      .settingsNav h4 {
+        margin: 0;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-secondary);
+      }
+      
+      .settingsNav button {
+        height: 40px;
+        width: 100%;
+        border: none;
+        background: var(--accent-tertiary);
+        color: var(--accent-secondary);
+        transition: 0.1s ease-in-out;
+      }
+      
+      .settingsNav button:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+      
+      .settingsPage {
+        height: 100%;
+        width: calc(100% - 201px);
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        overflow: scroll;
+        flex-direction: column;
+        background: var(--accent-tertiary);
+      }
+      
+      .settingsPage h4 {
+        margin: 0;
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-secondary);
+      }
+      
+      .wallpapersContainer {
+        height: auto;
+        width: calc(100% - 10px);
+        padding: 5px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .wallpaperItem {
+        height: 100px;
+        width: 105px;
+        background: var(--accent);
+        margin: 5px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 0 var(--accent-quadrary);
+        transition: 0.1s linear;
+      }
+      .wallpaperItem:hover {box-shadow: 3px 3px 0 var(--accent-quadrary); transform: translate(2px, 2px); cursor: pointer;}
+      
+      .wallpaperItem img {
+        height: 50%;
+        width: calc(100% - 10px);
+        margin: 5px;
+        border-radius: 5px;
+        user-select: none;
+      }
+      
+      .wallpaperItem p {
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 0;
+        user-select: none;
+      }
     </style>
   </head>
   <body>
     <!-- <div class="windowScreen">Loading...</div> -->
-    <img class="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
+    <img id="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
     <div id="opacityElem" style="position: absolute; bottom: 0; left: 0; z-index: 9999; height: 100%; width: 100%; background-color: #000000; pointer-events: none; opacity: 0;"></div>
     
     <div id="desktopItemsFrame">
@@ -454,52 +551,110 @@
       </div>
       <i class="tpp material-symbols-outlined" onclick="openPower">power_settings_new</i>  
       <span id="batteryPercentage">test</span>
-      <i class="tps material-symbols-outlined">settings</i>
+      <i class="tps material-symbols-outlined" onclick="openSettingsWindow()">settings</i>
     </div>
     <div id="mainMenu">
-      <div class="appDiv" onclick="openWindow('appstore')">
+      <div class="appDiv" onclick="openLocalWindow('appstore', 'App Store')">
         <i class="material-symbols-outlined" title="App Store">local_mall</i>
         <p>App Store</p>
       </div>
-      <div class="appDiv" onclick="openWindow('terminal')">
+      <div class="appDiv" onclick="openLocalWindow('terminal', 'Terminal')">
         <i class="material-symbols-outlined" title="Terminal App">terminal</i>
         <p>Terminal</p>
       </div>
-      <div class="appDiv" onclick="openWindow('camera')">
+      <div class="appDiv" onclick="openLocalWindow('camera', 'Camera')">
         <i class="material-symbols-outlined" title="Camera App">photo_camera</i>
         <p>Camera</p>
       </div>
-      <div class="appDiv" onclick="openWindow('calculator')" onclick="openWindow()">
+      <div class="appDiv" onclick="openLocalWindow('calculator', 'Calculator')" onclick="openWindow()">
         <i class="material-symbols-outlined" title="Calculator App">calculate</i>
         <p>Calculator</p>
       </div>
-      <div class="appDiv" onclick="openWindow('notepad')">
+      <div class="appDiv" onclick="openLocalWindow('notepad', 'Note Pad')">
         <i class="material-symbols-outlined" title="Notepad App">assignment</i>
         <p>Notepad</p>
       </div>
-      <div class="appDiv" onclick="openWindow('browser')">
+      <div class="appDiv" onclick="openLocalWindow('browser', 'Default Browser')">
         <i class="material-symbols-outlined" title="Browser">travel_explore</i>
         <p>Browser</p>
       </div>
-      <div class="appDiv"  onclick="openWindow('null')">
+      <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
         <i class="material-symbols-outlined" title="App Store">circle</i>
         <p>null</p>
       </div>
-      <div class="appDiv"  onclick="openWindow('null')">
+      <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
         <i class="material-symbols-outlined" title="App Store">circle</i>
         <p>null</p>
       </div>
-      <div class="appDiv"  onclick="openWindow('null')">
+      <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
         <i class="material-symbols-outlined" title="App Store">circle</i>
         <p>null</p>
       </div>
-      <div class="appDiv"  onclick="openWindow('null')">
+      <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
         <i class="material-symbols-outlined" title="App Store">circle</i>
         <p>null</p>
       </div>
     </div>
     <div id="notifications">
       <h1 class="notifications-title">Notifications </h1>
+    </div>
+    <div id="settingsWindow" class="windowContainer">
+      <div class="windowHeader">Local App: Settings<button class="windowCloseButton material-symbols-outlined" onclick="closeSettingsWindow()">close</button></div>
+      <div class="windowScreen">
+        <nav class="settingsNav">
+          <h4>Settings</h4>
+          <button id="wallpaperandtheme" onclick="openSettingsPage('sp-wpt')">Wallpaper & Theme</button>
+          <button id="wallpaperandtheme" onclick="openSettingsPage('sp-plo')">Placeholder 1</button>
+          <button id="wallpaperandtheme" onclick="openSettingsPage('sp-plt')">Placeholder 2</button>
+        </nav>
+        <div class="settingsPage" id="sp-wpt" style="display: flex;">
+          <h4>Wallpaper & Theme</h4>
+          <div class="wallpapersContainer">
+          <div class="wallpaperItem" onclick="changeWallpaper('wallpaper.png')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper.png">
+              <p>Wallpaper 1</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper2.png')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper2.png">
+              <p>Wallpaper 2</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper3.png')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper3.png">
+              <p>Wallpaper 3</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper4.jpg')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper4.jpg">
+              <p>Wallpaper 4</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper5.png')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper5.png">
+              <p>Wallpaper 5</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper6.png')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper6.png">
+              <p>Wallpaper 6</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper7.png')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper7.png">
+              <p>Wallpaper 7</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper8.jpg')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper8.jpg">
+              <p>Wallpaper 8</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper9.jpg')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper9.jpg">
+              <p>Wallpaper 9</p>
+            </div>
+            <div class="wallpaperItem" onclick="changeWallpaper('wallpaper10.jpg')">
+              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper10.jpg">
+              <p>Wallpaper 10</p>
+            </div>
+        </div>
+        </div>
+        <div class="settingsPage" id="sp-plo" style="background: red;">pl1</div>
+        <div class="settingsPage" id="sp-plt" style="background: pink;">pl2</div>
+      </div>
     </div>
     
     <script>
@@ -724,99 +879,123 @@
       // make desktop item dragging later
       
       // windows, CONTINUE CODING LATER, THIS IS UNFINISHED AND DYSFUNCTIONAL
-      function openWindow(grab) {
-    var source = "https://wraithcode2050.github.io/wcos/localpages/" + grab + ".html";
-
-    var windowDiv = document.createElement('div');
-    windowDiv.classList.add('windowContainer');
-
-    var header = document.createElement('div');
-    header.classList.add('windowHeader');
-    header.innerText = "Local App: " + grab;
-    windowDiv.appendChild(header);
+      function openLocalWindow(grab, title) {
+        var source = "https://wraithcode2050.github.io/wcos/localpages/" + grab + ".html";
     
-    var closeButton = document.createElement('button');
-    closeButton.innerText = 'close';
-    closeButton.classList.add('windowCloseButton');
-    closeButton.classList.add('material-symbols-outlined');
-    closeButton.onclick = function() {
-        windowDiv.remove();
-    }
-    header.appendChild(closeButton);
-
-    var iframe = document.createElement('iframe');
-    iframe.classList.add('windowScreen');
-
-    fetch(source)
-      .then(response => response.text())
-      .then(data => {
-        if (data.includes("<isvalidapp></isvalidapp>")) {
-          var div = document.createElement('div');
-          div.innerHTML = data;
-
-          var doc = iframe.contentDocument || iframe.contentWindow.document;
-          doc.body.appendChild(div);
-        } else {
-          fetch("https://wraithcode2050.github.io/wcos/localpages/appinvalid.html")
-            .then(response => response.text())
-            .then(data => {
+        var windowDiv = document.createElement('div');
+        windowDiv.classList.add('windowContainer');
+    
+        var header = document.createElement('div');
+        header.classList.add('windowHeader');
+        header.innerText = "Local App: " + title;
+        windowDiv.appendChild(header);
+        
+        var closeButton = document.createElement('button');
+        closeButton.innerText = 'close';
+        closeButton.classList.add('windowCloseButton');
+        closeButton.classList.add('material-symbols-outlined');
+        closeButton.onclick = function() {
+            windowDiv.remove();
+        }
+        header.appendChild(closeButton);
+    
+        var iframe = document.createElement('iframe');
+        iframe.classList.add('windowScreen');
+    
+        fetch(source)
+          .then(response => response.text())
+          .then(data => {
+            if (data.includes("<isvalidapp></isvalidapp>")) {
               var div = document.createElement('div');
               div.innerHTML = data;
-
+    
               var doc = iframe.contentDocument || iframe.contentWindow.document;
               doc.body.appendChild(div);
-            })
+            } else {
+              fetch("https://wraithcode2050.github.io/wcos/localpages/appinvalid.html")
+                .then(response => response.text())
+                .then(data => {
+                  var div = document.createElement('div');
+                  div.innerHTML = data;
+    
+                  var doc = iframe.contentDocument || iframe.contentWindow.document;
+                  doc.body.appendChild(div);
+                })
+              .catch(error => {
+                alert('Error:', error);
+              });
+            }
+          })
           .catch(error => {
-            alert('Error:', error);
-          });
+            console.log('Error:', error);
+        });
+      
+        windowDiv.appendChild(iframe);
+        document.body.appendChild(windowDiv);
+      
+        dragElement(windowDiv);
+      }
+
+      function dragElement(elmnt) {
+        var zIndex = 3; // Initial zIndex for the top window
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        elmnt.querySelector('.windowHeader').addEventListener('mousedown', dragMouseDown);
+        
+        function dragMouseDown(e) {
+          e.preventDefault();
+          zIndex++; // Increment zIndex for the current window
+          elmnt.style.zIndex = zIndex;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.addEventListener('mouseup', closeDragElement);
+          document.addEventListener('mousemove', elementDrag);
         }
-      })
-      .catch(error => {
-        console.log('Error:', error);
-  });
-
-  windowDiv.appendChild(iframe);
-  document.body.appendChild(windowDiv);
-
-  dragElement(windowDiv);
-}
-
-function dragElement(elmnt) {
-  var zIndex = 3; // Initial zIndex for the top window
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  elmnt.querySelector('.windowHeader').addEventListener('mousedown', dragMouseDown);
-  
-  function dragMouseDown(e) {
-    e.preventDefault();
-    zIndex++; // Increment zIndex for the current window
-    elmnt.style.zIndex = zIndex;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.addEventListener('mouseup', closeDragElement);
-    document.addEventListener('mousemove', elementDrag);
-  }
-  
-  function elementDrag(e) {
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-  
-  function closeDragElement() {
-    document.removeEventListener('mouseup', closeDragElement);
-    document.removeEventListener('mousemove', elementDrag);
-  }
-}
-
-// Call the dragElement function for each window element
-var windows = document.getElementsByClassName('window');
-for (var i = 0; i < windows.length; i++) {
-  dragElement(windows[i]);
-}
+        
+        function elementDrag(e) {
+          e.preventDefault();
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+          elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+        
+        function closeDragElement() {
+          document.removeEventListener('mouseup', closeDragElement);
+          document.removeEventListener('mousemove', elementDrag);
+        }
+      }
+      
+      // Call the dragElement function for each window element
+      var windows = document.getElementsByClassName('window');
+      for (var i = 0; i < windows.length; i++) {
+        dragElement(windows[i]);
+      }
+      
+      function openSettingsWindow() {
+        var settingsWindow = document.getElementById('settingsWindow');
+        settingsWindow.style.display = "block";
+      }
+      function closeSettingsWindow() {
+        var settingsWindow = document.getElementById('settingsWindow');
+        settingsWindow.style.display = "none";
+      }
+      
+      function openSettingsPage(page) {
+        let pages = document.getElementsByClassName('settingsPage');
+        for (var i = 0; i < pages.length; i++) {
+          pages[i].style.display = "none";
+        }
+        var grabpage = document.getElementById(page);
+        grabpage.style.display = "flex";
+      } 
+      
+      function changeWallpaper(source) {
+        var backgroundElement = document.getElementById("background");
+        
+        backgroundElement.src = "https://wraithcode2050.github.io/wcos/wallpapers/" + source;
+      }
     </script>
   </body>
 </html>
