@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,6 +24,18 @@
         overflow: hidden;
         font-family: "Sans-Serif", Tahoma, Verdana;
         color: #ffffff !important;
+      }
+      
+      #opacityElem {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 100001;
+        height: 100%;
+        width: 100%;
+        background-color: #000000;
+        pointer-events: none;
+        opacity: 0;
       }
       
       #background {
@@ -153,6 +166,37 @@
         z-index: 1000;
         backdrop-filter: blur(8px);
       }
+      
+      #shutdownMenu {
+        height: auto;
+        width: auto;
+        background: #00000055;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 70px;
+        right: 380px;
+        padding: 5px 10px;
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.1s ease-in-out;
+        backdrop-filter: blur(8px);
+      }
+      
+      #shutdownMenu i {
+        color: #ffffff;
+        bottom: 0;
+        right: 0;
+        margin: 0;
+        height: 30px;
+        width: 20px;
+        font-size: 20px;
+        transition: 0.1s ease-in-out;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      } #shutdownMenu i:hover {font-size: 24px; cursor: pointer;}
       
       #mainMenu {
         height: 250px;
@@ -584,7 +628,7 @@
   </head>
   <body>
     <img id="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
-    <div id="opacityElem" style="position: absolute; bottom: 0; left: 0; z-index: 9999; height: 100%; width: 100%; background-color: #000000; pointer-events: none; opacity: 0;"></div>
+    <div id="opacityElem"></div>
     <div id="ctxMenu">
       <button><i class="material-symbols-outlined">arrow_back</i>Back</button>
       <button><i class="material-symbols-outlined">arrow_forward</i>Forward</button>
@@ -631,12 +675,18 @@
       <div class="slider" id="slider">
         <i class="handle material-symbols-outlined">brightness_high</i>
       </div>
-      <i class="tpp material-symbols-outlined" onclick="openPower">power_settings_new</i>  
+      <i class="tpp material-symbols-outlined" onclick="openShutdownMenu()">power_settings_new</i>  
       <span id="batteryPercentage"></span>
       <i class="tps material-symbols-outlined" onclick="openSettingsWindow()">settings</i>
     </div>
     <!-- end -->
-    
+    <!-- div with the turn off restart, lock buttons -->
+    <div id="shutdownMenu">
+      <i class="material-symbols-outlined" onclick="powerOffOs()">power_settings_new</i>
+      <i class="material-symbols-outlined" onclick="restartOs()">lock</i>
+      <i class="material-symbols-outlined" onclick="lockOs()">restart_alt</i>
+    </div>
+    <!-- end -->
     <!-- APPS MENU START -->
     
     <div id="mainMenu">
@@ -788,6 +838,7 @@
       var tiMn = document.getElementById('timeMenu');
       var mainMenu = document.getElementById('mainMenu');
       var ntMenu = document.getElementById('notifications');
+      var shutdownMenu = document.getElementById('shutdownMenu');
       var chngbg = document.getElementById('timnrt');
       
       function openTimeMenu() {
@@ -795,6 +846,8 @@
           tiMn.style.opacity = "0";
           tiMn.style.pointerEvents = "none";
           timnrt.style.backgroundColor = "#343434";
+          shutdownMenu.style.opacity = "0";
+          shutdownMenu.style.pointerEvents = "none";
           return;
         } else {
           tiMn.style.pointerEvents = "all";
@@ -1149,6 +1202,36 @@
           backgroundElement.src = "https://wraithcode2050.github.io/wcos/wallpapers/" + savedWallpaper;
         }
       });
+      
+      function openShutdownMenu() {
+        if (shutdownMenu.style.opacity == "1") {
+          shutdownMenu.style.opacity = "0";
+          shutdownMenu.style.pointerEvents = "none";
+          return;
+        } else {
+          shutdownMenu.style.opacity = "1";
+          shutdownMenu.style.pointerEvents = "all";
+        }
+      }
+      
+      function restartOs() {
+        
+      }
+      
+      function powerOffOs() {
+        brightnessMask.style.transition = 'opacity 1s';
+        brightnessMask.style.opacity = '1';
+        brightnessMask.style.pointerEvents = 'none';
+      
+        setTimeout(() => {
+          brightnessMask.style.transition = 'none';
+          window.close(); // Close the current tab
+        }, 1000); // Wait for the opacity transition to complete (1s)
+      }
+      
+      function lockOs() {
+        
+      }
     </script>
   </body>
 </html>
