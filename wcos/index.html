@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,6 +34,47 @@
         left: 0;
         z-index: -999;
         user-select: none;
+      }
+      
+      #ctxMenu {
+        display: block;
+        opacity: 0;
+        position: absolute;
+        border: 1px solid #cdcdcd;
+        background: var(--accent);
+        width: 150px;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 15px;
+        transition: opacity 0.1s ease-in-out;
+        pointer-events: none;
+        z-index: 100000;
+      }
+      
+      #ctxMenu button {
+        height: 30px;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        border: none;
+        background: transparent;
+        color: var(--accent-secondary);
+        font-weight: bold;
+        text-align: left;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+      }
+      
+      #ctxMenu button:hover {
+        background: #ffffff11;
+      }
+      
+      #ctxMenu .material-symbols-outlined {
+        font-size: 16px;
+        margin-left: 10px;
+        margin-right: 10px;
       }
       
       .bottom {
@@ -511,12 +553,47 @@
         margin: 0;
         user-select: none;
       }
+      
+      .themesContainer {
+        height: auto;
+        width: calc(100% - 10px);
+        padding: 5px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .themesContainer p {
+        color: var(--accent-secondary);
+        margin: 0;
+        width: calc(50% - 5px);
+      }
+      
+      .themesContainer input {
+        color: var(--accent-secondary);
+        margin: 0;
+        width: calc(50% - 5px);
+        height: 20px;
+      }
+      
+      .themesContainer button {
+        height: 35px;
+        width: 50px;
+        background: var(--accent);
+      }
     </style>
   </head>
   <body>
-    <!-- <div class="windowScreen">Loading...</div> -->
     <img id="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
     <div id="opacityElem" style="position: absolute; bottom: 0; left: 0; z-index: 9999; height: 100%; width: 100%; background-color: #000000; pointer-events: none; opacity: 0;"></div>
+    <div id="ctxMenu">
+      <button><i class="material-symbols-outlined">arrow_back</i>Back</button>
+      <button><i class="material-symbols-outlined">arrow_forward</i>Forward</button>
+      <button><i class="material-symbols-outlined">refresh</i>Reload</button>
+      <button><i class="material-symbols-outlined">content_copy</i>Copy</button>
+      <button><i class="material-symbols-outlined">content_paste</i>Paste</button>
+      <button><i class="material-symbols-outlined">content_cut</i>Cut</button>
+      <button><i class="material-symbols-outlined">translate</i>Translate</button>
+    </div>
     
     <div id="desktopItemsFrame">
       <div class="desktopItem">
@@ -532,26 +609,36 @@
     <div class="bottom">
       <!-- logo svg for opening main menu -->
       <svg class="openmenusvg" onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40" height="40" viewBox="0 0 500 500" xml:space="preserve"><g transform="matrix(0 2.4450152263 -2.4145376805 0 250 250.6428450974)" id="BBoCIjWeNpD-oepGyYhBG"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0 2.2899005837 -2.2613565692 0 249.999990396 250.6428450974)" id="Ry5z70r05mvY0j23QgIPC"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(58,18,84); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0.9341563044 0 0 0.9341563044 97.8707185774 273.1164515745)" id="A_K1mSeeMG6vLmACWiRmX"  ><path style="stroke: rgb(0,0,0); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"  transform=" translate(-87.1479471902, -274.2308431526)" d="M 87.14694719023055 274.2308431526191 L 87.14894719023056 274.2308431526191" stroke-linecap="round" /></g><g transform="matrix(2.5020046551 0 0 2.5136164266 249.999990396 264.2400248225)" id="Izyp3VL5IgeClk7jxXpGn"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M 0 40.30374 L -46.14991 -40.30375 L 46.14992 -40.30375 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 150.382987277 309.3476520153)" id="AI5qpZDcCF9qm15XXpQIf"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.18; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -22.9302 -40.36379 L -23.074949999999998 13.320369999999997 L 23.07496 40.363789999999995 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 349.6169935151 309.3476520153)" id="WecekGZwKx48t5ckYQd7W"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.4; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -23.07496 40.36379 L 23.074949999999998 13.325390000000002 L 23.074949999999998 -40.363789999999995 z" stroke-linecap="round" /></g></svg>
+      <!-- end svg -->
       
+      <!-- container for apps displayed on the shelf -->
       <div class="shelfItemsContainer">
         <img class="shelfItem" src="https://upload.wikimedia.org/wikipedia/commons/2/27/Red_square.svg">
       </div>
-      
+      <!-- end -->
+      <!-- date, time, battery -->
       <div class="timestuff">
         <i class="nfps btmicon material-symbols-outlined" onclick="openNotifications()" title="Notifications">notifications</i>
         <div class="timn-left"><p id="date">[Date]</p></div>
         <div class="timn-right" onclick="openTimeMenu()" id="timnrt"><p id="time">Enable Javascript</p>&nbsp;<i class="material-symbols-outlined" id="percentageIcon">battery_full</i></div>
       </div>
+      <!-- end time stuff -->
     </div>
+    
+    <!-- battery percentage, brightness slider and stuff -->
     <div id="timeMenu">
       <p class="yau">You are using Wraithcode OS v1.0</p>
       <div class="slider" id="slider">
         <i class="handle material-symbols-outlined">brightness_high</i>
       </div>
       <i class="tpp material-symbols-outlined" onclick="openPower">power_settings_new</i>  
-      <span id="batteryPercentage">test</span>
+      <span id="batteryPercentage"></span>
       <i class="tps material-symbols-outlined" onclick="openSettingsWindow()">settings</i>
     </div>
+    <!-- end -->
+    
+    <!-- APPS MENU START -->
+    
     <div id="mainMenu">
       <div class="appDiv" onclick="openLocalWindow('appstore', 'App Store')">
         <i class="material-symbols-outlined" title="App Store">local_mall</i>
@@ -578,36 +665,44 @@
         <p>Browser</p>
       </div>
       <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
-        <i class="material-symbols-outlined" title="App Store">circle</i>
+        <i class="material-symbols-outlined" title="App Store">browse</i>
         <p>null</p>
       </div>
       <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
-        <i class="material-symbols-outlined" title="App Store">circle</i>
+        <i class="material-symbols-outlined" title="App Store">browse</i>
         <p>null</p>
       </div>
       <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
-        <i class="material-symbols-outlined" title="App Store">circle</i>
+        <i class="material-symbols-outlined" title="App Store">browse</i>
         <p>null</p>
       </div>
       <div class="appDiv"  onclick="openLocalWindow('null', 'Undefined')">
-        <i class="material-symbols-outlined" title="App Store">circle</i>
+        <i class="material-symbols-outlined" title="App Store">browse</i>
         <p>null</p>
       </div>
     </div>
+    
+    <!-- APPS MENU END -->
+    
     <div id="notifications">
       <h1 class="notifications-title">Notifications </h1>
     </div>
+    
+    <!-- SETTINGS WINDOW START -->
+    
     <div id="settingsWindow" class="windowContainer">
       <div class="windowHeader">Local App: Settings<button class="windowCloseButton material-symbols-outlined" onclick="closeSettingsWindow()">close</button></div>
       <div class="windowScreen">
+        <!-- nav -->
         <nav class="settingsNav">
           <h4>Settings</h4>
-          <button id="wallpaperandtheme" onclick="openSettingsPage('sp-wpt')">Wallpaper & Theme</button>
-          <button id="wallpaperandtheme" onclick="openSettingsPage('sp-plo')">Placeholder 1</button>
+          <button id="wallpaperandtheme" onclick="openSettingsPage('sp-wpp')">Wallpaper</button>
+          <button id="wallpaperandtheme" onclick="openSettingsPage('sp-thm')">Theme</button>
           <button id="wallpaperandtheme" onclick="openSettingsPage('sp-plt')">Placeholder 2</button>
         </nav>
-        <div class="settingsPage" id="sp-wpt" style="display: flex;">
-          <h4>Wallpaper & Theme</h4>
+        <!-- wallpapers -->
+        <div class="settingsPage" id="sp-wpp">
+          <h4>Wallpaper</h4>
           <div class="wallpapersContainer">
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper.png')">
               <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper.png">
@@ -655,12 +750,41 @@
             </div>
           </div>
         </div>
-        <div class="settingsPage" id="sp-plo" style="background: red;">pl1</div>
+        <!-- theme page -->
+        <div class="settingsPage" id="sp-thm" style="display: flex;">
+          <h4>Theme</h4>
+          <div class="themesContainer">
+            <p></p>
+          </div>
+        </div>
         <div class="settingsPage" id="sp-plt" style="background: pink;">pl2</div>
       </div>
     </div>
     
+    <!-- SETTINGS WINDOW END -->
+    
     <script>
+      document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    
+        const contextMenu = document.getElementById('ctxMenu');
+        contextMenu.style.left = event.clientX + 'px';
+        contextMenu.style.top = event.clientY + 'px';
+        if (parseInt(contextMenu.style.top) > (window.innerHeight - contextMenu.offsetHeight)) {
+          contextMenu.style.top = (window.innerHeight - contextMenu.offsetHeight) - 5 + 'px';
+        }
+        if (parseInt(contextMenu.style.left) > (window.innerWidth - contextMenu.offsetWidth)) {
+          contextMenu.style.left = (window.innerWidth - contextMenu.offsetWidth) - 5 + 'px';
+        }
+        contextMenu.style.pointerEvents = 'all';
+        contextMenu.style.opacity = '1';
+    
+        document.addEventListener('click', function() {
+          contextMenu.style.opacity = '0';
+          contextMenu.style.pointerEvents = 'none';
+        });
+      });
+    
       var tiMn = document.getElementById('timeMenu');
       var mainMenu = document.getElementById('mainMenu');
       var ntMenu = document.getElementById('notifications');
