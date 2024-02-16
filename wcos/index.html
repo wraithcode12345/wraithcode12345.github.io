@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -681,8 +682,8 @@
     <!-- div with the turn off restart, lock buttons -->
     <div id="shutdownMenu">
       <i class="material-symbols-outlined" onclick="powerOffOs()">power_settings_new</i>
-      <i class="material-symbols-outlined" onclick="restartOs()">lock</i>
-      <i class="material-symbols-outlined" onclick="lockOs()">restart_alt</i>
+      <i class="material-symbols-outlined" onclick="lockOs()">lock</i>
+      <i class="material-symbols-outlined" onclick="restartOs()">restart_alt</i>
     </div>
     <!-- end -->
     <!-- APPS MENU START -->
@@ -1213,7 +1214,14 @@
       }
       
       function restartOs() {
-        
+        brightnessMask.style.transition = 'opacity 1s';
+        brightnessMask.style.opacity = '1';
+        brightnessMask.style.pointerEvents = 'all';
+      
+        setTimeout(() => {
+          brightnessMask.style.transition = 'none';
+          location.reload(); // reload OS
+        }, 1000); // Wait for the opacity transition to complete (1s)
       }
       
       function powerOffOs() {
