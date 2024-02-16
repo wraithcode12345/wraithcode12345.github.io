@@ -180,6 +180,7 @@
         pointer-events: none;
         transition: 0.1s ease-in-out;
         backdrop-filter: blur(8px);
+        z-index: 1000;
       }
       
       #shutdownMenu i {
@@ -1231,7 +1232,8 @@
       
         setTimeout(() => {
           brightnessMask.style.transition = 'none';
-          window.close(); // Close the current tab
+          var ww = window.open(window.location, '_self');
+          ww.close();
         }, 1000); // Wait for the opacity transition to complete (1s)
       }
       
