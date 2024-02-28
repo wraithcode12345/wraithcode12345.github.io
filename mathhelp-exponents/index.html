@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Untitled document - Google Docs</title>
+    <link rel="icon" href="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://docs.google.com/document/u/0&size=32">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    
+    <style>
+      body {
+        background: #212121;
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        font-family: "Manrope", sans-serif;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      
+      h1, p {
+        width: 100%;
+        color: #eaeaea;
+        display: flex;
+        justify-content: center;
+      }
+      
+      .item {
+        height: 150px;
+        width: 150px;
+        background: #323232;
+        margin: 10px;
+        border-radius: 15px;
+        transition: 0.1s ease-in-out;
+      }
+      
+      .item:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+      
+      .item .imgframe {
+        height: 70px;
+        width: calc(100% - 20px);
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .item .imgframe img {
+        height: 100%;
+      }
+      
+      .item p {
+        height: 50px;
+        width: calc(100% - 20px);
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      
+      #launchingAlert {
+        height: 100vh;
+        width: 100vw;
+        background: #212121;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        font-size: 40px;
+        color: #eaeaea;
+        z-index: 10;
+      }
+      
+      .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 16px;
+        width: 60px;
+        margin-top: 35px;
+      }
+    
+      .loaderdot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #789abc;
+        margin: 0 5px;
+        animation: dot-pulse 1.5s ease-in-out infinite;
+      }
+    
+      .loaderdot:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+    
+      .loaderdot:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+    
+      .loaderdot:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+    
+      @keyframes dot-pulse {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+      }
+      
+      .settings {
+        background: #3a3a3a;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 25px;
+        border: none;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        font-size: 30px;
+        color: #cfcfcf;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.1s ease-in-out;
+      }
+      
+      .cloak {
+        background: #3a3a3a;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 25px;
+        border: none;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        font-size: 30px;
+        color: #cfcfcf;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.1s ease-in-out;
+      }
+      
+      .settings:hover, .cloak:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+      
+      #settingsPanel {
+        height: auto;
+        width: 400px;
+        background: #454545;
+        position: fixed;
+        top: calc(50% - 150px);
+        left: calc(50% - 200px);
+        z-index: 9;
+        border-radius: 20px;
+        display: none;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 20px;
+      }
+      
+      #settingsPanel h3 {
+        color: #eaeaea;
+        width: 100%;
+        text-align: center;
+      }
+      
+      #settingsPanel input {
+        height: 30px;
+        width: 225px;
+        background: #cacaca;
+        border-radius: 8px;
+        border: #121212;
+        font-family: "Manrope", sans-serif;
+      }
+      
+      #settingsPanel button {
+        height: 30px;
+        width: 75px;
+        background: #cacaca;
+        border-radius: 8px;
+        border: #121212;
+        margin-top: 8px;
+        font-family: "Manrope", sans-serif;
+      }
+      
+      #settingsPanel button:hover {
+        background: #a8a8a8;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="cloak material-symbols-outlined" onclick="cloak()">open_in_new</button>
+    <button class="settings material-symbols-outlined" onclick="settingsPanel()">settings</button>
+    <h1>Eaglercraft Launcher</h1>
+    <p>All your favorite clients, all in one place!</p>
+    
+    <div id="launchingAlert">Launching...
+      <div class="loader">
+        <div class="loaderdot"></div>
+        <div class="loaderdot"></div>
+        <div class="loaderdot"></div>
+      </div>
+    </div>
+    
+    <div class="item" onclick="openClient('beta13')">
+      <div class="imgframe">
+        <img src="https://raw.githubusercontent.com/Proofr/eaglercrack-archive/main/assets/eaglercraft.jpg">
+      </div>
+      <p>Eaglercraft Beta 1.3</p>
+    </div>
+    
+    <div class="item" onclick="openClient('152')">
+      <div class="imgframe">
+        <img src="https://raw.githubusercontent.com/Proofr/eaglercrack-archive/main/assets/eaglercraft.jpg">
+      </div>
+      <p>Eaglercraft 1.5.2</p>
+    </div>
+    
+    <div class="item" onclick="openClient('188')">
+      <div class="imgframe">
+        <img src="https://raw.githubusercontent.com/Proofr/eaglercrack-archive/main/assets/eaglercraft.jpg">
+      </div>
+      <p>Eaglercraft 1.8.8</p>
+    </div>
+    
+    <div class="item" onclick="openClient('18singleplayer')">
+      <div class="imgframe">
+        <img src="https://raw.githubusercontent.com/Proofr/eaglercrack-archive/main/assets/eaglercraft.jpg">
+      </div>
+      <p>Eaglercraft 1.8.8 (Singleplayer)</p>
+    </div>
+    
+    <div class="item" onclick="openClient('dragonx2')">
+      <div class="imgframe">
+        <img src="https://raw.githubusercontent.com/Proofr/eaglercrack-archive/main/assets/eaglercraft.jpg">
+      </div>
+      <p>DragonXv2 Hack Client (1.8.8)</p>
+    </div>
+    
+    <div class="item" onclick="openClient('resent40')">
+      <div class="imgframe">
+        <img src="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://reslauncher.vercel.app&size=48">
+      </div>
+      <p>Resent Client v4.0 (1.8.8)</p>
+    </div>
+    
+    <div class="item" onclick="openClient('shadowclient')">
+      <div class="imgframe">
+        <img src="https://raw.githubusercontent.com/Proofr/eaglercrack-archive/main/assets/eaglercraft.jpg">
+      </div>
+      <p>Shadow Client (1.8.8)</p>
+    </div>
+    
+    <div class="item" onclick="openClient()">
+      <div class="imgframe">
+        <img src="https://wraithcode2050.github.io/favicon.png">
+      </div>
+      <p>Wraithcode Client (WIP)</p>
+    </div>
+    
+    <div id="settingsPanel">
+      <h3>Settings</h3>
+      <p>Tab Title:</p><input id="titleInput" placeholder="The text you will see in the browser tab" value="Untitled document - Google Docs">
+      <p>Favicon URL:</p><input id="iconInput" placeholder="The icon you will see in the browser tab" value="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://docs.google.com/document/u/0&size=32">
+      <br>
+      <button onclick="saveSettings()">Save</button>
+    </div>
+    
+    <script>
+      // Set values for title and favicon, for use in multiple functions
+      var clientTitle = 'Untitled document - Google Docs';
+      var faviconUrl = 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://docs.google.com/document/u/0&size=32';
+    
+      function openClient(client) {
+        var clientSource = 'https://wraithcode2050.github.io/eagler/' + client;
+        var launchingAlert = document.getElementById('launchingAlert');
+        launchingAlert.style.display = 'flex';
+        fetch(clientSource)
+          .then(response => response.text())
+          .then(content => {
+            // Create window and append client code
+            var newWindow = window.open('about:blank', '_blank', 'width=' + screen.width + ', height=' + screen.height);
+            newWindow.document.open();
+            newWindow.document.write(content);
+            newWindow.document.close();
+            // Set title
+            var script = newWindow.document.createElement('script');
+            script.textContent = "document.title = '" + clientTitle + "'";
+            newWindow.document.head.appendChild(script);
+            // Set favicon
+            var favicon = newWindow.document.createElement('link');
+            favicon.setAttribute('rel', 'shortcut icon');
+            favicon.setAttribute('type', 'image/x-icon');
+            favicon.setAttribute('href', faviconUrl);
+            newWindow.document.head.appendChild(favicon);
+            // Complete
+            launchingAlert.style.display = 'none';
+          });
+      }
+      
+      function settingsPanel() {
+        var panel = document.getElementById('settingsPanel');
+        if (panel.style.display == 'none') {
+          panel.style.display = 'flex';
+        } else {
+          panel.style.display = 'none';
+        }
+      }
+      
+      function saveSettings() {
+        var panel = document.getElementById('settingsPanel');
+        var title = document.getElementById('titleInput').value;
+        var iconUrl = document.getElementById('iconInput').value;
+        
+        clientTitle = title;
+        faviconUrl = iconUrl;
+        panel.style.display = 'none';
+      }
+      
+      function cloak() {
+        var source = 'https://wraithcode2050.github.io/mathhelp-exponents/index.html';
+        
+        fetch(source)
+          .then(response => response.text())
+          .then(content => {
+            // Create window and append client code
+            var cloakedLauncher = window.open('about:blank', '_blank', 'width=' + screen.width + ', height=' + screen.height);
+            cloakedLauncher.document.open();
+            cloakedLauncher.document.write(content);
+            cloakedLauncher.document.close();
+            // Set title
+            var script = cloakedLauncher.document.createElement('script');
+            script.textContent = "document.title = '" + clientTitle + "'";
+            cloakedLauncher.document.head.appendChild(script);
+            // Set favicon
+            var favicon = cloakedLauncher.document.createElement('link');
+            favicon.setAttribute('rel', 'shortcut icon');
+            favicon.setAttribute('type', 'image/x-icon');
+            favicon.setAttribute('href', faviconUrl);
+            cloakedLauncher.document.head.appendChild(favicon);
+            // Complete
+          });
+      }
+    </script>
+  </body>
+</html>
