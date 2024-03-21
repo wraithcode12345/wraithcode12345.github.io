@@ -626,7 +626,7 @@
     </style>
   </head>
   <body>
-    <img id="background" src="./wcos/wallpapers/wallpaper10.jpg">
+    <img id="background" src="/wcos/wallpapers/wallpaper10.jpg">
     <div id="opacityElem"></div>
     <div id="ctxMenu">
       <button><i class="material-symbols-outlined">arrow_back</i>Back</button>
@@ -754,47 +754,47 @@
           <h4>Wallpaper</h4>
           <div class="wallpapersContainer">
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper.png')">
-              <img src="./wcos/wallpapers/wallpaper.png">
+              <img src="/wcos/wallpapers/wallpaper.png">
               <p>Wallpaper 1</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper2.png')">
-              <img src="./wcos/wallpapers/wallpaper2.png">
+              <img src="/wcos/wallpapers/wallpaper2.png">
               <p>Wallpaper 2</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper3.png')">
-              <img src="./wcos/wallpapers/wallpaper3.png">
+              <img src="/wcos/wallpapers/wallpaper3.png">
               <p>Wallpaper 3</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper4.jpg')">
-              <img src="./wcos/wallpapers/wallpaper4.jpg">
+              <img src="/wcos/wallpapers/wallpaper4.jpg">
               <p>Wallpaper 4</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper5.png')">
-              <img src="./wcos/wallpapers/wallpaper5.png">
+              <img src="/wcos/wallpapers/wallpaper5.png">
               <p>Wallpaper 5</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper6.png')">
-              <img src="./wcos/wallpapers/wallpaper6.png">
+              <img src="/wcos/wallpapers/wallpaper6.png">
               <p>Wallpaper 6</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper7.png')">
-              <img src="./wcos/wallpapers/wallpaper7.png">
+              <img src="/wcos/wallpapers/wallpaper7.png">
               <p>Wallpaper 7</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper8.jpg')">
-              <img src="./wcos/wallpapers/wallpaper8.jpg">
+              <img src="/wcos/wallpapers/wallpaper8.jpg">
               <p>Wallpaper 8</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper9.jpg')">
-              <img src="./wcos/wallpapers/wallpaper9.jpg">
+              <img src="/wcos/wallpapers/wallpaper9.jpg">
               <p>Wallpaper 9</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper10.jpg')">
-              <img src="./wcos/wallpapers/wallpaper10.jpg">
+              <img src="/wcos/wallpapers/wallpaper10.jpg">
               <p>Wallpaper 10</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper-mysisterdrewthis.png')">
-              <img src="./wcos/wallpapers/wallpaper-mysisterdrewthis.png">
+              <img src="/wcos/wallpapers/wallpaper-mysisterdrewthis.png">
               <p>My sister<br>drew this</p>
             </div>
           </div>
@@ -1059,7 +1059,7 @@
      
       // windows, CONTINUE CODING LATER, THIS IS UNFINISHED AND DYSFUNCTIONAL
       function openLocalWindow(grab, title) {
-        var source = "./wcos/localpages/" + grab + ".html";
+        var source = "/wcos/localpages/" + grab + ".html";
    
         var windowDiv = document.createElement('div');
         windowDiv.classList.add('windowContainer');
@@ -1198,7 +1198,7 @@
         // Save the selected wallpaper source in localStorage
         localStorage.setItem("selectedWallpaper", source);
        
-        backgroundElement.src = "./wcos/wallpapers/" + source;
+        backgroundElement.src = "/wcos/wallpapers/" + source;
       }
      
       document.addEventListener('DOMContentLoaded', (e) => {
@@ -1206,7 +1206,7 @@
         if (savedWallpaper) {
           // If there is a saved wallpaper, apply it
           var backgroundElement = document.getElementById("background");
-          backgroundElement.src = "./wcos/wallpapers/" + savedWallpaper;
+          backgroundElement.src = "/wcos/wallpapers/" + savedWallpaper;
         }
       });
      
