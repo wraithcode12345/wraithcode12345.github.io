@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <title>Wraithcode</title>
     <link rel="icon" href="data:image/png;base64,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" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    
+   
     <style>
       :root {
         --accent: #05336b;
@@ -13,7 +12,7 @@
         --accent-tertiary: #232342;
         --accent-quadrary: #000000;
       }
-    
+   
       body {
         background: #101010;
         height: 100vh;
@@ -24,7 +23,7 @@
         font-family: "Sans-Serif", Tahoma, Verdana;
         color: #ffffff !important;
       }
-      
+     
       #opacityElem {
         position: absolute;
         bottom: 0;
@@ -36,7 +35,7 @@
         pointer-events: none;
         opacity: 0;
       }
-      
+     
       #background {
         height: 100%;
         min-width: 100%;
@@ -47,7 +46,7 @@
         z-index: -999;
         user-select: none;
       }
-      
+     
       #ctxMenu {
         display: block;
         opacity: 0;
@@ -63,7 +62,7 @@
         pointer-events: none;
         z-index: 100000;
       }
-      
+     
       #ctxMenu button {
         height: 30px;
         padding: 0;
@@ -78,17 +77,17 @@
         display: flex;
         align-items: center;
       }
-      
+     
       #ctxMenu button:hover {
         background: #ffffff11;
       }
-      
+     
       #ctxMenu .material-symbols-outlined {
         font-size: 16px;
         margin-left: 10px;
         margin-right: 10px;
       }
-      
+     
       .bottom {
         height: 60px;
         width: calc(100% - 2px);
@@ -102,7 +101,7 @@
         z-index: 999;
         backdrop-filter: blur(2px);
       }
-      
+     
       .timestuff {
         height: 100%;
         width: auto;
@@ -113,7 +112,7 @@
         justify-content: right;
         padding-right: 2px;
       }
-      
+     
       .btmicon {
         font-size: 40px;
         color: #ffffff;
@@ -123,14 +122,14 @@
         transition: 0.2s ease;
         user-select: none;
       }
-      
+     
       .btmicon:hover {
         font-size: 46px;
         margin-left: 0px;
         margin-right: 0px;
         cursor: pointer;
       }
-      
+     
       .openmenusvg {
         height: 40px;
         width: 40px;
@@ -140,7 +139,7 @@
         margin-right: 3px;
         transition: 0.2s ease;
       }
-      
+     
       .openmenusvg:hover {
         height: 42px;
         width: 42px;
@@ -148,7 +147,7 @@
         margin-right: 2px;
         cursor: pointer;
       }
-      
+     
       #timeMenu {
         height: 100px;
         width: 360px;
@@ -165,7 +164,7 @@
         z-index: 1000;
         backdrop-filter: blur(8px);
       }
-      
+     
       #shutdownMenu {
         height: auto;
         width: auto;
@@ -182,7 +181,7 @@
         backdrop-filter: blur(8px);
         z-index: 1000;
       }
-      
+     
       #shutdownMenu i {
         color: #ffffff;
         bottom: 0;
@@ -197,7 +196,7 @@
         justify-content: center;
         align-items: center;
       } #shutdownMenu i:hover {font-size: 24px; cursor: pointer;}
-      
+     
       #mainMenu {
         height: 250px;
         width: auto;
@@ -217,7 +216,7 @@
         z-index: 999;
         backdrop-filter: blur(8px);
       } #mainMenu::-webkit-scrollbar { display: none; }
-      
+     
       #notifications {
         height: calc(100% - 61px);
         width: 300px;
@@ -233,14 +232,14 @@
         z-index: 999;
         backdrop-filter: blur(8px);
       }
-      
+     
       #desktopItemsFrame {
         height: calc(100% - 60px);
         width: 100%;
         display: flex;
         flex-direction: column;
       }
-      
+     
       .desktopItem {
         height: 80px;
         width: 100px;
@@ -252,23 +251,23 @@
         font-weight: bold;
         margin: 10px;
       }
-      
+     
       .desktopicon {
         font-size: 50px;
         color: #ffffff;
         display: block;
         user-select: none;
       }
-      
+     
       .desktopItem p {
         margin: 0;
         margin-top: 5px;
         text-align: center;
         user-select: none;
       }
-      
+     
       .nfps{position:relative;}
-      
+     
       .nfps:before {
         content: "69";
         font-size: 14px;
@@ -286,7 +285,7 @@
         align-items: center;
         justify-content: center;
       }
-      
+     
       .timn-left, .timn-right {
         height: 40px;
         width: auto;
@@ -303,26 +302,26 @@
         transition: 0.1s ease-in-out;
         user-select: none;
       }
-      
+     
       .timn-right {
         border-top-right-radius: 25px;
         border-bottom-right-radius: 25px;
         border-bottom-left-radius: 5px;
         border-top-left-radius: 5px;
       }
-      
+     
       .timn-left {
         border-top-left-radius: 25px;
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 5px;
         border-top-right-radius: 5px;
       }
-      
+     
       .timn-right i {
         font-size: 18px;
         user-select: none;
       }
-      
+     
       .tps {
         color: #ffffff;
         position: absolute;
@@ -334,7 +333,7 @@
         margin: 10px;
         user-select: none;
       }
-      
+     
       .tpp {
         color: #ffffff;
         position: absolute;
@@ -346,11 +345,11 @@
         margin: 10px;
         user-select: none;
       }
-      
+     
       .tps:hover, .tpp:hover {
         font-size: 24px;
       }
-      
+     
       #batteryPercentage {
         color: #ffffff;
         font-weight: bold;
@@ -361,7 +360,7 @@
         font-size: 14px;
         user-select: none;
       }
-      
+     
       .slider {
         width: calc(100% - 20px);
         height: 10px;
@@ -373,7 +372,7 @@
         align-items: center;
         border-radius: 5px;
       }
-    
+   
       .handle {
         position: absolute;
         width: 20px;
@@ -385,7 +384,7 @@
         font-size: 20px;
         user-select: none;
       }
-      
+     
       .yau {
         color: #ffffff;
         font-weight: bold;
@@ -397,7 +396,7 @@
         font-size: 13px;
         user-select: none;
       }
-      
+     
       .notifications-title {
         width: 100%;
         height: 50px;
@@ -408,7 +407,7 @@
         text-decoration: underline;
         border-bottom: 2px solid #ffffff44;
       }
-      
+     
       .appDiv {
         height: 80px;
         width: 80px;
@@ -419,7 +418,7 @@
         align-items: center;
         justify-content: center;
       }
-      
+     
       .appDiv i {
         font-size: 40px;
         margin: 0;
@@ -427,7 +426,7 @@
         transition: 0.15s ease-in-out;
         pointer-events: none;
       }
-      
+     
       .appDiv p {
         font-weight: bold;
         font-size: 14px;
@@ -438,19 +437,19 @@
         transition: 0.15s ease-in-out;
         pointer-events: none;
       }
-      
+     
       .appDiv:hover {
         cursor: pointer;
       }
-      
+     
       .appDiv:hover i {
         font-size: 42px;
       }
-      
+     
       .appDiv:hover p {
         font-size: 16px;
       }
-      
+     
       .windowContainer {
         position: absolute;
         top: calc(50% - 151px);
@@ -461,7 +460,7 @@
         width: 450px;
         resize: both;
       }
-  
+ 
       .windowHeader {
         display: flex;
         align-items: center;
@@ -474,7 +473,7 @@
         position: relative;
         height: 35px;
       }
-      
+     
       .windowScreen {
         width: 100%;
         height: calc(100% - 36px);
@@ -483,7 +482,7 @@
         overflow: scroll;
         border: none;
       }
-      
+     
       .windowCloseButton {
         background: var(--accent);
         border: none;
@@ -496,7 +495,7 @@
         font-size: 22px;
         color: #ffffff;
       }
-      
+     
       .shelfItem {
         height: 40px;
         width: 40px;
@@ -504,7 +503,7 @@
         border-radius: 50%;
         border: 1px solid #ffffff;
       }
-      
+     
       .settingsNav {
         height: 100%;
         width: 200px;
@@ -512,7 +511,7 @@
         margin: 0;
         border-right: 1px solid var(--accent-secondary);
       }
-      
+     
       .settingsNav h4 {
         margin: 0;
         width: 100%;
@@ -522,7 +521,7 @@
         justify-content: center;
         color: var(--accent-secondary);
       }
-      
+     
       .settingsNav button {
         height: 40px;
         width: 100%;
@@ -531,12 +530,12 @@
         color: var(--accent-secondary);
         transition: 0.1s ease-in-out;
       }
-      
+     
       .settingsNav button:hover {
         opacity: 0.9;
         cursor: pointer;
       }
-      
+     
       .settingsPage {
         height: 100%;
         width: calc(100% - 201px);
@@ -548,7 +547,7 @@
         flex-direction: column;
         background: var(--accent-tertiary);
       }
-      
+     
       .settingsPage h4 {
         margin: 0;
         margin-top: 10px;
@@ -559,7 +558,7 @@
         justify-content: center;
         color: var(--accent-secondary);
       }
-      
+     
       .wallpapersContainer {
         height: auto;
         width: calc(100% - 10px);
@@ -567,7 +566,7 @@
         display: flex;
         flex-wrap: wrap;
       }
-      
+     
       .wallpaperItem {
         height: 100px;
         width: 105px;
@@ -578,7 +577,7 @@
         transition: 0.1s linear;
       }
       .wallpaperItem:hover {box-shadow: 3px 3px 0 var(--accent-quadrary); transform: translate(2px, 2px); cursor: pointer;}
-      
+     
       .wallpaperItem img {
         height: 50%;
         width: calc(100% - 10px);
@@ -586,7 +585,7 @@
         border-radius: 5px;
         user-select: none;
       }
-      
+     
       .wallpaperItem p {
         height: auto;
         width: 100%;
@@ -597,7 +596,7 @@
         margin: 0;
         user-select: none;
       }
-      
+     
       .themesContainer {
         height: auto;
         width: calc(100% - 10px);
@@ -605,20 +604,20 @@
         display: flex;
         flex-wrap: wrap;
       }
-      
+     
       .themesContainer p {
         color: var(--accent-secondary);
         margin: 0;
         width: calc(50% - 5px);
       }
-      
+     
       .themesContainer input {
         color: var(--accent-secondary);
         margin: 0;
         width: calc(50% - 5px);
         height: 20px;
       }
-      
+     
       .themesContainer button {
         height: 35px;
         width: 50px;
@@ -627,7 +626,7 @@
     </style>
   </head>
   <body>
-    <img id="background" src="https://i.redd.it/8pupe48bkyab1.jpg">
+    <img id="background" src="./wcos/wallpapers/wallpaper10.jpg">
     <div id="opacityElem"></div>
     <div id="ctxMenu">
       <button><i class="material-symbols-outlined">arrow_back</i>Back</button>
@@ -638,7 +637,7 @@
       <button><i class="material-symbols-outlined">content_cut</i>Cut</button>
       <button><i class="material-symbols-outlined">translate</i>Translate</button>
     </div>
-    
+   
     <div id="desktopItemsFrame">
       <div class="desktopItem">
         <i class="desktopicon material-symbols-outlined" onclick="">folder_open</i>
@@ -649,12 +648,12 @@
         <p>About</p>
       </div>
     </div>
-    
+   
     <div class="bottom">
       <!-- logo svg for opening main menu -->
       <svg class="openmenusvg" onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40" height="40" viewBox="0 0 500 500" xml:space="preserve"><g transform="matrix(0 2.4450152263 -2.4145376805 0 250 250.6428450974)" id="BBoCIjWeNpD-oepGyYhBG"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0 2.2899005837 -2.2613565692 0 249.999990396 250.6428450974)" id="Ry5z70r05mvY0j23QgIPC"  ><path style="stroke: rgb(62,214,165); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(58,18,84); fill-rule: nonzero; opacity: 1;"  transform=" translate(-101.733455, -88.10376)" d="M 152.6001 0 L 203.46692 88.10376 L 152.6001 176.20752 L 50.86681 176.20752 L -0.000009999999996068709 88.10376 L 50.86681 0 z" stroke-linecap="round" /></g><g transform="matrix(0.9341563044 0 0 0.9341563044 97.8707185774 273.1164515745)" id="A_K1mSeeMG6vLmACWiRmX"  ><path style="stroke: rgb(0,0,0); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"  transform=" translate(-87.1479471902, -274.2308431526)" d="M 87.14694719023055 274.2308431526191 L 87.14894719023056 274.2308431526191" stroke-linecap="round" /></g><g transform="matrix(2.5020046551 0 0 2.5136164266 249.999990396 264.2400248225)" id="Izyp3VL5IgeClk7jxXpGn"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M 0 40.30374 L -46.14991 -40.30375 L 46.14992 -40.30375 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 150.382987277 309.3476520153)" id="AI5qpZDcCF9qm15XXpQIf"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.18; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -22.9302 -40.36379 L -23.074949999999998 13.320369999999997 L 23.07496 40.363789999999995 z" stroke-linecap="round" /></g><g transform="matrix(4.3171045627 0 0 4.3171045627 349.6169935151 309.3476520153)" id="WecekGZwKx48t5ckYQd7W"  ><path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: *****; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0.4; fill-rule: nonzero; opacity: 1;"  transform=" translate(0, 0)" d="M -23.07496 40.36379 L 23.074949999999998 13.325390000000002 L 23.074949999999998 -40.363789999999995 z" stroke-linecap="round" /></g></svg>
       <!-- end svg -->
-      
+     
       <!-- container for apps displayed on the shelf -->
       <div class="shelfItemsContainer">
         <img class="shelfItem" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/1982px-Spotify_icon.svg.png">
@@ -668,7 +667,7 @@
       </div>
       <!-- end time stuff -->
     </div>
-    
+   
     <!-- battery percentage, brightness slider and stuff -->
     <div id="timeMenu">
       <p class="yau">You are using Wraithcode OS v1.0</p>
@@ -688,7 +687,7 @@
     </div>
     <!-- end -->
     <!-- APPS MENU START -->
-    
+   
     <div id="mainMenu">
       <div class="appDiv" onclick="openLocalWindow('appstore', 'App Store')">
         <i class="material-symbols-outlined" title="App Store">local_mall</i>
@@ -731,15 +730,15 @@
         <p>null</p>
       </div>
     </div>
-    
+   
     <!-- APPS MENU END -->
-    
+   
     <div id="notifications">
       <h1 class="notifications-title">Notifications </h1>
     </div>
-    
+   
     <!-- SETTINGS WINDOW START -->
-    
+   
     <div id="settingsWindow" class="windowContainer">
       <div class="windowHeader">Local App: Settings<button class="windowCloseButton material-symbols-outlined" onclick="closeSettingsWindow()">close</button></div>
       <div class="windowScreen">
@@ -755,47 +754,47 @@
           <h4>Wallpaper</h4>
           <div class="wallpapersContainer">
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper.png')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper.png">
+              <img src="./wcos/wallpapers/wallpaper.png">
               <p>Wallpaper 1</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper2.png')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper2.png">
+              <img src="./wcos/wallpapers/wallpaper2.png">
               <p>Wallpaper 2</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper3.png')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper3.png">
+              <img src="./wcos/wallpapers/wallpaper3.png">
               <p>Wallpaper 3</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper4.jpg')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper4.jpg">
+              <img src="./wcos/wallpapers/wallpaper4.jpg">
               <p>Wallpaper 4</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper5.png')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper5.png">
+              <img src="./wcos/wallpapers/wallpaper5.png">
               <p>Wallpaper 5</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper6.png')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper6.png">
+              <img src="./wcos/wallpapers/wallpaper6.png">
               <p>Wallpaper 6</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper7.png')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper7.png">
+              <img src="./wcos/wallpapers/wallpaper7.png">
               <p>Wallpaper 7</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper8.jpg')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper8.jpg">
+              <img src="./wcos/wallpapers/wallpaper8.jpg">
               <p>Wallpaper 8</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper9.jpg')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper9.jpg">
+              <img src="./wcos/wallpapers/wallpaper9.jpg">
               <p>Wallpaper 9</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper10.jpg')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper10.jpg">
+              <img src="./wcos/wallpapers/wallpaper10.jpg">
               <p>Wallpaper 10</p>
             </div>
             <div class="wallpaperItem" onclick="changeWallpaper('wallpaper-mysisterdrewthis.png')">
-              <img src="https://wraithcode2050.github.io/wcos/wallpapers/wallpaper-mysisterdrewthis.png">
+              <img src="./wcos/wallpapers/wallpaper-mysisterdrewthis.png">
               <p>My sister<br>drew this</p>
             </div>
           </div>
@@ -810,13 +809,13 @@
         <div class="settingsPage" id="sp-plt" style="background: pink;">pl2</div>
       </div>
     </div>
-    
+   
     <!-- SETTINGS WINDOW END -->
-    
+   
     <script>
       document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
-    
+   
         const contextMenu = document.getElementById('ctxMenu');
         contextMenu.style.left = event.clientX + 'px';
         contextMenu.style.top = event.clientY + 'px';
@@ -828,19 +827,19 @@
         }
         contextMenu.style.pointerEvents = 'all';
         contextMenu.style.opacity = '1';
-    
+   
         document.addEventListener('click', function() {
           contextMenu.style.opacity = '0';
           contextMenu.style.pointerEvents = 'none';
         });
       });
-    
+   
       var tiMn = document.getElementById('timeMenu');
       var mainMenu = document.getElementById('mainMenu');
       var ntMenu = document.getElementById('notifications');
       var shutdownMenu = document.getElementById('shutdownMenu');
       var chngbg = document.getElementById('timnrt');
-      
+     
       function openTimeMenu() {
         if (tiMn.style.opacity == "1") {
           tiMn.style.opacity = "0";
@@ -859,7 +858,7 @@
           ntMenu.style.pointerEvents = "none";
         }
       };
-      
+     
       function openMenu() {
         if (mainMenu.style.opacity == "1") {
           mainMenu.style.opacity = "0";
@@ -875,7 +874,7 @@
           ntMenu.style.pointerEvents = "none";
         }
       };
-      
+     
       function openNotifications() {
         if (ntMenu.style.opacity == "1") {
           ntMenu.style.opacity = "0";
@@ -929,7 +928,7 @@
       // battery icon and text reading
       navigator.getBattery().then(function(battery) {
         updateBatteryStatus(battery);
-        
+       
         battery.addEventListener('levelchange', function() {
           updateBatteryStatus(battery);
         });
@@ -943,7 +942,7 @@
           updateBatteryStatus(battery);
         });
       });
-      
+     
       var batteryIcon = document.getElementById("percentageIcon");
       function updateBatteryStatus(battery) {
         let batteryPercentage = (battery.level * 100).toFixed(0); // Convert to percentage
@@ -1023,13 +1022,13 @@
       const slider = document.getElementById('slider');
       const brightnessMask = document.getElementById('opacityElem');
       let value = 0;
-    
+   
       let isDragging = false;
-    
+   
       handle.addEventListener('mousedown', () => {
         isDragging = true;
       });
-    
+   
       const updateValue = () => {
         const handlePos = parseFloat(handle.style.left) / slider.offsetWidth;
         value = handlePos;
@@ -1045,31 +1044,31 @@
             posX = slider.offsetWidth;
           }
           handle.style.left = posX - 10 + 'px';
-    
+   
           slider.style.background = `linear-gradient(to right, var(--accent) ${posX + 10}px, #00000066 ${posX}px)`;
-    
+   
           updateValue();
         }
       });
-    
+   
       document.addEventListener('mouseup', () => {
         isDragging = false;
       });
-      
+     
       // make desktop item dragging later
-      
+     
       // windows, CONTINUE CODING LATER, THIS IS UNFINISHED AND DYSFUNCTIONAL
       function openLocalWindow(grab, title) {
-        var source = "https://wraithcode2050.github.io/wcos/localpages/" + grab + ".html";
-    
+        var source = "./wcos/localpages/" + grab + ".html";
+   
         var windowDiv = document.createElement('div');
         windowDiv.classList.add('windowContainer');
-    
+   
         var header = document.createElement('div');
         header.classList.add('windowHeader');
         header.innerText = "Local App: " + title;
         windowDiv.appendChild(header);
-        
+       
         var closeButton = document.createElement('button');
         closeButton.innerText = 'close';
         closeButton.classList.add('windowCloseButton');
@@ -1078,26 +1077,26 @@
             windowDiv.remove();
         }
         header.appendChild(closeButton);
-    
+   
         var iframe = document.createElement('iframe');
         iframe.classList.add('windowScreen');
-    
+   
         fetch(source)
           .then(response => response.text())
           .then(data => {
             if (data.includes("<isvalidapp></isvalidapp>")) {
               var div = document.createElement('div');
               div.innerHTML = data;
-    
+   
               var doc = iframe.contentDocument || iframe.contentWindow.document;
               doc.body.appendChild(div);
             } else {
-              fetch("https://wraithcode2050.github.io/wcos/localpages/appinvalid.html")
+              fetch("./wcos/localpages/appinvalid.html")
                 .then(response => response.text())
                 .then(data => {
                   var div = document.createElement('div');
                   div.innerHTML = data;
-    
+   
                   var doc = iframe.contentDocument || iframe.contentWindow.document;
                   doc.body.appendChild(div);
                 })
@@ -1109,62 +1108,70 @@
           .catch(error => {
             console.log('Error:', error);
         });
-      
+     
         windowDiv.appendChild(iframe);
         document.body.appendChild(windowDiv);
-      
+     
         dragElement(windowDiv);
       }
 
       function dragElement(elmnt) {
+        topWinZIdx = 4;
         var zIndex = 3; // Initial zIndex for the top window
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         elmnt.querySelector('.windowHeader').addEventListener('mousedown', dragMouseDown);
-        
+       
         function dragMouseDown(e) {
-          e.preventDefault();
-          zIndex++; // Increment zIndex for the current window
-          elmnt.style.zIndex = zIndex;
-          pos3 = e.clientX;
-          pos4 = e.clientY;
-          document.addEventListener('mouseup', closeDragElement);
-          document.addEventListener('mousemove', elementDrag);
+            e.preventDefault();
+            topWinZIdx++;
+            zIndex = topWinZIdx; // Increment zIndex for the current window
+            elmnt.style.zIndex = zIndex;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.addEventListener('mousemove', elementDrag);
+            document.addEventListener('mouseup', closeDragElement);
+            document.querySelectorAll('.draggable-window').forEach(function(window) {
+                if (window !== elmnt && window.style.zIndex > zIndex) {
+                    window.style.zIndex = zIndex - 1;
+                }
+            });
         }
-        
+       
         function elementDrag(e) {
-          e.preventDefault();
-          pos1 = pos3 - e.clientX;
-          pos2 = pos4 - e.clientY;
-          pos3 = e.clientX;
-          pos4 = e.clientY;
-          
-          var newTop = elmnt.offsetTop - pos2;
-          if (newTop < 0) {
-              newTop = 0;
-          }
-          
-          elmnt.style.top = newTop + "px";
-          elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      }
-        
-        function closeDragElement() {
-          document.removeEventListener('mouseup', closeDragElement);
-          document.removeEventListener('mousemove', elementDrag);
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+           
+            var newTop = elmnt.offsetTop - pos2;
+            if (newTop < 0) {
+                newTop = 0;
+            }
+           
+            elmnt.style.top = newTop + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         }
-      }
-      
+       
+        function closeDragElement() {
+            document.removeEventListener('mousemove', elementDrag);
+            document.removeEventListener('mouseup', closeDragElement);
+        }
+    }
+
+     
       // Call the dragElement function for each window element
       var windows = document.getElementsByClassName('window');
       for (var i = 0; i < windows.length; i++) {
         dragElement(windows[i]);
       }
-      
+     
       function openSettingsWindow() {
         var settingsWindow = document.getElementById('settingsWindow');
         settingsWindow.style.top = "calc(50% - 151px)";
         settingsWindow.style.left = "calc(50% - 226px)";
         settingsWindow.style.display = "block";
-        
+       
         // Check if dragMouseDown event listener has already been attached because it was being go wheeeeeee
         if (!settingsWindow.querySelector('.windowHeader').hasAttribute('data-draggable')) {
           dragElement(settingsWindow);
@@ -1175,7 +1182,7 @@
         var settingsWindow = document.getElementById('settingsWindow');
         settingsWindow.style.display = "none";
       }
-      
+     
       function openSettingsPage(page) {
         let pages = document.getElementsByClassName('settingsPage');
         for (var i = 0; i < pages.length; i++) {
@@ -1183,26 +1190,26 @@
         }
         var grabpage = document.getElementById(page);
         grabpage.style.display = "flex";
-      } 
-      
+      }
+     
       function changeWallpaper(source) {
         var backgroundElement = document.getElementById("background");
-        
+       
         // Save the selected wallpaper source in localStorage
         localStorage.setItem("selectedWallpaper", source);
-        
-        backgroundElement.src = "https://wraithcode2050.github.io/wcos/wallpapers/" + source;
+       
+        backgroundElement.src = "./wcos/wallpapers/" + source;
       }
-      
+     
       document.addEventListener('DOMContentLoaded', (e) => {
         var savedWallpaper = localStorage.getItem("selectedWallpaper");
         if (savedWallpaper) {
           // If there is a saved wallpaper, apply it
           var backgroundElement = document.getElementById("background");
-          backgroundElement.src = "https://wraithcode2050.github.io/wcos/wallpapers/" + savedWallpaper;
+          backgroundElement.src = "./wcos/wallpapers/" + savedWallpaper;
         }
       });
-      
+     
       function openShutdownMenu() {
         if (shutdownMenu.style.opacity == "1") {
           shutdownMenu.style.opacity = "0";
@@ -1213,32 +1220,32 @@
           shutdownMenu.style.pointerEvents = "all";
         }
       }
-      
+     
       function restartOs() {
         brightnessMask.style.transition = 'opacity 1s';
         brightnessMask.style.opacity = '1';
         brightnessMask.style.pointerEvents = 'all';
-      
+     
         setTimeout(() => {
           brightnessMask.style.transition = 'none';
           location.reload(); // reload OS
         }, 1000); // Wait for the opacity transition to complete (1s)
       }
-      
+     
       function powerOffOs() {
         brightnessMask.style.transition = 'opacity 1s';
         brightnessMask.style.opacity = '1';
         brightnessMask.style.pointerEvents = 'all';
-      
+     
         setTimeout(() => {
           brightnessMask.style.transition = 'none';
           var ww = window.open(window.location, '_self');
           ww.close();
         }, 1000); // Wait for the opacity transition to complete (1s)
       }
-      
+     
       function lockOs() {
-        
+       
       }
     </script>
   </body>
