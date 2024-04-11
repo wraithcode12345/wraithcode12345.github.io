@@ -1,25 +1,59 @@
+
 <html>
   <head>
     <style>
       * {margin: 0; color: #ffffff;}
       body {width: 100vw; height: 100vh; padding: 10px; overflow-x: hidden; background: #000000;}
-      input {margin-bottom: 10px; border: 2px solid #ffffff; background: none; padding: 4px; border-radius: 5px;}
+      input {margin-bottom: 10px; width: 100%; border: 2px solid #ffffff; background: none; padding: 4px; border-radius: 5px;}
       button {margin-top: 5px; cursor: pointer; margin-bottom: 10px; border: 2px solid #ffffff; background: none;}
       #codehere {width: calc(100% - 20px); height: 100px; padding: 5px; background: #323232; border: none;
                 resize: none; font-family: sans-serif, tahoma, verdana; user-select: none; pointer-events: none;
                 border-radius: 5px; margin-bottom: 10px;}
+      .flex {display: flex;}
+      .left {width: calc(50% - 16px); padding-right: 5px; border-right: 1px solid #ffffff; border-bottom: 2px solid #ffffff;}
+      .right {width: calc(50% - 16px); padding-left: 5px; border-left: 1px solid #ffffff; border-bottom: 2px solid #ffffff;}
     </style>
   </head>
   <body>
     <h2>Idle Breakout Cheat Code Generator</h2>
     <h3>Made by wraithcode</h3>
-    <p style="margin-bottom: 15px;">Put "Infinity" (must be capitalized) if you want infinite cash/gold, etc.<br>More options coming soon!</p>
-    <p>Level: </p><input placeholder="Level you want to be at" id="level">
-    <p>Money: </p><input placeholder="How much money you want" id="money">
-    <p>Gold: </p><input placeholder="How much gold you want" id="gold">
-    <p>Black Boxes: </p><input placeholder="How many black boxes you want" id="blackboxes">
-    <p>Skill Points: </p><input placeholder="How many skill points you want" id="skillpoints">
-    <br>
+    <p style="margin-bottom: 15px;">Put "Infinity" (must be capitalized) if you want infinite money or gold.<br>More options coming soon!</p>
+    <div class="flex">
+      <div class="left">
+        <p>Level: </p><input placeholder="Level you want to be at" id="level" value="0">
+        <p>Money: </p><input placeholder="How much money you want" id="money" value="0">
+        <p>Gold: </p><input placeholder="How much gold you want" id="gold" value="0">
+        <p>Black Boxes: </p><input placeholder="How many black boxes you want" id="blackboxes" value="0">
+        <p>Skill Points: </p><input placeholder="How many skill points you want" id="skillpoints" value="0">
+        <p>Basic Balls: </p><input placeholder="How many basic balls you want" id="basicballs" value="0">
+        <p>Basic Ball Speed: </p><input placeholder="Multiplier for the speed of basic balls" id="basicballspeed" value="0">
+        <p>Basic Ball Power: </p><input placeholder="Multiplier for the power of basic balls" id="basicballpower" value="0">
+        <p>Plasma Balls: </p><input placeholder="How many plasma balls you want" id="plasmaballs" value="0">
+        <p>Plasma Ball Speed: </p><input placeholder="Multiplier for the speed of plasma balls" id="plasmaballspeed" value="0">
+        <p>Plasma Ball Power: </p><input placeholder="Multiplier for the power of plasma balls" id="plasmaballpower" value="0">
+        <p>Sniper Balls: </p><input placeholder="How many sniper balls you want" id="sniperballs" value="0">
+        <p>Sniper Ball Speed: </p><input placeholder="Multiplier for the speed of sniper balls" id="sniperballspeed" value="0">
+        <p>Sniper Ball Power: </p><input placeholder="Multiplier for the power of sniper balls" id="sniperballpower" value="0">
+        <p>Basic Balls: </p><input placeholder="How many scatter balls you want" id="scatterballs" value="0">
+      </div>
+      <div class="right">
+        <p>Scatter Ball Multiply: </p><input placeholder="How many extra balls the scatterballs spawn" id="scatterballextra" value="0">
+        <p>Scatter Ball Power: </p><input placeholder="Multiplier for the power of scatter balls" id="scatterballpower" value="0">
+        <p>Cannon Balls: </p><input placeholder="How many cannon balls you want" id="cannonballs" value="0">
+        <p>Cannon Ball Speed: </p><input placeholder="Multiplier for the speed of cannon balls" id="cannonballspeed" value="0">
+        <p>Cannon Ball Power: </p><input placeholder="Multiplier for the power of cannon balls" id="cannonballpower" value="0">
+        <p>Poison Balls: </p><input placeholder="How many poison balls you want" id="poisonballs" value="0">
+        <p>Poison Ball Speed: </p><input placeholder="Multiplier for the speed of poison balls" id="poisonballspeed" value="0">
+        <p>Poison Ball Power: </p><input placeholder="Multiplier for the power of poison balls" id="poisonballpower" value="0">
+        <p>Vaus Laser Power: </p><input placeholder="Multiplier for vaus lasers\' damage" id="vauspower" value="0">
+        <p>Click Upgrades: </p><input placeholder="How much damage dealt per click" id="clickupgrades" value="0">
+        <p>Complete Level Cash Bonus: </p><input placeholder="Money (%) after completing level" id="levelcashbonus" value="0">
+        <p>Ball Speed Multiplier: </p><input placeholder="Ball speed multiplier" id="ballspeedmultiplier" value="0">
+        <p>Ball Power Multiplier: </p><input placeholder="Ball power multiplier" id="ballpowermultiplier" value="0">
+        <p>Vaus Lasers (Max 4): </p><input placeholder="How many vaus lasers you want" id="vauslasers" value="0">
+        <p>Maximum Number Of Balls: </p><input placeholder="How many ball slots you want" id="maxballs" value="0">
+      </div>
+    </div>
     <button onclick="generateCheat()">Generate</button>
     <button onclick="copy()">Copy Code</button>
     <textarea id="codehere">Your code will show up here</textarea>
@@ -30,20 +64,72 @@
         var gld = document.getElementById("gold").value;
         var blk = document.getElementById("blackboxes").value;
         var skp = document.getElementById("skillpoints").value;
+        var bsc = document.getElementById("basicballs").value;
+        var bsc_s = document.getElementById("basicballspeed").value;
+        var bsc_p = document.getElementById("basicballpower").value;
+        var pls = document.getElementById("plasmaballs").value;
+        var pls_s = document.getElementById("plasmaballspeed").value;
+        var pls_p = document.getElementById("plasmaballpower").value;
+        var snp = document.getElementById("sniperballs").value;
+        var snp_s = document.getElementById("sniperballspeed").value;
+        var snp_p = document.getElementById("sniperballpower").value;
+        var sct = document.getElementById("scatterballs").value;
+        var sct_e = document.getElementById("scatterballextra").value;
+        var sct_p = document.getElementById("scatterballpower").value;
+        var cnn = document.getElementById("cannonballs").value;
+        var cnn_s = document.getElementById("cannonballspeed").value;
+        var cnn_p = document.getElementById("cannonballpower").value;
+        var psn = document.getElementById("poisonballs").value;
+        var psn_s = document.getElementById("poisonballspeed").value;
+        var psn_p = document.getElementById("poisonballpower").value;
+        var vas_p = document.getElementById("vauspower").value;
+        var clk_u = document.getElementById("clickupgrades").value;
+        var lvl_csh = document.getElementById("levelcashbonus").value;
+        var bsp_m = document.getElementById("ballspeedmultiplier").value;
+        var blp_m = document.getElementById("ballpowermultiplier").value;
+        var vas = document.getElementById("vauslasers").value;
+        var max_bls = document.getElementById("maxballs").value;
+        
         var cheathere = document.getElementById("codehere");
         
         var regex = /^\d+$/;
         
-        if ((regex.test(lvl) || lvl === "Infinity") &&
+        if ((regex.test(lvl)) &&
             (regex.test(csh) || csh === "Infinity") &&
             (regex.test(gld) || gld === "Infinity") &&
-            (regex.test(blk) || blk === "Infinity") &&
-            (regex.test(skp) || skp === "Infinity")) {
-          var cheat = `${lvl},${csh},${gld},2,0,5,0,0,0,0,0,1,1,0,43595.78,999999,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,${blk},0,0,0,1,${skp},1,0,0`;
+            (regex.test(blk)) &&
+            (regex.test(skp)) &&
+            (regex.test(bsc)) &&
+            (regex.test(bsc_s)) &&
+            (regex.test(bsc_p)) &&
+            (regex.test(pls)) &&
+            (regex.test(pls_s)) &&
+            (regex.test(pls_p)) &&
+            (regex.test(snp)) &&
+            (regex.test(snp_s)) &&
+            (regex.test(snp_p)) &&
+            (regex.test(sct)) &&
+            (regex.test(sct_e)) &&
+            (regex.test(sct_p)) &&
+            (regex.test(cnn)) &&
+            (regex.test(cnn_s)) &&
+            (regex.test(cnn_p)) &&
+            (regex.test(psn)) &&
+            (regex.test(psn_s)) &&
+            (regex.test(psn_p)) &&
+            (regex.test(vas_p)) &&
+            (regex.test(clk_u)) &&
+            (regex.test(lvl_csh)) &&
+            (regex.test(bsp_m)) &&
+            (regex.test(blp_m)) &&
+            (regex.test(vas) && !(vas > 4)) &&
+            (regex.test(max_bls))
+            ) {
+          var cheat = `${lvl},${csh},${gld},2,0,5,0,0,0,0,0,1,1,0,43595.78,999999,0,0,0,0,0,0,0,0,0,0,0,0,${bsc},${pls},${snp},${sct},${cnn},${psn},0,0,0,${bsc_s},${bsc_p},${pls_s},${pls_p},${snp_s},${snp_p},${sct_e},${sct_p},${cnn_s},${cnn_p},${psn_s},${psn_p},0,${vas_p},${clk_u},${lvl_csh},${bsp_m},${blp_m},${vas},${max_bls},0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,${blk},0,0,0,1,${skp},1,0,0`;
           var final = btoa(cheat);
           cheathere.innerText = final;
         } else {
-          alert("Inputs must all be filled out and must be numeric values, with no spaces.");
+          alert("Inputs must all be filled out and must be numeric values, with no spaces. Only money and gold can be infinite.");
         }
       }
       
@@ -56,6 +142,6 @@
         alert("Copied!");
       }
     </script>
-    <p style="display: none;">level,money,gold,gold_on_prestige,prestige_count,0,0,0,0,0,0,1,1,0,43595.78,999999,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,black_boxes,0,0,0,1,skill_points,1,0,0,Made By SCS Psyco29</p>
+    <p style="display: none;">level,money,gold,gold_on_prestige,prestige_count,0,0,0,0,0,0,1,1,0,43595.78,999999,0,0,0,0,0,0,0,0,0,0,0,0,basic_balls,plasma_balls,sniper_balls,scatter_balls,cannon_balls,poison_balls,0,0,0,basic_speed,basic_power_x,plasma_speed,plasma_power_x,sniper_speed,sniper_power_x,scatter_extra_balls,scatter_power_x,cannon_speed,cannon_power_x,poison_speed,poison_power_x,0,vaus_power,click_upgrades,lvl_complete_cash,ball_speed_multiplier,ball_power_multiplier,vaus_lasers,max_ball_multipier,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,black_boxes,0,0,0,1,skill_points,1,0,0</p>
   </body>
 </html>
