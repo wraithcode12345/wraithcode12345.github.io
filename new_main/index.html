@@ -12,7 +12,7 @@
       nav .left {height: 60px; width: 50%; display: flex;}
       nav .left img {height: 40px; margin: 10px;}
       nav .right {height: 60px; width: 50%; display: flex; justify-content: right;}
-      nav a {font-weight: bold; margin-right: 40px; display: flex block; justify-content: center; align-items: center; position: relative; cursor: pointer;}
+      nav a {font-weight: bold; margin: 0 20px; display: flex block; justify-content: center; align-items: center; position: relative; cursor: pointer;}
       nav a::after {content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 1px; bottom: 10px; left: 0; background-color: #ffffff; transform-origin: bottom right; transition: transform 0.25s ease-out;}
       nav a:hover::after {transform: scaleX(1); transform-origin: bottom left;}
       
@@ -27,11 +27,12 @@
     <nav>
       <div class="left">
         <img src="/logo_large.png">
-        <a>Home</a>
-        <a>About</a>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
       </div>
       <div class="right">
-        <a>More</a>
+        <a href="/eaglauncher">Eaglercraft</a>
+        <a href="/more">More</a>
       </div>
     </nav>
     <h1>wraithcode</h1>
