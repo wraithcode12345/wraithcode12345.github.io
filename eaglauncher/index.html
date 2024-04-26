@@ -1,0 +1,55 @@
+
+
+<html>   
+  <head>
+    <title>Launch Eagler</title>
+    <link rel="icon" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+      body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
+      nav {height: 100px; width: 100%; background: linear-gradient(#000000 10%, #00000000 100%); position: fixed; top: 0; left: 0; z-index: 5; display: flex;}
+      nav .left {height: 60px; width: 50%; display: flex;}
+      nav .left img {height: 40px; margin: 10px;}
+      nav .right {height: 60px; width: 50%; display: flex; justify-content: right;}
+      nav a {font-weight: bold; margin: 0 20px; display: flex block; justify-content: center; align-items: center; position: relative; cursor: pointer;}
+      nav a::after {content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 1px; bottom: 10px; left: 0; background-color: #ffffff; transform-origin: bottom right; transition: transform 0.25s ease-out;}
+      nav a:hover::after {transform: scaleX(1); transform-origin: bottom left;}
+      
+      h1 {width: calc(100% - 50px); margin: 25px; text-align: center; font-size: 40px;}
+      .clients {height: auto; width: calc(100% - 200px); margin: 10 100px; border: 1px solid #232323; display: flex; flex-wrap: wrap; justify-content: center;}
+      .client-item {height: 200px; width: 200px; background: #20242d; margin: 10px; border-radius: 20px; transition: 0.05s ease-in-out;}
+      .client-item img {height: 140px; width: 140px; margin: 10px 30px;}
+      .client-item p {color: #ffffff; margin: 0; margin-bottom: 10px; font-weight: bold; width: 100%; text-align: center;}
+      .client-item:hover {cursor: pointer; transform: scale(1.05);}
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="left">
+        <img src="/logo_large.png">
+        <a>Home</a>
+        <a>About</a>
+      </div>
+      <div class="right">
+        <a>Eaglercraft</a>
+        <a>More</a>
+      </div>
+    </nav>
+    <h1>Eaglercraft Launcher</h1>
+    <div class="clients">
+      <div onclick="alert('1.12.4 is currently in development and will be released in about 2 years.')" class="client-item"><img src="/eagler/eagler-logo-inverted.png"><p>1.12.4 (In development)</p></div>
+      <div onclick="launchClient('18latest')" class="client-item"><img src="/eagler/eagler-logo-inverted.png"><p>Latest 1.8.8 update</p></div>
+      <div onclick="launchClient('resent40')" class="client-item"><img src="https://api.nuget.org/v3-flatcontainer/influxdb.client.flux/4.14.0/icon"><p>Resent 4.0</p></div>
+      <div onclick="launchClient('152')" class="client-item"><img src="/eagler/eagler-logo-inverted.png"><p>1.5.2</p></div>
+      <div onclick="launchClient('shadowclient')" class="client-item"><img src="/eagler/eagler-logo-inverted.png"><p>Shadow (Optimizations)</p></div>
+      <div onclick="launchClient('dragonx4')" class="client-item"><img src="/eagler/eagler-logo-inverted.png"><p>Dragon X4 (HACK 1.8.8)</p></div>
+      <div onclick="launchClient('piclient')" class="client-item"><img src="/eagler/eagler-logo-inverted.png"><p>PiClient (HACK 1.5.2)</p></div>
+    </div>
+    <script>
+      function launchClient(client) {
+        var clienturl = "/eagler/" + client + "/index.html";
+        window.open(clienturl);
+      }
+    </script>
+  </body>
+</html>
