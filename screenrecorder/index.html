@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Tab Recorder</title>
+    <style>
+      body {background: #000000; font-family: "Manrope"; color: #ffffff;}
+      button {padding: 5px 10px; border: 2px solid #ffffff; border-radius: 3px; background: #000000; color: #ffffff; display: inline-block;}
+      p {margin: 0; margin-top: 10px; margin-right: 10px; display: inline-block;}
+    	#recordedVideo {width: 100%; height: auto; margin-top: 10px;}
+    </style>
+</head>
+<body>
+    <h1>Record Screen</h1>
+    <button onclick="startRecording()">Start Recording</button>
+    <button onclick="stopRecording()">Stop Recording</button>
+    <br>
+	  <p>Video Preview:</p><button onclick="downloadRecording()"><i class="fa fa-download"></i></button>
+    <video id="recordedVideo" controls style="display: block;"></video>
+    <script>
+        let recorder,recordedChunks=[];function startRecording(){navigator.mediaDevices.getDisplayMedia({video:{mediaSource:"screen"}}).then(e=>{(recorder=new MediaRecorder(e)).ondataavailable=e=>{recordedChunks.push(e.data)},recorder.start()})}function stopRecording(){recorder.stop(),recorder.onstop=()=>{let e=new Blob(recordedChunks,{type:"video/mp4"});document.getElementById("recordedVideo").src=URL.createObjectURL(e),document.getElementById("recordedVideo").style.display="block"}}function downloadRecording(){if(0===recordedChunks.length){alert("You must record something before attempting to download.");return}let e=document.createElement("a");document.body.appendChild(e),e.style="display: none";let r=new Blob(recordedChunks,{type:"video/mp4"}),d=URL.createObjectURL(r);e.href=d,e.download="recording.mp4",e.click(),window.URL.revokeObjectURL(d)}
+    </script>
+</body>
+</html>
