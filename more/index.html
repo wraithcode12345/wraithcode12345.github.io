@@ -1,0 +1,65 @@
+
+<html>   
+  <head>
+    <title>wraithcode - More</title>
+    <link rel="icon" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
+      .bottom {width: 100%; height: 45px; margin-bottom: 20px; margin-top: 30px; background: #000000; overflow: hidden; position: relative;}
+      .bottom:before {content: ""; display: block; background: #000000; position: absolute; border-radius: 100%; width: 100%; height: 300px; border-top: 2px solid #ffffff; right: -25%; top: 0px; clip-path: polygon(0 0, 100% 0%, 68% 10%, 0 4%);}
+      .bottom:after {content: ""; display: block; background: #000000; position: absolute; border-radius: 100%; width: 100%; height: 300px; border-bottom: 2px solid #ffffff; left: -25%; top: -258.5px; clip-path: polygon(32% 90%, 100% 90%, 100% 100%, 0% 100%);}
+      nav {height: 100px; width: 100%; background: linear-gradient(#000000 10%, #00000000 100%); position: fixed; top: 0; left: 0; z-index: 5; display: flex;}
+      nav .left {height: 60px; width: 50%; display: flex;}
+      nav .left img {height: 40px; margin: 10px;}
+      nav .right {height: 60px; width: 50%; display: flex; justify-content: right;}
+      nav a {font-weight: bold; margin: 0 20px; display: flex block; justify-content: center; align-items: center; position: relative; cursor: pointer; color: #ffffff; text-decoration: none;}
+      nav a::after {content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 1px; bottom: 10px; left: 0; background-color: #ffffff; transform-origin: bottom right; transition: transform 0.25s ease-out;}
+      nav a:hover::after {transform: scaleX(1); transform-origin: bottom left;}
+      
+      h1 {width: calc(100% - 10px); margin: 5px; text-align: center; font-size: 40px;}
+      
+      .content {width: calc(100% - 40px); margin: 10px 20px; display: flex; flex-direction: row;}
+      .tools h3, .games h3, .games p {width: 100%; text-align: center; position: relative;}
+      .tools h3:after, .games h3:after {content: ""; display: block; height: 2px; width: 70%; position: absolute; bottom: -2px; left: 15%; background: #454545;}
+      .tools, .games {width: calc(50% - 10px); margin: 5px; background: #232323; border-radius: 8px; display: flex; flex-direction: column; position: relative; padding-bottom: 10px;}
+      .games p {color: #ffeeee;}
+      .item {background: #323232; height: 100px; width: 180px; overflow: hidden; border-radius: 6px; position: relative;}
+      .item header {height: 30px; width: calc(100% - 6px); background: #3f3f3f; font-weight: bold; display: flex; align-items: center; padding-left: 6px;}
+      .itemwrapper {display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 10px; width: calc(100% - 20px); margin: 0 10px;}
+      .item header:hover {text-decoration: underline; cursor: pointer;}
+      .item p {width: calc(100% - 12px); margin: 4px 6px;}
+      .item i {display: block; position: absolute; right: 6px;}
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="left">
+        <img src="/logo_large.png">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+      </div>
+      <div class="right">
+        <a href="/eaglauncher">Eaglercraft</a>
+        <a href="/more">More</a>
+      </div>
+    </nav>
+    
+    <h1>More</h1>
+    
+    <div class="content">
+    	<div class="tools">
+        	<h3><i class="fa fa-wrench"></i> Tools</h3>
+            <div class="itemwrapper">
+              <div class="item"><header onclick="window.location.href='/screenrecorder'">Screen Recorder<i class="fa fa-screencast"></i></header><p>Super fast and simple screen recorder!</p></div>
+            </div>
+        </div>
+        <div class="games">
+        	<h3><i class="fa fa-gamepad-modern"></i> Games</h3>
+        	<p>Coming soon!</p>
+            <div class="itemwrapper"></div>
+        </div>
+    </div>
+  </body>
+</html>
