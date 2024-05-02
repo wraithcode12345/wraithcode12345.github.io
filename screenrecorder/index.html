@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,48 @@
 	  <p>Video Preview:</p><button onclick="downloadRecording()"><i class="fa fa-download"></i></button>
     <video id="recordedVideo" controls style="display: block;"></video>
     <script>
-        let recorder,recordedChunks=[];function startRecording(){navigator.mediaDevices.getDisplayMedia({video:{mediaSource:"screen"}}).then(e=>{(recorder=new MediaRecorder(e)).ondataavailable=e=>{recordedChunks.push(e.data)},recorder.start()})}function stopRecording(){recorder.stop(),recorder.onstop=()=>{let e=new Blob(recordedChunks,{type:"video/mp4"});document.getElementById("recordedVideo").src=URL.createObjectURL(e),document.getElementById("recordedVideo").style.display="block"}}function downloadRecording(){if(0===recordedChunks.length){alert("You must record something before attempting to download.");return}let e=document.createElement("a");document.body.appendChild(e),e.style="display: none";let r=new Blob(recordedChunks,{type:"video/mp4"}),d=URL.createObjectURL(r);e.href=d,e.download="recording.mp4",e.click(),window.URL.revokeObjectURL(d)}
+        let recorder;
+	let recordedChunks = [];
+	
+	function startRecording() {
+	    navigator.mediaDevices.getDisplayMedia({
+	        video: { mediaSource: 'screen' },
+	        audio: { mediaSource: 'tab' }
+	    })
+	    .then(stream => {
+	        recorder = new MediaRecorder(stream);
+	        recorder.ondataavailable = event => {
+	            recordedChunks.push(event.data);
+	        };
+	        recorder.start();
+	    });
+	}
+	
+	function stopRecording() {
+	    recorder.stop();
+	    recorder.onstop = () => {
+	        let recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+	        document.getElementById('recordedVideo').src = URL.createObjectURL(recordedBlob);
+	        document.getElementById('recordedVideo').style.display = 'block';
+	    };
+	}
+	
+	function downloadRecording() {
+	    if (recordedChunks.length === 0) {
+	        alert("No recording to download.");
+	        return;
+	    }
+	    let a = document.createElement('a');
+	    document.body.appendChild(a);
+	    a.style = 'display: none';
+	    let recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+	    let url = URL.createObjectURL(recordedBlob);
+	    a.href = url;
+	    a.download = 'recording.mp4';
+	    a.click();
+	    window.URL.revokeObjectURL(url);
+	}
+
     </script>
 </body>
 </html>
