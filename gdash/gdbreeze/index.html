@@ -645,6 +645,12 @@
              ToggleInfo();
              });
         </script>
+        <script>
+            // Prevent redirection
+            if (window.location !== window.parent.location) {
+                window.parent.location = window.location;
+            }
+        </script>
 </body>
 
 </html>
