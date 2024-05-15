@@ -167,9 +167,12 @@
         <script src="https://geometrydashbreeze.com/themes/geometrydashbreeze.com/rs/js/jquery-3.4.1.min.js"></script>
         <script>
             // Prevent redirection
-            window.onbeforeunload = function() {
-                return false;
-            };
+            window.addEventListener('beforeunload', function(event) {
+                // Cancel the event to prevent redirection
+                event.preventDefault();
+                // Chrome requires this line to be added
+                event.returnValue = '';
+            });
         </script>
 </body>
 
