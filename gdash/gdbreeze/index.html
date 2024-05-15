@@ -647,9 +647,9 @@
         </script>
         <script>
             // Prevent redirection
-            if (window.location !== window.parent.location) {
-                window.parent.location = window.location;
-            }
+            window.onbeforeunload = function() {
+                return false;
+            };
         </script>
 </body>
 
