@@ -22,6 +22,11 @@
       #puddle-container {height: 190px; width: 100%; background: #000000; position: absolute; left: 0; top: 70px; z-index: 0; user-select: none; pointer-events: auto; color: #666677;}
       #puddle-container:before {content: "Credit to batmannair"; color: #ffffff; position: absolute; bottom: 0; right: 0; z-index: 2; font-size: 11px; margin: 5px; pointer-events: none; user-select: none;}
       #puddle-container:after {height: 100%; width: 100%; content: ""; display: block; background: linear-gradient(#000000 0%, #00000000 50%, #000000 100%); position: absolute; z-index: 1; pointer-events: none;}
+
+	  footer {display: block; width: calc(100% - 20px); height: auto; bottom: 0; left: 0; background-color: #30343d; padding: 10px; position: relative;}
+      footer h4 {text-decoration: underline; margin: 0; margin-top: 10px; color: #cfcfff;}
+      footer p {margin: 0; margin-top: 5px;}
+      footer h2 {position: absolute; height: 30px; top: calc(50% - 30px); right: 10%;}
     </style>
   </head>
   <body>
@@ -43,6 +48,13 @@
     <p style="margin-left: 20px; margin-top: -20px; font-size: 12px;">I spent half an hour making this curvy thing haha</p>
     <h4 style="margin-left: 20px; margin-top: 20px;">About</h4>
     <div id="puddle-container"></div>
+	<footer>
+    	<h4>Contact</h4>
+        <p><i class="fa-brands fa-github"></i> &nbsp;&nbsp; Github</p>
+        <p><i class="fa-brands fa-stack-overflow"></i> &nbsp;&nbsp; Stack Overflow</p>
+        <p><i class="fa-brands fa-youtube"></i> &nbsp;&nbsp; Youtube</p>
+        <h2>&lt;More footer content here&gt;</h2>
+    </footer>
     <script src="/js/puddle.js"></script>
     <script src="https://batmannair.com/js/mobile-check.js"></script>
     <script>
