@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Command Sound Player</title>
+    <style>
+    	body {background: #000000; color: #ffffff;}
+        #recognizedWords {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #ffffff; width: 50%;
+        }
+        #consoleText {width: 45%; font-size: 12px; color: #00ff00; position: absolute; top: 10px; right: 5px;}
+    </style>
+</head>
+<body>
+    <p>test these ones out: hello, what, pizza, fart, geometry dash, kaboom, fire, water, among us</p>
+    <button id="startButton">Start Listening</button>
+    <button id="stopButton">Stop Listening</button>
+    <div id="recognizedWords"></div>
+    <div id="consoleText"></div>
+
+    <script>
+        // Check if the browser supports the Web Speech API
+        if ('webkitSpeechRecognition' in window) {
+            const recognition = new webkitSpeechRecognition();
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
+            const recognizedWordsDiv = document.getElementById('recognizedWords');
+            const consoleText = document.getElementById('consoleText');
+
+            // Set recognition parameters
+            recognition.continuous = true; // Keep listening even after the user stops speaking
+            recognition.interimResults = false; // Return only final results
+
+            // List of words and their corresponding sound file paths
+            const triggerWords = [
+                { word: "hello", sound: "https://thirtydollar.website/sounds/boom.wav" },
+                { word: "what", sound: "https://thirtydollar.website/sounds/slap.wav" }, 
+                { word: "pizza", sound: "https://thirtydollar.website/sounds/pizza.wav" },
+                { word: "fart", sound: "https://thirtydollar.website/sounds/fart.wav" },
+                { word: "geometry dash", sound: "https://thirtydollar.website/sounds/geometrydash.wav" },
+                { word: "kaboom", sound: "https://thirtydollar.website/sounds/gdexplosion.wav" },
+                { word: "fire", sound: "https://thirtydollar.website/sounds/fireinthehole.wav" },
+                { word: "water", sound: "https://thirtydollar.website/sounds/wateronthehill.wav" },
+                { word: "among us", sound: "https://thirtydollar.website/sounds/amongus.wav" }
+            ];
+
+            // Event handler for when speech is recognized
+            recognition.onresult = function(event) {
+                const transcript = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
+                var e = "Recognized: " + transcript;
+                const wordElement = document.createElement('div');
+                consoleText.innerHTML += ("<br>" + e);
+
+                // Check if the recognized word matches any of the trigger words
+                for (let i = 0; i < triggerWords.length; i++) {
+                    if (transcript.includes(triggerWords[i].word)) {
+                        // Create a new audio element and play the corresponding sound
+                        const audio = new Audio(triggerWords[i].sound);
+                        audio.play();
+
+                        // Add the recognized word to the display div
+                        const wordElement = document.createElement('div');
+                        wordElement.textContent = triggerWords[i].word;
+                        recognizedWordsDiv.appendChild(wordElement);
+                    }
+                }
+            };
+
+            // Event handler for errors
+            recognition.onerror = function(event) {
+                console.error("Speech recognition error:", event.error);
+            };
+
+            // Start the recognition when the start button is clicked
+            startButton.addEventListener('click', function() {
+                recognition.start();
+                alert("Voice recognition started :D");
+            });
+
+            // Stop the recognition when the stop button is clicked
+            stopButton.addEventListener('click', function() {
+                recognition.stop();
+                alert("Voice recognition stopped.");
+            });
+        } else {
+            alert('The Web Speech API is not supported in this browser D:');
+        }
+    </script>
+</body>
+</html>
