@@ -4,15 +4,10 @@
     <title>Launch Eagler</title>
     <link rel="icon" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="/text-assets/css/navandfooter.css">
     <style>
       body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
-      nav {height: 100px; width: 100%; background: linear-gradient(#000000 10%, #00000000 100%); position: fixed; top: 0; left: 0; z-index: 5; display: flex;}
-      nav .left {height: 60px; width: 50%; display: flex;}
-      nav .left img {height: 40px; margin: 10px;}
-      nav .right {height: 60px; width: 50%; display: flex; justify-content: right;}
-      nav a {font-weight: bold; margin: 0 20px; display: flex block; justify-content: center; align-items: center; position: relative; cursor: pointer; color: #ffffff; text-decoration: none;}
-      nav a::after {content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 1px; bottom: 10px; left: 0; background-color: #ffffff; transform-origin: bottom right; transition: transform 0.25s ease-out;}
-      nav a:hover::after {transform: scaleX(1); transform-origin: bottom left;}
       
       h1 {width: calc(100% - 50px); margin: 25px; text-align: center; font-size: 40px;}
       .clients {height: auto; width: calc(100% - 200px); margin: 10 100px; display: flex; flex-wrap: wrap; justify-content: center;}
@@ -20,11 +15,6 @@
       .client-item img {height: 140px; width: 140px; margin: 10px 30px;}
       .client-item p {color: #ffffff; margin: 0; margin-bottom: 10px; font-weight: bold; width: 100%; text-align: center;}
       .client-item:hover {cursor: pointer; transform: scale(1.05);}
-
-      footer {display: block; width: calc(100% - 20px); height: auto; bottom: 0; left: 0; background-color: #30343d; padding: 10px; position: relative;}
-      footer h4 {text-decoration: underline; margin: 0; margin-top: 10px; color: #cfcfff;}
-      footer p {margin: 0; margin-top: 5px;}
-      footer h2 {position: absolute; height: 30px; top: calc(50% - 30px); right: 10%;}
     </style>
   </head>
   <body>
