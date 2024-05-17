@@ -1,4 +1,3 @@
-
 <html>   
   <head>
     <title>wraithcode - Chat</title>
@@ -9,8 +8,9 @@
     <style>
       body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
 
-      .chatcontainer {height: calc(100% - 50px); width: 100%; background: #ffffff2f;}
+      .chatcontainer {height: calc(100% - 50px); width: 100%; background: #ffffff2f; position: relative;}
       .chatcontainer iframe {height: 100%; width: 100%; border: none;}
+		.chatcontainer p {position: absolute; top: 8px; left: 10px; z-index: -1; margin: 0;}
     </style>
   </head>
   <body>
@@ -27,9 +27,9 @@
         <a href="/more">More</a>
       </div>
     </nav>
-  <div class="chatcontainer">
-	  <iframe src="https://go.arena.im/embed/chat/wraithcode/wraithcode-global">
-  </div>
+  	<div class="chatcontainer"><p>Loading...</p>
+	  <iframe src="https://go.arena.im/embed/chat/wraithcode/wraithcode-global"></iframe>
+  	</div>
 	<footer>
     	<h4 style="margin-bottom: 5px;">Contact</h4>
         <a><i class="fa-brands fa-github"></i> &nbsp;&nbsp; <a href="https://github.com/wraithcode20haha">Github</a></a><br>
