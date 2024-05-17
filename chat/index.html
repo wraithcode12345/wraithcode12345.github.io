@@ -4,13 +4,15 @@
     <link rel="icon" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <link rel="stylesheet" href="/text-assets/css/navandfooter.css">
+    <link rel="stylesheet" href="https://wraithcode20haha.github.io/text-assets/css/navandfooter.css">
     <style>
       body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
 
       .chatcontainer {height: calc(100vh - 60px); width: 100%; background: #ffffff2f; position: absolute; top: 60px; left: 0;}
       .chatcontainer iframe {height: 100%; width: 100%; border: none;}
 		.chatcontainer p {position: absolute; top: 8px; left: 10px; z-index: -1; margin: 0;}
+        
+        footer:before {content: ""; display: block; height: 100%; width: 100%; z-index: 2; background: linear-gradient(#ffffff44 0%, #00000044 100%); position: absolute; top: 0; left: 0; pointer-events: none;}
     </style>
   </head>
   <body>
@@ -30,7 +32,7 @@
   	<div class="chatcontainer"><p>Loading...</p>
 	  <iframe src="https://go.arena.im/embed/chat/wraithcode/wraithcode-global"></iframe>
   	</div>
-	<footer>
+	<footer style="position: absolute; top: 100vh; height: 125px;">
     	<h4 style="margin-bottom: 5px;">Contact</h4>
         <a><i class="fa-brands fa-github"></i> &nbsp;&nbsp; <a href="https://github.com/wraithcode20haha">Github</a></a><br>
         <a><i class="fa-brands fa-stack-overflow"></i> &nbsp;&nbsp; <a href="https://stackoverflow.com/users/22487123/wraithcode">Stack Overflow</a></a><br>
