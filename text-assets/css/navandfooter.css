@@ -9,5 +9,6 @@ nav a:hover::after {transform: scaleX(1); transform-origin: bottom left;}
 
 footer {display: block; width: calc(100% - 20px); height: auto; bottom: 0; left: 0; background-color: #30343d; padding: 10px; position: relative;}
 footer h4 {text-decoration: underline; margin: 0; margin-top: 10px; color: #cfcfff;}
-footer p {margin: 0; margin-top: 5px;}
+footer a {margin: 0; margin-top: 5px; text-decoration: none; color: #e0e0e0;}
+footer a:hover {text-decoration: underline; cursor: pointer; color: #ffffff;}
 footer h2 {position: absolute; height: 30px; top: calc(50% - 30px); right: 10%;}
