@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <p>test these ones out: hello, what, pizza, fart, geometry dash, kaboom, fire, water, among us, run, elevator</p>
+    <p id="words"></p>
     <button id="startButton">Start Listening</button>
     <button id="stopButton">Stop Listening</button>
     <div id="recognizedWords"></div>
@@ -48,6 +48,12 @@
                 { word: "run", sound: "/more/voicetosound/sounds/run_dun_dun.wav" },
                 { word: "elevator", sound: "/more/voicetosound/sounds/elevator_music.wav" }
             ];
+
+            document.addEventListener("DOMContentLoaded", function (e) {
+                const words = document.getElementById("words");
+                const getwords = "test these ones out: " + triggerWords.map(item => item.word).join(", ");
+                words.innerHTML = getwords;
+            });
 
             // Event handler for when speech is recognized
             recognition.onresult = function(event) {
