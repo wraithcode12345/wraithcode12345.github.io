@@ -1,0 +1,45 @@
+
+<html>   
+  <head>
+    <title>wraithcode - 404</title>
+    <link rel="icon" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <style>
+      body {margin: 0; font-family: "Manrope"; color: #ffffff; background: radial-gradient(#212121, #000000); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100vw;}
+      
+      h1 {font-size: 70px; margin: 0; position: relative; z-index: 1; color: #ffa400;}
+      p {margin: 0; position: relative; z-index: 1; color: #dd8455;}
+      a {color: #dddddd; margin-top: 10px;}
+    </style>
+  </head>
+  <body>
+	<h1>404</h1>
+    <p id="message">|</p>
+    <a href="/">Go Home</a>
+      <script>
+      	var messages = [
+        "Looks like somebody got lost :)",
+        "How did <strong>you</strong> get here?",
+        "Error: The requested URL was not found on this server.",
+        "It seems this page is on a permanent vacation.",
+        "You’ve found a page that doesn’t exist. Impressive, but unhelpful.",
+        "The page you requested is hiding from you.",
+        "Looks like the page you’re looking for wandered off.",
+        "You’ve found our 404 page. Unfortunately, it’s the wrong treasure.",
+        "The page you're looking for went out for a coffee and never came back.",
+        "There is no secret page I promise"
+      ];
+      function setRandomMessage() {
+        var randomIndex = Math.floor(Math.random() * messages.length);
+        var motdElement = document.getElementById("message");
+        if (motdElement) {
+          motdElement.innerHTML = messages[randomIndex];
+        } else {
+          console.error("Element with id 'motd' not found.");
+        }
+      }
+      window.onload = setRandomMessage;
+      </script>
+  </body>
+</html>
