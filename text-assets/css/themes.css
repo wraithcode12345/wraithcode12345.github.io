@@ -32,10 +32,10 @@
 
 /* amethyst theme */
 .amethyst-theme {
-    --background: #47235f;
+    --background: #27033f;
     --main-text-col: #efd7ff;
     --subtle-text-diff-col: #dcbcf2;
     --subtle-text-diff-gry: #dfc7ef;
-    --footer-background: #17132f;
+    --footer-background: #07001f;
     --puddle-text: #bfa7cf;
 }
