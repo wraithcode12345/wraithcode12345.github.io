@@ -1,0 +1,22 @@
+/* i know guys, line breaks in the middle of classes are DISGUSTING but for the sake of organization deal with it :3 */
+
+/* default to dark theme because its what all the cool kids use */
+:root {
+    --background: #000000;
+    --main-text-col: #ffffff;
+    --subtle-text-diff: #dfdfff;
+}
+
+/* light theme */
+.light-theme {
+    --background: #eeeeee;
+    --main-text-col: #000000;
+    --subtle-text-diff: #000066;
+}
+
+/* dark theme */
+.dark-theme {
+    --background: #000000;
+    --main-text-col: #ffffff;
+    --subtle-text-diff: #dfdfff;
+}
