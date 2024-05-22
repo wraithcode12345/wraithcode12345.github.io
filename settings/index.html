@@ -12,8 +12,8 @@
       body {margin: 0; font-family: "Manrope"; color: var(--main-text-col); background: var(--background); padding-top: 80px;}
 
       h1 {width: calc(100% - 10px); margin: 5px; text-align: center; font-size: 40px;}
-      h2, p {margin: 0; width: 100%; text-align: center;}
-      h2 {color: var(--subtle-text-diff-col);}
+      .h2, .p {margin: 0; width: 100%; text-align: center;}
+      .h2 {color: var(--subtle-text-diff-col);}
       .themes-container {width: 100%; display: flex; justify-content: center; margin: 20px 0;}
       select {border: 2px solid var(--main-text-col); border-right: none; border-top-left-radius: 8px; border-bottom-left-radius: 8px; padding: 8px 24px; background: none; color: var(--main-text-col);}
       option {background: var(--background); border: 2px solid var(--main-text-col); color: var(--main-text-col);}
@@ -27,7 +27,7 @@
     </nav>
 
     <h1><i class="fa-solid fa-gear"></i>&nbsp; Settings</h1>
-    <h2>Theme</h2>
+    <h2 class="h2">Theme</h2>
     <div class="themes-container">
       <select id="theme-select">
           <option value="light">Light Mode</option>
@@ -36,7 +36,7 @@
       </select>
       <button id="save-theme">Save</button>
     </div>
-    <p style="margin-bottom: 30px; font-size: 14px;">Themes are currently in development. Expect bugs.</p>
+    <p style="margin-bottom: 30px; font-size: 14px;" class="p">Themes are currently in development. Expect bugs.</p>
     
     <footer id="footer">
     	<!-- setnavandfooter.js adds content here -->
