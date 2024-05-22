@@ -15,7 +15,8 @@
       .h2, .p {margin: 0; width: 100%; text-align: center;}
       .h2 {color: var(--subtle-text-diff-col);}
 			.settings-content {width: 100%; display: flex; flex-wrap: wrap; justify-content: center;}
-      .themes-container {display: flex; justify-content: center; margin: 20px 0; background: var(--medium-1); padding: 15px; border-radius: 15px;} /* :) */
+      .themes-container {display: flex; flex-direction: column; justify-content: center; margin: 20px 0; background: var(--medium-1); padding: 15px; border-radius: 15px;} /* :) */
+			.dropbtnetcidk {display: block;} /* this element is necessary, not sure why i made a class for it tho lol */
       select {border: 2px solid var(--main-text-col); border-right: none; border-top-left-radius: 8px; border-bottom-left-radius: 8px; padding: 8px 24px; background: none; color: var(--main-text-col);}
       option {background: var(--background); border: 2px solid var(--main-text-col); color: var(--main-text-col);}
       #save-theme {border: 2px solid var(--main-text-col); border-top-right-radius: 8px; border-bottom-right-radius: 8px; padding: 8px 12px; background: none; color: var(--main-text-col);}
@@ -31,15 +32,17 @@
 		<div class="settings-content">
 			<div class="themes-container">
 	    	<h2 class="h2">Theme</h2>
-		    <select id="theme-select">
-		      <option value="light">Light</option>
-		      <option value="dark">Shadow</option>
-					<option value="amethyst">Amethyst</option>
-					<option value="bloodred">Bloodred</option>
-					<option value="deepocean">Deep Ocean</option>
-					<option value="jungle">Jungle</option>
-		    </select>
-		    <button id="save-theme">Save</button>
+				<div class="dropbtnetcidk">
+			    <select id="theme-select">
+			      <option value="light">Light</option>
+			      <option value="dark">Shadow</option>
+						<option value="amethyst">Amethyst</option>
+						<option value="bloodred">Bloodred</option>
+						<option value="deepocean">Deep Ocean</option>
+						<option value="jungle">Jungle</option>
+			    </select>
+			    <button id="save-theme">Save</button>
+				</div>
 		  </div>
 		</div>
     
