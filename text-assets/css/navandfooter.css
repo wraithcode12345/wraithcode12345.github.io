@@ -11,4 +11,4 @@ footer h4 {text-decoration: underline; margin: 0; margin-top: 10px; color: #cfcf
 footer a {margin: 0; margin-top: 5px; text-decoration: none; color: #e0e0e0;}
 footer a:hover {text-decoration: underline; cursor: pointer; color: #ffffff;}
 footer h2 {position: absolute; height: 30px; top: calc(50% - 30px); right: 10%;}
-#ip-display {font-weight: bold; position: absolute; bottom: 5px; right: 5px;}
+#ip-display {font-weight: bold; position: absolute; bottom: 5px; right: 5px; margin: 0; font-size: 16px; display: block;}
