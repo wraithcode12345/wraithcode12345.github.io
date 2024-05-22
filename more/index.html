@@ -9,17 +9,16 @@
     <link rel="stylesheet" href="/text-assets/css/themes.css">
     <script src="/text-assets/js/theme.js"></script>
     <style>
-      body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
+      body {margin: 0; font-family: "Manrope"; color: var(--main-text-col); background: var(--background); padding-top: 80px;}
       
       h1 {width: calc(100% - 10px); margin: 5px; text-align: center; font-size: 40px;}
       
       .content {width: calc(100% - 40px); margin: 10px 20px; display: flex; flex-direction: row;}
       .tools h3, .games h3, .games p {width: 100%; text-align: center; position: relative;}
-      .tools h3:after, .games h3:after {content: ""; display: block; height: 2px; width: 70%; position: absolute; bottom: -2px; left: 15%; background: #454545;}
-      .tools, .games {width: calc(50% - 10px); margin: 5px; background: #232323; border-radius: 8px; display: flex; flex-direction: column; position: relative; padding-bottom: 10px;}
-      .games p {color: #ffeeee;}
-      .item {background: #323232; height: 100px; width: 180px; overflow: hidden; border-radius: 6px; position: relative;}
-      .item header {height: 30px; width: calc(100% - 6px); background: #3f3f3f; font-weight: bold; display: flex; align-items: center; padding-left: 6px;}
+      .tools h3:after, .games h3:after {content: ""; display: block; height: 2px; width: 70%; position: absolute; bottom: -2px; left: 15%; background: var(--medium-3);}
+      .tools, .games {width: calc(50% - 10px); margin: 5px; background: var(--medium-1); border-radius: 8px; display: flex; flex-direction: column; position: relative; padding-bottom: 10px;}
+      .item {background: var(--medium-2); height: 100px; width: 180px; overflow: hidden; border-radius: 6px; position: relative;}
+      .item header {height: 30px; width: calc(100% - 6px); background: var(--medium-3); font-weight: bold; display: flex; align-items: center; padding-left: 6px;}
       .itemwrapper {display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 10px; width: calc(100% - 20px); margin: 0 10px;}
       .item header:hover {text-decoration: underline; cursor: pointer;}
       .item p {width: calc(100% - 12px); margin: 4px 6px;}
