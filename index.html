@@ -9,17 +9,17 @@
 	  <link rel="stylesheet" href="/text-assets/css/themes.css">
     <script src="/text-assets/js/theme.js"></script>
     <style>
-      body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
-      .bottom {width: 100%; height: 45px; margin-bottom: 20px; margin-top: 30px; background: #000000; overflow: hidden; position: relative;}
-      .bottom:before {content: ""; display: block; background: #000000; position: absolute; border-radius: 100%; width: 100%; height: 300px; border-top: 2px solid #ffffff; right: -25%; top: 0px; clip-path: polygon(0 0, 100% 0%, 68% 10%, 0 4%);}
-      .bottom:after {content: ""; display: block; background: #000000; position: absolute; border-radius: 100%; width: 100%; height: 300px; border-bottom: 2px solid #ffffff; left: -25%; top: -258.5px; clip-path: polygon(32% 90%, 100% 90%, 100% 100%, 0% 100%);}
-      .counter {position: absolute; top: 70px; right: 10px; z-index: 15; box-shadow: 0 0 10px 10px #000000; pointer-events: none; user-select: none;}
+      body {margin: 0; font-family: "Manrope"; color: var(--main-text-col); background: var(--background); padding-top: 80px;}
+      .bottom {width: 100%; height: 45px; margin-bottom: 20px; margin-top: 30px; background: var(--background); overflow: hidden; position: relative;}
+      .bottom:before {content: ""; display: block; background: var(--background); position: absolute; border-radius: 100%; width: 100%; height: 300px; border-top: 2px solid var(--main-text-col); right: -25%; top: 0px; clip-path: polygon(0 0, 100% 0%, 68% 10%, 0 4%);}
+      .bottom:after {content: ""; display: block; background: var(--background); position: absolute; border-radius: 100%; width: 100%; height: 300px; border-bottom: 2px solid var(--main-text-col); left: -25%; top: -258.5px; clip-path: polygon(32% 90%, 100% 90%, 100% 100%, 0% 100%);}
+      .counter {position: absolute; top: 70px; right: 10px; z-index: 15; box-shadow: 0 0 10px 10px var(--background); pointer-events: none; user-select: none;}
       
       h1 {font-size: 70px; margin: 0; margin-left: 20px; pointer-events: none; user-select: none; position: relative; z-index: 1;}
-      h3 {color: #cfcfff; margin: 0; margin-left: 20px; width: 200px; font-size: 40px; position: relative; pointer-events: none; z-index: 1;}
-      #puddle-container {height: 190px; width: 100%; background: #000000; position: absolute; left: 0; top: 70px; z-index: 0; user-select: none; pointer-events: auto; color: #666677;}
-      #puddle-container:before {content: "Credit to batmannair"; color: #ffffff; position: absolute; bottom: 0; right: 0; z-index: 2; font-size: 11px; margin: 5px; pointer-events: none; user-select: none;}
-      #puddle-container:after {height: 100%; width: 100%; content: ""; display: block; background: linear-gradient(#000000 0%, #00000000 50%, #000000 100%); position: absolute; z-index: 1; pointer-events: none;}
+      h3 {color: var(--subtle-text-diff-col); margin: 0; margin-left: 20px; width: 200px; font-size: 40px; position: relative; pointer-events: none; z-index: 1;}
+      #puddle-container {height: 190px; width: 100%; background: #000000; position: absolute; left: 0; top: 70px; z-index: 0; user-select: none; pointer-events: auto; color: var(--puddle-text);}
+      #puddle-container:before {content: "Credit to batmannair"; color: var(--main-text-col); position: absolute; bottom: 0; right: 0; z-index: 2; font-size: 11px; margin: 5px; pointer-events: none; user-select: none;}
+      #puddle-container:after {height: 100%; width: 100%; content: ""; display: block; background: linear-gradient(var(--background) 0%, #00000000 50%, var(--background) 100%); position: absolute; z-index: 1; pointer-events: none;}
     </style>
   </head>
   <body>
