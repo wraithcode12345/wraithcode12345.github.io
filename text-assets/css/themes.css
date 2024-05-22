@@ -29,3 +29,13 @@
     --footer-background: #212132;
     --puddle-text: #666677;
 }
+
+/* amethyst theme */
+.amethyst-theme {
+    --background: #27033f;
+    --main-text-col: #efd7ff;
+    --subtle-text-diff-col: #dcbcf2;
+    --subtle-text-diff-gry: #dfc7ef;
+    --footer-background: #07001f;
+    --puddle-text: #bfa7cf;
+}
