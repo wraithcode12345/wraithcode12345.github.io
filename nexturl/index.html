@@ -11,9 +11,9 @@
       body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
       
       h1 {width: calc(100% - 50px); margin: 25px; text-align: center; font-size: 40px;}
-      p {width: calc(100% - 50px); margin: 25px; text-align: center; font-size: 20px;}
-      p a {color: #e0e0e0; text-decoration: underline;}
-      p a:hover {color: #ffffff; text-decoration: none; cursor: pointer;}
+      .p {width: calc(100% - 50px); margin: 25px; text-align: center; font-size: 20px;} /* i had to set a class here because of footer styling issues */
+      .p a {color: #e0e0e0; text-decoration: underline;}
+      .p a:hover {color: #ffffff; text-decoration: none; cursor: pointer;}
     </style>
   </head>
   <body>
@@ -22,9 +22,9 @@
     </nav>
     
     <h1>Next Planned URL</h1>
-    <p>https://wraithcode2042.github.io</p>
+    <p class="p">https://wraithcode2042.github.io</p>
     <br><br><br><br>
-    <p style="font-size: 14px;">After this instance gets blocked, if the new URL is either nonexistent after a day or the URL is blocked, contact me <a href="mailto:kai.pollack@dcinternationalschool.org">here</a>.<br>(If it isn't fixed within a day it's likely because I can't access my github repository. Just be patient, sorry.)</p>
+    <p style="font-size: 14px;" class="p">After this instance gets blocked, if the new URL is either nonexistent after a day or the URL is blocked, contact me <a href="mailto:kai.pollack@dcinternationalschool.org">here</a>.<br>(If it isn't fixed within a day it's likely because I can't access my github repository. Just be patient, sorry.)</p>
 	<br><br><br><br>
 	<footer id="footer">
     	<!-- setnavandfooter.js adds content here -->
