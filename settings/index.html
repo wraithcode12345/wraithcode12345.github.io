@@ -1,19 +1,24 @@
-
-
 <html>   
   <head>
-    <title>About wraithcode</title>
+    <title>wraithcode Settings</title>
     <link rel="icon" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="/text-assets/css/navandfooter.css">
-	<script src="/text-assets/js/setnavandfooter.js"></script>
+	  <script src="/text-assets/js/setnavandfooter.js"></script>
+	  <link rel="stylesheet" href="/text-assets/css/themes.css">
+    <script src="/text-assets/js/theme.js"></script>
     <style>
-      body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
-      .bottom {width: 100%; height: 45px; margin-bottom: 20px; margin-top: 30px; background: #000000; overflow: hidden; position: relative;}
+      body {margin: 0; font-family: "Manrope"; color: var(--main-text-col); background: var(--background); padding-top: 80px;}
 
       h1 {width: calc(100% - 10px); margin: 5px; text-align: center; font-size: 40px;}
       h2, p {margin: 0; width: 100%; text-align: center;}
+      h2 {color: var(--subtle-text-diff-col);}
+      .themes-container {width: 100%; display: flex; justify-content: center; margin: 20px 0;}
+      select {border: 2px solid var(--main-text-col); border-right: none; border-top-left-radius: 8px; border-bottom-left-radius: 8px; padding: 8px 24px; background: none; color: var(--main-text-col);}
+      option {background: var(--background); border: 2px solid var(--main-text-col); color: var(--main-text-col);}
+      #save-theme {border: 2px solid var(--main-text-col); border-top-right-radius: 8px; border-bottom-right-radius: 8px; padding: 8px 12px; background: none; color: var(--main-text-col);}
+      #save-theme:hover, select:hover, option:hover {background: #88888844; cursor: pointer;}
     </style>
   </head>
   <body>
@@ -22,8 +27,16 @@
     </nav>
 
     <h1><i class="fa-solid fa-gear"></i>&nbsp; Settings</h1>
-    <h2 style="color: #eeeeff;">Sorry!</h3>
-    <p>There are currently no settings, but I am working on some themes, so watch out for those! :D</p>
+    <h2>Theme</h2>
+    <div class="themes-container">
+      <select id="theme-select">
+          <option value="light">Light Mode</option>
+          <option value="dark">Dark Mode</option>
+          <!-- Add more themes as needed -->
+      </select>
+      <button id="save-theme">Save</button>
+    </div>
+    <p style="margin-bottom: 30px; font-size: 14px;">Themes are currently in development. Expect bugs.</p>
     
     <footer id="footer">
     	<!-- setnavandfooter.js adds content here -->
@@ -35,3 +48,4 @@
     </script>
   </body>
 </html>
+
