@@ -4,12 +4,13 @@ function updateNavAndFooter() {
                     <img src="/logo_large.png">
                     <a href="/">Home</a>
                     <a href="/about">About</a>
+                    <a href="/chat">Chat</a>
                 </div>
                 <div class="right">
                     <a href="/nexturl">Next URL</a>
-                    <a href="/chat">Chat</a>
                     <a href="/eaglauncher">Eaglercraft</a>
                     <a href="/more">More</a>
+                    <a href="/settings">Settings</a>
                 </div>
             `;
             
