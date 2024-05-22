@@ -6,6 +6,7 @@
     --main-text-col: #ffffff;
     --subtle-text-diff-col: #dfdfff;
     --subtle-text-diff-gry: #dfdfdf;
+    --footer-background: #212132;
 }
 
 /* light theme */
@@ -14,6 +15,7 @@
     --main-text-col: #000000;
     --subtle-text-diff-col: #000066;
     --subtle-text-diff-gry: #2f2f2f;
+    --footer-background: #cdcdcd;
 }
 
 /* dark theme */
@@ -22,4 +24,5 @@
     --main-text-col: #ffffff;
     --subtle-text-diff-col: #dfdfff;
     --subtle-text-diff-gry: #dfdfdf;
+    --footer-background: #212132;
 }
