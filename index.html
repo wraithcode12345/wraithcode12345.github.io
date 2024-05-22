@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="/text-assets/css/navandfooter.css">
+	<script src="/text-assets/js/setnavandfooter.js"></script>
     <style>
       body {margin: 0; font-family: "Manrope"; color: #ffffff; background: #000000; padding-top: 80px;}
       .bottom {width: 100%; height: 45px; margin-bottom: 20px; margin-top: 30px; background: #000000; overflow: hidden; position: relative;}
@@ -20,18 +21,8 @@
     </style>
   </head>
   <body>
-    <nav>
-      <div class="left">
-        <img src="/logo_large.png">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-      </div>
-      <div class="right">
-        <a href="/nexturl">Next URL</a>
-        <a href="/chat">Chat</a>
-        <a href="/eaglauncher">Eaglercraft</a>
-        <a href="/more">More</a>
-      </div>
+    <nav id="navbar">
+      <!-- setnavandfooter.js adds content here -->
     </nav>
 	  <img src='https://www.counter12.com/img-1d6BcZcZz0Y5CZ5Y-40.gif' border='0' class="counter">
     <h1>wraithcode</h1>
@@ -40,13 +31,8 @@
     <p style="margin-left: 20px; margin-top: -20px; font-size: 12px;">I spent half an hour making this curvy thing haha</p>
     <h4 style="margin-left: 20px; margin-top: 20px;">About</h4>
     <div id="puddle-container"></div>
-	<footer>
-    	<h4 style="margin-bottom: 5px;">Contact</h4>
-        <a><i class="fa-brands fa-github"></i> &nbsp;&nbsp; <a href="https://github.com/wraithcode20haha">Github</a></a><br>
-        <a><i class="fa-brands fa-stack-overflow"></i> &nbsp;&nbsp; <a href="https://stackoverflow.com/users/22487123/wraithcode">Stack Overflow</a></a><br>
-        <a><i class="fa-brands fa-youtube"></i> &nbsp;&nbsp; <a href="https://www.youtube.com/channel/UC1M1KgAJWRcQ_GUwea8_irw">Youtube</a></a><br>
-        <a><i class="fa fa-wheat-awn"></i> &nbsp;&nbsp; <a href="https://wraithcode.straw.page">Straw Page</a></a>
-        <h2>&lt;More footer content here&gt;</h2>
+	<footer id="footer">
+    	<!-- setnavandfooter.js adds content here -->
     </footer>
     <script src="/text-assets/js/puddle.js"></script>
     <script src="https://batmannair.com/js/mobile-check.js"></script>
@@ -69,5 +55,10 @@
   
       window.onresize = () => puddle.setupGrid();
 	  </script>
+	  <script>
+    	document.addEventListener("DOMContentLoaded", function (e) {
+        	updateNavAndFooter();
+        });
+    </script>
   </body>
 </html>
