@@ -51,3 +51,16 @@
     --medium-2: #3a193b;
     --medium-3: #511d4c;
 }
+
+/* bloodred theme */
+.bloodred-theme {
+    --background: #550000;
+    --main-text-col: #ffaaaa;
+    --subtle-text-diff-col: #ffaac0;
+    --subtle-text-diff-gry: #ddbbbf;
+    --footer-background: #3f0000;
+    --puddle-text: #666677;
+    --medium-1: #660002;
+    --medium-2: #7f100f;
+    --medium-3: #8f100d;
+}
