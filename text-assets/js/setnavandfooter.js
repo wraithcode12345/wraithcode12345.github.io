@@ -1,16 +1,17 @@
 function updateNavAndFooter() {
             document.getElementById("navbar").innerHTML = `
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <div class="left">
                     <img src="/logo_large.png">
-                    <a href="/">Home</a>
-                    <a href="/about">About</a>
-                    <a href="/chat">Chat</a>
+                    <a href="/"><i class="fa-solid fa-house"></i>&nbsp; Home</a>
+                    <a href="/about"><i class="fa-solid fa-info-circle"></i>&nbsp; About</a>
+                    <a href="/chat"><i class="fa-solid fa-comment-dots"></i>&nbsp; Chat</a>
                 </div>
                 <div class="right">
-                    <a href="/nexturl">Next URL</a>
-                    <a href="/eaglauncher">Eaglercraft</a>
-                    <a href="/more">More</a>
-                    <a href="/settings">Settings</a>
+                    <a href="/nexturl"><i class="fa-solid fa-globe"></i>&nbsp; Next URL</a>
+                    <a href="/eaglauncher"><i class="fa-solid fa-cube"></i>&nbsp; Eaglercraft</a>
+                    <a href="/more"><i class="fa-solid fa-circle-plus"></i>&nbsp; More</a>
+                    <a href="/settings"><i class="fa-solid fa-gear"></i>&nbsp; Settings</a>
                 </div>
             `;
             
