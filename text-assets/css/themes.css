@@ -4,19 +4,22 @@
 :root {
     --background: #000000;
     --main-text-col: #ffffff;
-    --subtle-text-diff: #dfdfff;
+    --subtle-text-diff-col: #dfdfff;
+    --subtle-text-diff-gry: #dfdfdf;
 }
 
 /* light theme */
 .light-theme {
     --background: #eeeeee;
     --main-text-col: #000000;
-    --subtle-text-diff: #000066;
+    --subtle-text-diff-col: #000066;
+    --subtle-text-diff-gry: #2f2f2f;
 }
 
 /* dark theme */
 .dark-theme {
     --background: #000000;
     --main-text-col: #ffffff;
-    --subtle-text-diff: #dfdfff;
+    --subtle-text-diff-col: #dfdfff;
+    --subtle-text-diff-gry: #dfdfdf;
 }
