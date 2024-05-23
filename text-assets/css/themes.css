@@ -103,16 +103,3 @@
     --medium-2: #8f430e;
     --medium-3: #71340b;
 }
-
-/* sunlight theme */
-.sunlight-theme {
-    --background: #fdf55e;
-    --main-text-col: #21382d;
-    --subtle-text-diff-col: #8fc4df;
-    --subtle-text-diff-gry: #acc7b2;
-    --footer-background: #e1e15c;
-    --puddle-text: #b8daad;
-    --medium-1: #ece780;
-    --medium-2: #ebeb64;
-    --medium-3: #e4e435;
-}
