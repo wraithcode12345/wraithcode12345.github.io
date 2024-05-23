@@ -41,15 +41,15 @@
 
 /* amethyst theme */
 .amethyst-theme {
-    --background: #1e0021;
+    --background: #10001a;
     --main-text-col: #efd7ff;
     --subtle-text-diff-col: #dcbcf2;
     --subtle-text-diff-gry: #dfc7ef;
     --footer-background: #0d000f;
     --puddle-text: #bfa7cf;
-    --medium-1: #2c102c;
-    --medium-2: #3a193b;
-    --medium-3: #511d4c;
+    --medium-1: #280d28;
+    --medium-2: #361237;
+    --medium-3: #471948;
 }
 
 /* bloodred theme */
