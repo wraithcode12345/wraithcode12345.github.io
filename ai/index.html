@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	  <link rel="stylesheet" href="https://wraithcode20hehe.github.io/text-assets/css/themes.css">
+    <style>
+      :root {
+        --user-pfp: url("https://lh3.googleusercontent.com/-3tDDLblJVgI/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfkmYdU_3igF5C7VAw36qoSQAv6wjOA/photo.jpg?sz=36");
+        --bot-pfp: url("https://img.craiyon.com/2024-05-28/lydO2WxhSRS20rRcIGYYRg.webp");
+      }
+
+      body {background: var(--background); height: 100vh; margin: 0; font-family: "Manrope";}
+      .content {position: relative; height: 100%; width: 100%;}
+      .inner-content {display: flex; justify-content: center; align-items: center; height: calc(100vh - 76px); width: 100%; overflow: scroll; position: absolute; top: 0; left: 0;}
+
+      #intro-wrapper-and-messages {width: calc(40% - 40px); height: 60%; padding: 20px; display: flex; justify-content: center; flex-wrap: wrap; background: var(--medium-1); border-radius: 10%; transition: 0.15s ease-in-out;}
+      #symbol {height: 50%; aspect-ratio: 1/1; border-radius: 50%; background: var(--medium-2); color: var(--main-text-col); display: flex; align-items: center; justify-content: center; font-size: 14cqh;}
+      #welcome, #desc { text-align: center; width: 100%; margin: 0;}
+      #welcome {color: var(--main-text-col); font-size: 22px; font-weight: bold;}
+      #desc {color: var(--subtle-text-diff-col); font-size: 15px;}
+
+      .inputs-container {height: 76px; width: 100%; display: flex; align-items: center; justify-content: center; position: absolute; bottom: 0; left: 0; background: var(--medium-2);}
+      .inp-wrapper {display: flex; flex-direction: row; border: 2px solid var(--main-text-col); border-radius: 50px; background: var(--medium-1); width: 65%; overflow: hidden;}
+      .inp-wrapper:focus-within {border: 2px solid var(--subtle-text-diff-gry);}
+      #inp {background: none; flex-grow: 2; border: none; padding: 12px 16px; padding-right: 1px; font-size: 16px; color: var(--main-text-col);}
+      #inp::placeholder {color: var(--subtle-text-diff-gry);}
+      #inp:focus {outline: none;}
+      .send, .mic {border: none; background: none; color: var(--main-text-col); height: 48px; aspect-ratio: 1/1; transition: 0.1s linear;}
+      .send {font-size: 16px;}
+      .mic {font-size: 20px;}
+      .send i:hover, .mic i:hover {color: var(--subtle-text-diff-col); cursor: pointer;}
+      #generating-alert {font-size: 14px; color: var(--subtle-text-diff-gry); position: absolute; top: -22px; left: 6px; margin: 0; animation: pulse-fade 1.35s infinite; display: none;}
+      @keyframes pulse-fade {0% {opacity: 1;} 50% {opacity: 0.5;} 100% {opacity: 1;}}
+      
+      .msg-wrapper {height: auto; display: flex; width: 100%; margin-bottom: 20px; justify-content: right;}
+      .user-message {height: auto; width: auto; max-width: 65%; min-height: 20px; background: var(--medium-3); border-radius: 15px; padding: 10px; color: var(--subtle-text-diff-gry); overflow-wrap: break-word; hyphens: auto;}
+      .bot-message {height: auto; width: auto; max-width: 65%; min-height: 20px; background: var(--medium-2); border-radius: 15px; padding: 10px; color: var(--subtle-text-diff-gry); overflow-wrap: break-word; hyphens: auto;}
+      .user-pfp {height: 36px; width: 36px; border-radius: 50%; background-image: var(--user-pfp); background-size: cover; background-position: center; margin-left: 10px;}
+      .bot-pfp {height: 36px; width: 36px; border-radius: 50%; background-image: var(--bot-pfp); background-size: cover; background-position: center; margin-right: 10px;}
+    </style>
+  </head>
+  <body>
+    <div style="position: absolute; top: 0; left: 0; color: var(--subtle-text-diff-gry); font-size: 12px; z-index: 6;">Note: NerdAI is still very much in development and may not retain context or give the most accurate answers.</div>
+    <div class="content">
+      <div class="inner-content">
+        <div id="intro-wrapper-and-messages">
+          <div id="symbol"><i class="fa fa-robot"></i></div>
+          <p id="welcome">Welcome to NerdAI!</p>
+          <p id="desc">If you use this AI you're a nerd. Deal with it.</p>
+        </div>
+      </div>
+
+      <div class="inputs-container">
+        <p id="generating-alert">Generating...</p>
+        <button class="mic" onclick="settings()"><i class="fa fa-gear"></i></button>
+        <div class="inp-wrapper">
+          <input id="inp" placeholder="Do you have a question?"></input>
+          <button class="send" id="send"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+        <button class="mic" onclick="audio()"><i class="fa fa-microphone"></i></button>
+      </div>
+      <script type="module">
+        import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+        import MarkdownIt from 'markdown-it';
+        let API_KEY = 'AIzaSyDIjRO8U1rRcfdA5ymp3ADKBehLaO2LiF4'; // Replace with your actual API key
+    
+        async function generateAiTextResponse(currentUserMessage) {
+          try {
+            let contents = [
+              {
+                role: 'user',
+                parts: [
+                  { text: currentUserMessage }
+                ]
+              }
+            ];
+            const genAI = new GoogleGenerativeAI(API_KEY);
+            const model = genAI.getGenerativeModel({
+              model: "gemini-pro",
+              safetySettings: [
+                {
+                  category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+                  threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                },
+              ],
+            });
+            const result = await model.generateContentStream({ contents });
+            let buffer = [];
+            let md = new MarkdownIt();
+            for await (let response of result.stream) {
+              buffer.push(response.text());
+            }
+            return md.render(buffer.join(''));
+          } catch (e) {
+            console.error(e);
+            return e;
+          }
+        };
+    
+        var input = document.getElementById("inp");
+        var button = document.getElementById("send");
+        var generatingAlert = document.getElementById("generating-alert");
+        var msgcontainer = document.getElementById("intro-wrapper-and-messages");
+        var hasMessaged = 0;
+        input.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            button.click();
+          }
+        });
+    
+        function changeStylesToChatForm() {
+          if (hasMessaged == 0) {
+            document.getElementById("symbol").style.display = "none";
+            document.getElementById("welcome").style.display = "none";
+            document.getElementById("desc").style.display = "none";
+            msgcontainer.style.height = "calc(100% - 40px)";
+            msgcontainer.style.width = "calc(85% - 40px)";
+            msgcontainer.style.borderRadius = "0";
+            msgcontainer.style.display = "block";
+            msgcontainer.style.overflow = "scroll";
+          }
+        }
+    
+        button.addEventListener("click", processInput);
+    
+        async function processInput() {
+          if (input.value != "") {
+            changeStylesToChatForm();
+            hasMessaged = 1;
+            var currentUserMessage = input.value;
+            input.value = "";
+            var newUserMessage = document.createElement("div");
+            newUserMessage.className = "msg-wrapper";
+            newUserMessage.innerHTML = "<div class='user-message' lang='en'>" + currentUserMessage + "</div><div class='user-pfp'></div>";
+            msgcontainer.appendChild(newUserMessage);
+            await createAiResponse(currentUserMessage);
+          }
+        }
+    
+        async function createAiResponse(currentUserMessage) {
+          generatingAlert.style.display = "block";
+          var newAiResponse = document.createElement("div");
+          newAiResponse.className = "msg-wrapper";
+          newAiResponse.style.justifyContent = "left";
+    
+          try {
+            const aiResponseText = await generateAiTextResponse(currentUserMessage);
+            newAiResponse.innerHTML = "<div class='bot-pfp'></div><div class='bot-message' lang='en'>" + aiResponseText + "</div>";
+          } catch (error) {
+            newAiResponse.innerHTML = "<div class='bot-pfp'></div><div class='bot-message' lang='en'>Error generating AI response: " + error + "</div>";
+          }
+    
+          msgcontainer.appendChild(newAiResponse);
+          generatingAlert.style.display = "none";
+        }
+    </script>
+  </body>
+</html>
