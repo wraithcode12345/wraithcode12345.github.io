@@ -4,7 +4,8 @@
   <head>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	  <link rel="stylesheet" href="https://wraithcode20hehe.github.io/text-assets/css/themes.css">
+    <link rel="stylesheet" href="/text-assets/css/themes.css">
+    <script src="/text-assets/js/theme.js"></script>
     <style>
       :root {
         --user-pfp: url("https://lh3.googleusercontent.com/-3tDDLblJVgI/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfkmYdU_3igF5C7VAw36qoSQAv6wjOA/photo.jpg?sz=36");
@@ -34,9 +35,17 @@
       #generating-alert {font-size: 14px; color: var(--subtle-text-diff-gry); position: absolute; top: -22px; left: 6px; margin: 0; animation: pulse-fade 1.35s infinite; display: none;}
       @keyframes pulse-fade {0% {opacity: 1;} 50% {opacity: 0.5;} 100% {opacity: 1;}}
       
-      .msg-wrapper {height: auto; display: flex; width: 100%; margin-bottom: 20px; justify-content: right;}
-      .user-message {height: auto; width: auto; max-width: 65%; min-height: 20px; background: var(--medium-3); border-radius: 15px; padding: 10px; color: var(--subtle-text-diff-gry); overflow-wrap: break-word; hyphens: auto;}
-      .bot-message {height: auto; width: auto; max-width: 65%; min-height: 20px; background: var(--medium-2); border-radius: 15px; padding: 10px; color: var(--subtle-text-diff-gry); overflow-wrap: break-word; hyphens: auto;}
+      .msg-wrapper {height: auto; display: flex; width: 100%; margin-bottom: 20px; justify-content: right; padding-bottom: 20px;}
+      .user-message {height: auto; width: auto; max-width: 65%; min-height: 20px; background: var(--medium-3); border-radius: 15px; padding: 10px; color: var(--subtle-text-diff-gry); overflow-wrap: break-word; hyphens: auto; position: relative;}
+      .bot-message {height: auto; width: auto; max-width: 65%; min-height: 20px; background: var(--medium-2); border-radius: 15px; padding: 0 10px; color: var(--subtle-text-diff-gry); overflow-wrap: break-word; hyphens: auto; position: relative;}
+      .bot-message code {background: var(--background); border: 2px solid #696969; max-width: 100%; height: auto; overflow: scroll;}
+      .copy-message {border: none; background: none; color: var(--main-text-col); position: absolute; right: 5px; bottom: -21px; --var-copy: "Copy";}
+      .copy-message:hover {cursor: pointer; color: var(--subtle-text-diff-gry);}
+      .copy-message:before {content: ""; display: block; opacity: 0; position: absolute; bottom: -10px; height: 8px; width: 10px; background: var(--medium-2); clip-path: polygon(0 100%, 50% 0, 100% 100%); z-index: 9; transition: 0.2s ease-in-out; pointer-events: none;}
+      .copy-message:after {content: var(--var-copy); display: block; opacity: 0; position: absolute; bottom: -30px; background: var(--medium-2); padding: 3px 5px; border-radius: 5px; font-size: 12px; font-weight: bold; transform: translateX(calc(-50% + 5px)); z-index: 9; transition: 0.2s ease-in-out; pointer-events: none;}
+      .copy-message:hover:before {opacity: 1;}
+      .copy-message:hover:after {opacity: 1;}
+      .user-message .copy-message:before, .user-message .copy-message:after {background: var(--medium-3);}
       .user-pfp {height: 36px; width: 36px; border-radius: 50%; background-image: var(--user-pfp); background-size: cover; background-position: center; margin-left: 10px;}
       .bot-pfp {height: 36px; width: 36px; border-radius: 50%; background-image: var(--bot-pfp); background-size: cover; background-position: center; margin-right: 10px;}
     </style>
@@ -62,9 +71,10 @@
         <button class="mic" onclick="audio()"><i class="fa fa-microphone"></i></button>
       </div>
       <script type="module">
-        import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
-        import MarkdownIt from 'markdown-it';
-        let API_KEY = 'AIzaSyDIjRO8U1rRcfdA5ymp3ADKBehLaO2LiF4'; // Replace with your actual API key
+        // essential scripts
+        import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "https://esm.run/@google/generative-ai";
+        import MarkdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm';
+        let enc_ak = atob("QUl6YVN5RElqUk84VTFyUmNmZEE1eW1wM0FES0JlaExhTzJMaUY0");
     
         async function generateAiTextResponse(currentUserMessage) {
           try {
@@ -76,7 +86,7 @@
                 ]
               }
             ];
-            const genAI = new GoogleGenerativeAI(API_KEY);
+            const genAI = new GoogleGenerativeAI(enc_ak);
             const model = genAI.getGenerativeModel({
               model: "gemini-pro",
               safetySettings: [
@@ -104,6 +114,7 @@
         var generatingAlert = document.getElementById("generating-alert");
         var msgcontainer = document.getElementById("intro-wrapper-and-messages");
         var hasMessaged = 0;
+        var generating = 0;
         input.addEventListener('keydown', function(event) {
           if (event.key === 'Enter') {
             event.preventDefault();
@@ -117,7 +128,7 @@
             document.getElementById("welcome").style.display = "none";
             document.getElementById("desc").style.display = "none";
             msgcontainer.style.height = "calc(100% - 40px)";
-            msgcontainer.style.width = "calc(85% - 40px)";
+            msgcontainer.style.width = "calc(100% - 80px)";
             msgcontainer.style.borderRadius = "0";
             msgcontainer.style.display = "block";
             msgcontainer.style.overflow = "scroll";
@@ -127,34 +138,88 @@
         button.addEventListener("click", processInput);
     
         async function processInput() {
-          if (input.value != "") {
+          if (input.value != "" && generating != 1) {
             changeStylesToChatForm();
             hasMessaged = 1;
             var currentUserMessage = input.value;
             input.value = "";
             var newUserMessage = document.createElement("div");
             newUserMessage.className = "msg-wrapper";
-            newUserMessage.innerHTML = "<div class='user-message' lang='en'>" + currentUserMessage + "</div><div class='user-pfp'></div>";
+            newUserMessage.innerHTML = `
+            <div class='user-message' lang='en'>${currentUserMessage}
+              <button class='copy-message'><i class="fa-regular fa-clipboard"></i></button>
+            </div>
+            <div class='user-pfp'></div>
+            `;
             msgcontainer.appendChild(newUserMessage);
             await createAiResponse(currentUserMessage);
+            // copy user message scripts
+            const userCopyButton = newUserMessage.querySelector('.copy-message');
+            userCopyButton.addEventListener('click', function() {
+              const responseText = newUserMessage.querySelector('.user-message').innerText;
+              const tempTextArea = document.createElement("textarea");
+              tempTextArea.value = responseText;
+
+              document.body.appendChild(tempTextArea);
+              tempTextArea.select();
+              tempTextArea.setSelectionRange(0, 99999);
+              document.execCommand("copy");
+              document.body.removeChild(tempTextArea);
+              userCopyButton.style.setProperty('--var-copy', "'Copied!'");
+              setTimeout(function() {
+                userCopyButton.style.setProperty('--var-copy', "'Copy'");
+              }, 2000);
+            });
+            // end copy scripts
           }
         }
     
         async function createAiResponse(currentUserMessage) {
+          generating = 1;
           generatingAlert.style.display = "block";
           var newAiResponse = document.createElement("div");
           newAiResponse.className = "msg-wrapper";
           newAiResponse.style.justifyContent = "left";
-    
+
           try {
             const aiResponseText = await generateAiTextResponse(currentUserMessage);
-            newAiResponse.innerHTML = "<div class='bot-pfp'></div><div class='bot-message' lang='en'>" + aiResponseText + "</div>";
+            newAiResponse.innerHTML = `
+              <div class='bot-pfp'></div>
+              <div class='bot-message' lang='en'>${aiResponseText}
+                <button class='copy-message'><i class="fa-regular fa-clipboard"></i></button>
+              </div>
+            `;
           } catch (error) {
-            newAiResponse.innerHTML = "<div class='bot-pfp'></div><div class='bot-message' lang='en'>Error generating AI response: " + error + "</div>";
+            newAiResponse.innerHTML = `
+              <div class='bot-pfp'></div>
+              <div class='bot-message' lang='en'>Error generating AI response: ${error}
+                <button class='copy-message'><i class="fa-regular fa-clipboard"></i></button>
+              </div>
+            `;
           }
-    
           msgcontainer.appendChild(newAiResponse);
+          msgcontainer.scrollTo({ top: msgcontainer.scrollHeight, behavior: "smooth" });
           generatingAlert.style.display = "none";
+          generating = 0;
+          // copy ai response scripts
+          const aiCopyButton = newAiResponse.querySelector('.copy-message');
+
+          aiCopyButton.addEventListener('click', function() {
+            const responseText = newAiResponse.querySelector('.bot-message').innerText;
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = responseText;
+
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            tempTextArea.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            document.body.removeChild(tempTextArea);
+            aiCopyButton.style.setProperty('--var-copy', "'Copied!'");
+            setTimeout(function() {
+              aiCopyButton.style.setProperty('--var-copy', "'Copy'");
+            }, 2000);
+          });
+          // end copy scripts
         }
     </script>
   </body>
