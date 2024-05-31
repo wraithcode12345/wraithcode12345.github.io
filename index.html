@@ -20,6 +20,11 @@
       #puddle-container {height: 190px; width: 100%; background: var(--background); position: absolute; left: 0; top: 70px; z-index: 0; user-select: none; pointer-events: auto; color: var(--puddle-text);}
       #puddle-container:before {content: "Credit to batmannair"; color: var(--main-text-col); position: absolute; bottom: 0; right: 0; z-index: 2; font-size: 11px; margin: 5px; pointer-events: none; user-select: none;}
       #puddle-container:after {height: 100%; width: 100%; content: ""; display: block; background: linear-gradient(var(--background) 0%, #00000000 50%, var(--background) 100%); position: absolute; z-index: 1; pointer-events: none;}
+      
+      .currentprojects {margin-left: 20px;}
+      .currentprojects h4 {margin: 0; text-decoration: underline;}
+      .currentprojects ul {margin: 0; padding-left: 20px;list-style-type: georgian;}
+      .currentprojects li {margin-bottom: 0.2em;}
     </style>
   </head>
   <body>
@@ -31,7 +36,15 @@
     <h3>Developer</h3>
     <div class="bottom"></div>
     <p style="margin-left: 20px; margin-top: -20px; font-size: 12px;">I spent half an hour making this curvy thing haha</p>
-    <h4 style="margin-left: 20px; margin-top: 20px;">About</h4>
+    <div class="currentprojects">
+      <h4>Current WIP Projects</h4>
+      <ul>
+        <li>NerdAI</li>
+        <li>Accounts System</li>
+        <li>Custom Themes</li>
+        <li>Paid Ranks (mb)</li>
+      </ul>
+    </div>
     <div id="puddle-container"></div>
 	<footer id="footer">
     	<!-- setnavandfooter.js adds content here -->
