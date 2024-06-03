@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/text-assets/css/themes.css">
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
     <script src="/text-assets/js/theme.js"></script>
     <style>
       :root {
@@ -28,7 +29,7 @@
       #welcome {color: var(--main-text-col); font-size: 22px; font-weight: bold;}
       #desc {color: var(--subtle-text-diff-col); font-size: 15px;}
 
-      .inputs-container {height: 76px; width: 100%; display: flex; align-items: center; justify-content: center; position: absolute; bottom: 0; left: 0; background: var(--medium-2);}
+      .inputs-container {height: 76px; width: 100%; display: flex; align-items: center; justify-content: center; position: absolute; bottom: 0; left: 0; background: var(--medium-2); z-index: 3;}
       .inp-wrapper {display: flex; flex-direction: row; border: 2px solid var(--main-text-col); border-radius: 50px; background: var(--medium-1); width: 65%; overflow: hidden;}
       .inp-wrapper:focus-within {border: 2px solid var(--subtle-text-diff-gry);}
       #inp {background: none; flex-grow: 2; border: none; padding: 12px 16px; padding-right: 1px; font-size: 16px; color: var(--main-text-col);}
@@ -40,6 +41,7 @@
       .send i:hover, .mic i:hover {color: var(--subtle-text-diff-col); cursor: pointer;}
       .version {position: absolute; bottom: 0; left: 0; width: 100%; text-align: center; color: var(--subtle-text-diff-gry); font-size: 9px; z-index: 6; font-family: 'Courier New', Courier, monospace;}
       #generating-alert {font-size: 14px; color: var(--subtle-text-diff-gry); position: absolute; top: -22px; left: 6px; margin: 0; animation: pulse-fade 1.35s infinite; display: none;}
+      #waveContainer {position: absolute; top: 0px; left: calc(0); transform: translateY(15px); width: 0px; height: 35px; z-index: -1; background: var(--medium-1); border: 2px solid var(--main-text-col); border-radius: 20px; transition: 0.2s ease-in-out; overflow: hidden; opacity: 0;}
       @keyframes pulse-fade {0% {opacity: 1;} 50% {opacity: 0.5;} 100% {opacity: 1;}}
       
       .msg-wrapper {height: auto; display: flex; width: 100%; margin-bottom: 20px; justify-content: right; padding-bottom: 20px;}
@@ -71,12 +73,13 @@
 
       <div class="inputs-container">
         <p id="generating-alert">Generating...</p>
+        <div id="waveContainer"></div>
         <button class="mic" onclick="settings()"><i class="fa fa-gear"></i></button>
         <div class="inp-wrapper">
           <input id="inp" placeholder="Do you have a question?"></input>
           <button class="send" id="send"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
-        <button class="mic" onclick="audio()"><i class="fa fa-microphone"></i></button>
+        <button class="mic" id="micbutton" onclick="audio()"><i class="fa fa-microphone"></i></button>
       </div>
       <script type="module">
         // essential scripts
@@ -127,6 +130,7 @@
           if (event.key === 'Enter') {
             event.preventDefault();
             button.click();
+            finalTranscript = '';
           }
         });
     
@@ -229,6 +233,81 @@
           });
           // end copy scripts
         }
+        // voice to text scripts
+          // visualizer
+        var siriWave = new SiriWave({
+          container: document.getElementById("waveContainer"),
+          style: 'ios9',
+          width: 260,
+          height: 45,
+          speed: 0.2,
+          amplitude: 2,
+          globalCompositeOperation: 'lighter',
+          curveDefinition: [
+            { color: "255,255,255", supportLine: true },
+            { color: "15, 82, 169" }, // blue
+            { color: "173, 57, 76" }, // red
+            { color: "48, 220, 155" }, // green
+          ],
+        });
+          // actual microphone functionality and sht
+        var vdt = 0;
+        var visualizer = document.getElementById("waveContainer");
+        var micButton = document.getElementById("micbutton");
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = true;  // Enable interim results for more immediate feedback
+        recognition.lang = "en-US";
+        var finalTranscript = '';
+
+        micButton.addEventListener("click", function() {
+          if (vdt == 0) {
+            visualizer.style.transform = "translateY(calc(-100% - 5px))";
+            visualizer.style.width = "260px";
+            visualizer.style.opacity = "1";
+            vdt = 1;
+            recognition.start();  // Start speech recognition
+          } else {
+            visualizer.style.transform = "translateY(15px)";
+            visualizer.style.width = "0px";
+            visualizer.style.opacity = "0";
+            vdt = 0;
+            recognition.stop();  // Stop speech recognition
+          }
+        });
+        input.onfocus = function() {
+          if (vdt == 1) {
+            visualizer.style.transform = "translateY(15px)";
+            visualizer.style.width = "0px";
+            visualizer.style.opacity = "0";
+            vdt = 0;
+            recognition.stop();  // Stop speech recognition
+          }
+        };
+        recognition.onresult = function(event) {
+          var interimTranscript = '';
+          for (var i = 0; i < event.results.length; i++) {
+            var transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript + ' ';
+            } else {
+              interimTranscript += transcript;
+            }
+          }
+          if (vdt == 1) {
+            input.value = finalTranscript + interimTranscript;
+          }
+        };
+        recognition.onerror = function(event) {
+          console.error("Speech recognition error detected: " + event.error);
+        };
+        recognition.onend = function() {
+          if (vdt == 1) {
+            recognition.start();  // Restart speech recognition if still active
+          }
+        };
     </script>
   </body>
 </html>
