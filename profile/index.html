@@ -40,6 +40,7 @@
         i:hover {color: var(--subtle-text-diff-col); cursor: pointer;}
         i:hover:after {content: attr(datalabel); position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background-color: var(--medium-2); color: var(--main-text-col); padding: 5px 8px; border: 1px solid var(--subtle-text-diff-gry); border-radius: 5px; font-size: 12px; font-family: Manrope; font-weight: bold; white-space: nowrap; z-index: 3; pointer-events: none;}
         #colorpickerbutton {display: flex; align-items: center; justify-content: center;}
+        #discard-edits {position: absolute; right: 38px;}
     </style>
   </head>
   <body>
@@ -68,7 +69,7 @@
         </div>
 
         <div class="bio">
-          <header><p id="headerText">Bio</p><i class="fa fa-pencil" id="edit-prof" datalabel="Edit Bio"></i></header>
+          <header><p id="headerText">Bio</p><i class="fa fa-trash-can" id="discard-edits" datalabel="Discard Edits" onclick="discardEdits()"></i><i class="fa fa-pencil" id="edit-prof" datalabel="Edit Bio"></i></header>
           <div id="editingControls" style="display:none;">
               <i class="fa fa-bold" datalabel="Bold" onclick="text('bold');"></i>
               <i class="fa fa-italic" datalabel="Italic" onclick="text('italic');"></i>
@@ -76,6 +77,7 @@
               <i class="fa fa-strikethrough" datalabel="Strikethrough" onclick="text('strikeThrough');"></i>
               <i class="fa fa-palette" id="colorpickerbutton" datalabel="Text Color" onclick="openColorPicker()"><input type="color" id="colorpickerinput" style="display: block; pointer-events: none; opacity: 0; position: absolute; z-index: 999;"></i>
               <i class="fa fa-font" datalabel="Fonts"></i>
+              <i class="fa fa-link" datalabel="Link"></i>
               <i class="fa-regular fa-image" datalabel="Images"></i>
               <i class="fa-regular fa-face-smile-wink" datalabel="Emojis"></i>
               <i class="fa-regular fa-id-badge" datalabel="Badges"></i>
@@ -206,6 +208,8 @@
         var editingControls = document.getElementById("editingControls");
         var headerText = document.getElementById("headerText");
         var editProf = document.getElementById("edit-prof");
+        var discardEdits = document.getElementById("discard-edits");
+        var presavedBio;
         function preventFocusLoss(event) {
           if (!bioDiv.contains(event.target)) {
             event.preventDefault();
@@ -215,6 +219,7 @@
         document.addEventListener('mousedown', preventFocusLoss);
         document.getElementById("edit-prof").addEventListener("click", toggleEditor);
         function toggleEditor() {
+          presavedBio = bioDiv.innerHTML;
           editing = 1 - editing;
             if (editing == 1) {
                 bioDiv.style.height = "calc(100% - 80px)";
@@ -224,6 +229,7 @@
                 editProf.classList.add("fa-signature");
                 editProf.setAttribute('datalabel', 'Save');
                 headerText.innerText = "Editing Bio";
+                discardEdits.style.display = 'block';
                 bioDiv.contentEditable = true;
                 bioDiv.focus();
             } else {
@@ -234,10 +240,16 @@
                 editProf.classList.add("fa-pencil");
                 editProf.setAttribute('datalabel', 'Edit Bio');
                 headerText.innerText = "Bio";
+                discardEdits.style.display = 'none';
                 bioDiv.contentEditable = false;
                 bioDiv.blur();
             }
         }
+
+        discardEdits.addEventListener("click", function() {
+          bioDiv.innerHTML = presavedBio;
+          toggleEditor();
+        });
         
         function openColorPicker() {
           var btn = document.getElementById('colorpickerbutton');
@@ -264,12 +276,15 @@
                   var computedStyle = window.getComputedStyle(ancestor);
                   var color = computedStyle.color;
                   document.getElementById('colorpickerbutton').style.color = color;
-                  document.getElementById('colorpickerinput').value = color;
+                  document.getElementById('colorpickerinput').value = rgbToHex(color);
               });
             }
         });
-      
-        /*
+        const rgbToHex = (rgb) => {
+          const [r, g, b] = rgb.substring(4, rgb.length - 1).split(',').map(Number);
+          return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        };
+
         var userSession = 'wraithcode';
         function getUserParam() {const urlParam = new URLSearchParams(window.location.search); const ret = urlParam.get('user'); return ret;}
         function checkSession() {
@@ -278,8 +293,7 @@
           } else {
             editProf.style.display = "none";
           }
-        } 
-        */
+        }
 
         function text(e) {
           document.execCommand(e, true, null);
@@ -291,7 +305,6 @@
           getUserDataAndUpdateProfile();
           checkSession();
           toggleEditor();
-          document.getElementById('colorpickerinput').value = '#099999';
         });
     </script>
   </body>
