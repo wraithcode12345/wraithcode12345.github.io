@@ -233,22 +233,38 @@
                 bioDiv.contentEditable = true;
                 bioDiv.focus();
             } else {
-                bioDiv.style.height = "calc(100% - 50px)";
-                bioDiv.style.top = "30px";
-                editingControls.style.display = "none";
-                editProf.classList.remove("fa-signature");
-                editProf.classList.add("fa-pencil");
-                editProf.setAttribute('datalabel', 'Edit Bio');
-                headerText.innerText = "Bio";
-                discardEdits.style.display = 'none';
-                bioDiv.contentEditable = false;
                 bioDiv.blur();
+                bioDiv.contentEditable = false;
+                headerText.innerText = "Saving...";
+                setTimeout(() => {
+                  bioDiv.style.height = "calc(100% - 50px)";
+                  bioDiv.style.top = "30px";
+                  editingControls.style.display = "none";
+                  editProf.classList.remove("fa-signature");
+                  editProf.classList.add("fa-pencil");
+                  editProf.setAttribute('datalabel', 'Edit Bio');
+                  headerText.innerText = "Bio";
+                  discardEdits.style.display = 'none';
+                }, 1500);
             }
         }
 
         discardEdits.addEventListener("click", function() {
+          bioDiv.blur();
+          bioDiv.contentEditable = false;
+          headerText.innerText = "Discarding...";
+          editing = 1 - editing;
+          setTimeout(() => {
+            bioDiv.style.height = "calc(100% - 50px)";
+            bioDiv.style.top = "30px";
+            editingControls.style.display = "none";
+            editProf.classList.remove("fa-signature");
+            editProf.classList.add("fa-pencil");
+            editProf.setAttribute('datalabel', 'Edit Bio');
+            headerText.innerText = "Bio";
+            discardEdits.style.display = 'none';
+          }, 1500);
           bioDiv.innerHTML = presavedBio;
-          toggleEditor();
         });
         
         function openColorPicker() {
@@ -304,7 +320,6 @@
         	updateNavAndFooter();
           getUserDataAndUpdateProfile();
           checkSession();
-          toggleEditor();
         });
     </script>
   </body>
