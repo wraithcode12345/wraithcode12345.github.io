@@ -36,11 +36,14 @@
         #prof-bio:focus::-webkit-scrollbar-track {background: var(--medium-2);}
         #prof-bio:focus::-webkit-scrollbar-thumb {background: var(--main-text-col);}
         #editingControls {height: 30px; width: calc(100% - 16px); background: var(--medium-3); position: absolute; top: 30px; left: 0; display: flex; align-items: center; padding: 0 8px; z-index: 2;}
-        #editingControls i {margin: 0 5px; position: relative;}
+        #editingControls i {margin: 0; position: relative; width: 26px; text-align: center;}
         i:hover {color: var(--subtle-text-diff-col); cursor: pointer;}
         i:hover:after {content: attr(datalabel); position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background-color: var(--medium-2); color: var(--main-text-col); padding: 5px 8px; border: 1px solid var(--subtle-text-diff-gry); border-radius: 5px; font-size: 12px; font-family: Manrope; font-weight: bold; white-space: nowrap; z-index: 3; pointer-events: none;}
         #colorpickerbutton {display: flex; align-items: center; justify-content: center;}
-        #discard-edits {position: absolute; right: 38px; display: none;}
+        #discard-edits {position: absolute; right: 38px;}
+        #linkEditorModal {display: none; position: absolute; background: var(--medium-3); padding: 8px; transform: translateX(-50%); border-radius: 8px; width: 200px;}
+        #linkEditorModal input, #linkEditorModal button {width: 100%; padding: 5px 8px; color: var(--main-text-col); border: 1px solid var(--main-text-col); border-radius: 6px; background: transparent; margin-bottom: 4px;}
+        #linkEditorModal button:hover {cursor: pointer; background: var(--medium-2);}
     </style>
   </head>
   <body>
@@ -76,14 +79,20 @@
               <i class="fa fa-underline" datalabel="Underline" onclick="text('underline');"></i>
               <i class="fa fa-strikethrough" datalabel="Strikethrough" onclick="text('strikeThrough');"></i>
               <i class="fa fa-palette" id="colorpickerbutton" datalabel="Text Color" onclick="openColorPicker()"><input type="color" id="colorpickerinput" style="display: block; pointer-events: none; opacity: 0; position: absolute; z-index: 999;"></i>
+              <i class="fa fa-highlighter" datalabel="Highlight"></i>
               <i class="fa fa-font" datalabel="Fonts"></i>
-              <i class="fa fa-link" datalabel="Link"></i>
+              <i class="fa fa-link" datalabel="Link" onclick="insertLink('https:\/\/example.com')"></i>
               <i class="fa-regular fa-image" datalabel="Images"></i>
               <i class="fa-regular fa-face-smile-wink" datalabel="Emojis"></i>
               <i class="fa-regular fa-id-badge" datalabel="Badges"></i>
               <i class="fa-regular fa-eye" style="position: absolute; right: 4px;" datalabel="Preview"></i>
           </div>
           <div id="prof-bio"></div>
+      </div>
+      <div id="linkEditorModal">
+        <input type="text" id="linkEditorModalText" placeholder="Link Text"><br>
+        <input type="text" id="linkEditorModalURL" placeholder="Link URL"><br>
+        <button onclick="updateLink()">Update</button>
       </div>
 
         <footer id="footer" style="position: absolute; top: 100%; height: 120px;">
@@ -210,12 +219,6 @@
         var editProf = document.getElementById("edit-prof");
         var discardEdits = document.getElementById("discard-edits");
         var presavedBio;
-        function preventFocusLoss(event) {
-          if (!bioDiv.contains(event.target)) {
-            event.preventDefault();
-            bioDiv.focus();
-          }
-        }
         document.addEventListener('mousedown', preventFocusLoss);
         document.getElementById("edit-prof").addEventListener("click", toggleEditor);
         function toggleEditor() {
@@ -310,9 +313,54 @@
             editProf.style.display = "none";
           }
         }
-
         function text(e) {
           document.execCommand(e, true, null);
+        }
+        function insertLink(url) {
+          var selection = window.getSelection();
+          var range = selection.getRangeAt(0);
+          var link = document.createElement("a");
+          link.setAttribute("href", url);
+          link.textContent = "Link";
+          range.insertNode(link);
+        }
+        var selectedLink = null;
+        var modal = document.getElementById('linkEditorModal');
+        bioDiv.addEventListener('click', function (event) {
+            var target = event.target;
+            if (!target.closest('#linkEditorModal') && !target.closest('#editable a')) {
+                document.getElementById('linkEditorModal').style.display = 'none';
+            }
+        });
+        bioDiv.addEventListener('click', function (event) {
+            var target = event.target;
+            if (target.tagName === 'A' && editing == 1) {
+                selectedLink = target;
+                var linkText = target.textContent;
+                var linkURL = target.getAttribute('href');
+                document.getElementById('linkEditorModalText').value = linkText;
+                document.getElementById('linkEditorModalURL').value = linkURL;
+                var rect = target.getBoundingClientRect();
+                modal.style.top = (rect.bottom + window.scrollY) + 'px';
+                modal.style.left = (rect.left + window.scrollX) + 'px';
+                modal.style.display = 'block';
+            }
+        });
+        function updateLink() {
+            if (selectedLink) {
+                var linkText = document.getElementById('linkEditorModalText').value;
+                var linkURL = document.getElementById('linkEditorModalURL').value;
+                selectedLink.textContent = linkText;
+                selectedLink.setAttribute('href', linkURL);
+                modal.style.display = 'none';
+                bioDiv.focus();
+            }
+        }
+        function preventFocusLoss(event) {
+          if (!bioDiv.contains(event.target) && !linkEditorModal.contains(event.target)) {
+            event.preventDefault();
+            bioDiv.focus();
+          }
         }
     </script>
 	  <script>
