@@ -40,7 +40,7 @@
         i:hover {color: var(--subtle-text-diff-col); cursor: pointer;}
         i:hover:after {content: attr(datalabel); position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background-color: var(--medium-2); color: var(--main-text-col); padding: 5px 8px; border: 1px solid var(--subtle-text-diff-gry); border-radius: 5px; font-size: 12px; font-family: Manrope; font-weight: bold; white-space: nowrap; z-index: 3; pointer-events: none;}
         #colorpickerbutton {display: flex; align-items: center; justify-content: center;}
-        #discard-edits {position: absolute; right: 38px;}
+        #discard-edits {position: absolute; right: 38px; display: none;}
         #linkEditorModal {display: none; position: absolute; background: var(--medium-3); padding: 8px; transform: translateX(-50%); border-radius: 8px; width: 200px;}
         #linkEditorModal input, #linkEditorModal button {width: 100%; padding: 5px 8px; color: var(--main-text-col); border: 1px solid var(--main-text-col); border-radius: 6px; background: transparent; margin-bottom: 4px;}
         #linkEditorModal button:hover {cursor: pointer; background: var(--medium-2);}
@@ -303,7 +303,7 @@
           const [r, g, b] = rgb.substring(4, rgb.length - 1).split(',').map(Number);
           return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
         };
-
+	/*
         var userSession = 'wraithcode';
         function getUserParam() {const urlParam = new URLSearchParams(window.location.search); const ret = urlParam.get('user'); return ret;}
         function checkSession() {
@@ -313,6 +313,7 @@
             editProf.style.display = "none";
           }
         }
+	*/
         function text(e) {
           document.execCommand(e, true, null);
         }
