@@ -119,7 +119,7 @@
           const userData = data.find(row => row.username === username);
 
           if (!userData) {
-            alert('User data not found for username: ', username);
+            document.getElementById("prof-username").innerText = 'invalid user param/ userdata not found';
             return;
           }
 
