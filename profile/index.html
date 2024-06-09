@@ -106,7 +106,7 @@
         const username = urlParams.get('user');
 
         if (!username) {
-          document.getElementById("prof-username").innerText = 'invalid user param';
+          document.getElementById("prof-username").innerText = 'user param not found';
           return;
         }
 
@@ -119,7 +119,7 @@
           const userData = data.find(row => row.username === username);
 
           if (!userData) {
-            document.getElementById("prof-username").innerText = 'invalid user param/ userdata not found';
+            document.getElementById("prof-username").innerText = 'invalid user param';
             return;
           }
 
