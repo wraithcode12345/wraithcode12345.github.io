@@ -106,7 +106,7 @@
         const username = urlParams.get('user');
 
         if (!username) {
-          alert('Username not found in URL');
+          document.getElementById("prof-username").innerText = 'invalid user param';
           return;
         }
 
