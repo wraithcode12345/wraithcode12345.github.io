@@ -183,6 +183,7 @@
             // Create image element
             var img = document.createElement('img');
             img.className = "badge";
+						img.title = badgeName.trim();
             
             // Set source attribute to the badge SVG
             img.src = '/profile/badges/' + badgeName.trim() + '.png';
