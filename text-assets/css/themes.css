@@ -11,6 +11,8 @@
     --medium-1: #232323;
     --medium-2: #323232;
     --medium-3: #454545;
+    --contrast-1: #157cb0;
+    --contrast-2: #186287;
 }
 
 /* light theme */
@@ -24,6 +26,8 @@
     --medium-1: #dcdcdc;
     --medium-2: #cdcdcd;
     --medium-3: #bababa;
+    --contrast-1: #45acdf;
+    --contrast-2: #1d87bd;
 }
 
 /* dark theme */
@@ -37,6 +41,8 @@
     --medium-1: #232323;
     --medium-2: #323232;
     --medium-3: #454545;
+    --contrast-1: #157cb0;
+    --contrast-2: #186287;
 }
 
 /* amethyst theme */
@@ -50,6 +56,8 @@
     --medium-1: #280d28;
     --medium-2: #361237;
     --medium-3: #471948;
+    --contrast-1: #42cc2c;
+    --contrast-2: #1f8915;
 }
 
 /* bloodred theme */
@@ -63,6 +71,8 @@
     --medium-1: #660002;
     --medium-2: #7f100f;
     --medium-3: #8f100d;
+    --contrast-1: #157cb0;
+    --contrast-2: #186287;
 }
 
 /* deep ocean theme */
@@ -76,6 +86,8 @@
     --medium-1: #073d4d;
     --medium-2: #022d3a;
     --medium-3: #02212a;
+    --contrast-1: #c04732;
+    --contrast-2: #9a3220;
 }
 
 /* jungle theme */
@@ -89,6 +101,8 @@
     --medium-1: #074d08;
     --medium-2: #033a02;
     --medium-3: #062a02;
+    --contrast-1: #861c81;
+    --contrast-2: #5e0f65;
 }
 
 /* inferno theme */
@@ -102,4 +116,6 @@
     --medium-1: #b64e0e;
     --medium-2: #8f430e;
     --medium-3: #71340b;
+    --contrast-1: #3e4ac4;
+    --contrast-2: #242e9b;
 }
