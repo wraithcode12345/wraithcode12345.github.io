@@ -12,6 +12,6 @@ footer a {margin: 0; margin-top: 5px; text-decoration: none; color: var(--subtle
 footer a:hover {text-decoration: underline; cursor: pointer; color: var(--main-text-col);}
 footer h2 {position: absolute; height: 30px; top: calc(50% - 30px); right: 10%;}
 #ip-display {font-weight: bold; position: absolute; bottom: 5px; right: 5px; margin: 0; font-size: 16px; display: block;}
-.summeralert {background: var(--medium-3); position: absolute; left: 0; top: -30px; max-height: 30px; width: calc(100% - 30px); overflow-x: scroll; padding: 8 15px; text-align: center; white-space: nowrap;}
+.summeralert {background: var(--medium-3); position: absolute; left: 0; top: -30px; max-height: 30px; width: calc(100% - 30px); overflow: hidden; padding: 8 15px; text-align: center; white-space: nowrap;}
 .summeralert p {animation: marquee 10s linear infinite; padding-left: 100%; margin: 0; display: inline-block}
 @keyframes marquee {0% {transform:translate(0, 0);} 100% {transform:translate(-100%, 0);}}
