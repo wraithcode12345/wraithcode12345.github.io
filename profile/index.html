@@ -8,6 +8,7 @@
 	  <script src="/text-assets/js/setnavandfooter.js"></script>
 	  <link rel="stylesheet" href="/text-assets/css/themes.css">
     <script src="/text-assets/js/theme.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <style>
       body {margin: 0; font-family: "Manrope"; color: var(--main-text-col); background: radial-gradient(ellipse at top left, var(--medium-2), var(--background)); padding-top: 80px;}
       .content {min-height: 100vh; width: calc(100% - 40px); padding: 0 20px; position: relative; display: flex; flex-direction: column; position: absolute; top: 0;}
@@ -21,7 +22,7 @@
       #prof-followers button {background: var(--contrast-2); border: 1px solid var(--main-text-col); color: var(--main-text-col); border-radius: 30px; margin-left: 8px; height: 100%; transition: 0.2s ease-in-out;}
       #prof-followers button:hover {background: var(--contrast-1); cursor: pointer;}
       #prof-following {margin-left: 8px;}
-      .badge {margin-left: 8px; height: 100%; aspect-ratio: 1/1;}
+      .badge {margin-left: 8px; height: 100%;}
 
       .stats {background: var(--medium-2); padding: 10px; border-radius: 12px; width: 150px; position: absolute; top: 260px; left: 20px; margin-top: 15px; border-top: 1px solid var(--background); border-left: 1px solid var(--background);}
       .stats h4 {margin: 0; text-decoration: underline;}
@@ -35,15 +36,20 @@
         #prof-bio:focus::-webkit-scrollbar {width: 10px;}
         #prof-bio:focus::-webkit-scrollbar-track {background: var(--medium-2);}
         #prof-bio:focus::-webkit-scrollbar-thumb {background: var(--main-text-col);}
-        #editingControls {height: 30px; width: calc(100% - 16px); background: var(--medium-3); position: absolute; top: 30px; left: 0; display: flex; align-items: center; padding: 0 8px; z-index: 2;}
+        #editingControls {height: 30px; width: calc(100% - 16px); background: var(--medium-3); position: absolute; top: 30px; left: 0; display: flex; align-items: center; padding: 0 8px; z-index: 2; display: none;}
         #editingControls i {margin: 0; position: relative; width: 26px; text-align: center;}
         i:hover {color: var(--subtle-text-diff-col); cursor: pointer;}
-        i:hover:after {content: attr(datalabel); position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background-color: var(--medium-2); color: var(--main-text-col); padding: 5px 8px; border: 1px solid var(--subtle-text-diff-gry); border-radius: 5px; font-size: 12px; font-family: Manrope; font-weight: bold; white-space: nowrap; z-index: 3; pointer-events: none;}
+        i:hover:after {content: attr(datalabel); position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background-color: var(--medium-2); color: var(--main-text-col); padding: 5px 8px; border: 1px solid var(--subtle-text-diff-gry); border-radius: 5px; font-size: 12px; font-family: Manrope; font-weight: bold; white-space: nowrap; z-index: 7; pointer-events: none;}
         #colorpickerbutton {display: flex; align-items: center; justify-content: center;}
         #discard-edits {position: absolute; right: 38px; display: none;}
         #linkEditorModal {display: none; position: absolute; background: var(--medium-3); padding: 8px; transform: translateX(-50%); border-radius: 8px; width: 200px;}
         #linkEditorModal input, #linkEditorModal button {width: 100%; padding: 5px 8px; color: var(--main-text-col); border: 1px solid var(--main-text-col); border-radius: 6px; background: transparent; margin-bottom: 4px;}
         #linkEditorModal button:hover {cursor: pointer; background: var(--medium-2);}
+        emoji-picker {position: relative; z-index: 6; top: 50px; left: 230px; height: 300px; display: none;}
+        emoji-picker.shown {display: block;}
+        i.eps:hover:after {display: none;}
+
+        .bio .badge {height: 1em;}
     </style>
   </head>
   <body>
@@ -70,25 +76,32 @@
           <p>Visits: <b id="prof-visits">0</b></p>
           <p>Joined: <b id="prof-joined">0</b></p>
         </div>
-
         <div class="bio">
-          <header><p id="headerText">Bio</p><i class="fa fa-trash-can" id="discard-edits" datalabel="Discard Edits" onclick="discardEdits()"></i><i class="fa fa-pencil" id="edit-prof" datalabel="Edit Bio"></i></header>
-          <div id="editingControls" style="display:none;">
-              <i class="fa fa-bold" datalabel="Bold" onclick="text('bold');"></i>
-              <i class="fa fa-italic" datalabel="Italic" onclick="text('italic');"></i>
-              <i class="fa fa-underline" datalabel="Underline" onclick="text('underline');"></i>
-              <i class="fa fa-strikethrough" datalabel="Strikethrough" onclick="text('strikeThrough');"></i>
-              <i class="fa fa-palette" id="colorpickerbutton" datalabel="Text Color" onclick="openColorPicker()"><input type="color" id="colorpickerinput" style="display: block; pointer-events: none; opacity: 0; position: absolute; z-index: 999;"></i>
-              <i class="fa fa-highlighter" datalabel="Highlight"></i>
-              <i class="fa fa-font" datalabel="Fonts"></i>
-              <i class="fa fa-link" datalabel="Link" onclick="insertLink('https:\/\/example.com')"></i>
-              <i class="fa-regular fa-image" datalabel="Images"></i>
-              <i class="fa-regular fa-face-smile-wink" datalabel="Emojis"></i>
-              <i class="fa-regular fa-id-badge" datalabel="Badges"></i>
-              <i class="fa-regular fa-eye" style="position: absolute; right: 4px;" datalabel="Preview"></i>
+          <header>
+            <p id="headerText">Bio</p>
+            <i class="fa fa-trash-can" id="discard-edits" datalabel="Discard Edits" onclick="discardEdits()"></i>
+            <i class="fa fa-pencil" id="edit-prof" datalabel="Edit Bio"></i>
+          </header>
+          <div id="editingControls">
+            <i class="fa fa-bold" datalabel="Bold" onclick="text('bold');"></i>
+            <i class="fa fa-italic" datalabel="Italic" onclick="text('italic');"></i>
+            <i class="fa fa-underline" datalabel="Underline" onclick="text('underline');"></i>
+            <i class="fa fa-strikethrough" datalabel="Strikethrough" onclick="text('strikeThrough');"></i>
+            <i class="fa fa-palette" id="colorpickerbutton" datalabel="Text Color" onclick="openColorPicker()">
+              <input type="color" id="colorpickerinput" style="display: block; pointer-events: none; opacity: 0; position: absolute; z-index: 999;">
+            </i>
+            <i class="fa fa-highlighter" datalabel="Highlight"></i>
+            <i class="fa fa-font" datalabel="Fonts"></i>
+            <i class="fa fa-link" datalabel="Link" onclick="insertLink('https://example.com')"></i>
+            <i class="fa-regular fa-image" datalabel="Images"></i>
+            <i class="fa-regular fa-face-smile-wink" datalabel="Emojis" id="emojiToggle"></i>
+            <i class="fa-regular fa-id-badge" datalabel="Badges"></i>
+            <i class="fa-regular fa-eye" style="position: absolute; right: 4px;" datalabel="Preview"></i>
           </div>
+          <emoji-picker id="emojiPicker"></emoji-picker>
           <div id="prof-bio"></div>
-      </div>
+        </div>
+        
       <div id="linkEditorModal">
         <input type="text" id="linkEditorModalText" placeholder="Link Text"><br>
         <input type="text" id="linkEditorModalURL" placeholder="Link URL"><br>
@@ -106,7 +119,7 @@
         const username = urlParams.get('user');
 
         if (!username) {
-          document.getElementById("prof-username").innerText = 'user param not found';
+          alert('Username not found in URL');
           return;
         }
 
@@ -119,7 +132,7 @@
           const userData = data.find(row => row.username === username);
 
           if (!userData) {
-            document.getElementById("prof-username").innerText = 'invalid user param';
+            alert('User data not found for username: ', username);
             return;
           }
 
@@ -183,7 +196,6 @@
             // Create image element
             var img = document.createElement('img');
             img.className = "badge";
-						img.title = badgeName.trim();
             
             // Set source attribute to the badge SVG
             img.src = '/profile/badges/' + badgeName.trim() + '.png';
@@ -304,7 +316,7 @@
           const [r, g, b] = rgb.substring(4, rgb.length - 1).split(',').map(Number);
           return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
         };
-	/*
+        /*
         var userSession = 'wraithcode';
         function getUserParam() {const urlParam = new URLSearchParams(window.location.search); const ret = urlParam.get('user'); return ret;}
         function checkSession() {
@@ -314,7 +326,7 @@
             editProf.style.display = "none";
           }
         }
-	*/
+        */
         function text(e) {
           document.execCommand(e, true, null);
         }
@@ -358,8 +370,36 @@
                 bioDiv.focus();
             }
         }
+        var emojiToggle = document.getElementById('emojiToggle');
+        var emojiPicker = document.getElementById('emojiPicker');
+        emojiToggle.addEventListener("click", function() {
+          emojiPicker.classList.toggle("shown");
+          emojiToggle.classList.toggle("eps");
+        });
+
+        emojiPicker.addEventListener('emoji-click', event => {
+          const emojiDetail = event.detail;
+          const emojiUnicode = emojiDetail.unicode;
+
+          insertEmojiAtCursor(bioDiv, emojiUnicode);
+        });
+        function insertEmojiAtCursor(div, emoji) {
+          let range;
+          if (window.getSelection && window.getSelection().rangeCount > 0) {
+            range = window.getSelection().getRangeAt(0);
+            if (range.commonAncestorContainer.parentNode === div || range.commonAncestorContainer === div) {
+              range.deleteContents();
+              range.insertNode(document.createTextNode(emoji));
+              range.collapse(false);
+              const selection = window.getSelection();
+              selection.removeAllRanges();
+              selection.addRange(range);
+            }
+          }
+        }
+        
         function preventFocusLoss(event) {
-          if (!bioDiv.contains(event.target) && !linkEditorModal.contains(event.target)) {
+          if (!bioDiv.contains(event.target) && !linkEditorModal.contains(event.target) && !emojiPicker.contains(event.target)) {
             event.preventDefault();
             bioDiv.focus();
           }
@@ -369,7 +409,7 @@
     	document.addEventListener("DOMContentLoaded", function (e) {
         	updateNavAndFooter();
           getUserDataAndUpdateProfile();
-          checkSession();
+          // checkSession();
         });
     </script>
   </body>
