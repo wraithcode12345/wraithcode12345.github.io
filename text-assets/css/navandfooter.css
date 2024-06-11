@@ -6,7 +6,7 @@ nav a {font-weight: bold; margin: 0 20px; display: flex block; justify-content: 
 nav a::after {content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 1px; bottom: 10px; left: 0; background-color: var(--main-text-col); transform-origin: bottom center; transition: transform 0.25s ease-out;}
 nav a:hover::after {transform: scaleX(1); transform-origin: bottom center;}
 
-footer {display: block; width: calc(100% - 20px); height: auto; bottom: 0; left: 0; background-color: var(--footer-background); padding: 10px; position: relative; margin-top: 50px;}
+footer {display: block; width: calc(100% - 20px); height: auto; bottom: 0; left: 0; background-color: var(--footer-background); padding: 10px; position: relative; margin-top: 30px;}
 footer h4 {text-decoration: underline; margin: 0; margin-top: 10px; color: var(--subtle-text-diff-col);}
 footer a {margin: 0; margin-top: 5px; text-decoration: none; color: var(--subtle-text-diff-gry);}
 footer a:hover {text-decoration: underline; cursor: pointer; color: var(--main-text-col);}
