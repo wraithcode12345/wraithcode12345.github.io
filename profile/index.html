@@ -45,11 +45,15 @@
         #linkEditorModal {display: none; position: absolute; background: var(--medium-3); padding: 8px; transform: translateX(-50%); border-radius: 8px; width: 200px;}
         #linkEditorModal input, #linkEditorModal button {width: 100%; padding: 5px 8px; color: var(--main-text-col); border: 1px solid var(--main-text-col); border-radius: 6px; background: transparent; margin-bottom: 4px;}
         #linkEditorModal button:hover {cursor: pointer; background: var(--medium-2);}
-        emoji-picker {position: relative; z-index: 6; top: 50px; left: 230px; height: 300px; display: none;}
+        emoji-picker {position: relative; z-index: 6; top: 50px; left: 230px; height: 300px; display: none; --background: var(--medium-1);}
         emoji-picker.shown {display: block;}
         i.eps:hover:after {display: none;}
 
-        .bio .badge {height: 1em;}
+        #badgePicker {display: none; height: auto; max-height: 210px; width: 240px; padding: 8px; background: var(--medium-1); position: absolute; top: 60px; left: 270px; z-index: 99; border: 1px solid var(--subtle-text-diff-gry); flex-direction: row; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; flex-grow: 0; overflow-y: scroll;}
+        .badgeOpt {background-image: none; height: 40px; width: 40px; background-size: 1.625rem 1.625rem; background-position: center; background-repeat: no-repeat; border-radius: 50%;}
+        .badgeOpt:hover {cursor: pointer; background-color: var(--medium-3); display: flex;}
+        #badgePicker.shown {display: flex;}
+        .bio .badge {height: 1.52rem; aspect-ratio: 1/1; display: inline-block; vertical-align: middle;}
     </style>
   </head>
   <body>
@@ -95,10 +99,19 @@
             <i class="fa fa-link" datalabel="Link" onclick="insertLink('https://example.com')"></i>
             <i class="fa-regular fa-image" datalabel="Images"></i>
             <i class="fa-regular fa-face-smile-wink" datalabel="Emojis" id="emojiToggle"></i>
-            <i class="fa-regular fa-id-badge" datalabel="Badges"></i>
+            <i class="fa-regular fa-id-badge" datalabel="Badges" id="badgeToggle"></i>
+            <i class="fa fa-code" datalabel="Custom HTML"></i>
             <i class="fa-regular fa-eye" style="position: absolute; right: 4px;" datalabel="Preview"></i>
           </div>
           <emoji-picker id="emojiPicker"></emoji-picker>
+          <div id="badgePicker">
+            <div class="badgeOpt" datalabel="creator"></div>
+            <div class="badgeOpt" datalabel="honorary"></div>
+            <div class="badgeOpt" datalabel="coder"></div>
+            <div class="badgeOpt" datalabel="dev_contributor"></div>
+            <div class="badgeOpt" datalabel="bedwars"></div>
+            <div class="badgeOpt" datalabel="wtf"></div>
+          </div>
           <div id="prof-bio"></div>
         </div>
         
@@ -113,6 +126,7 @@
         </footer>
     </div>
     <script>
+      // * GETTING USER DATA *
       async function getUserDataAndUpdateProfile() {
         // Get username from the URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -181,7 +195,7 @@
           alert('Error fetching user data:', error);
         }
       }
-
+      // * APPLYING EARNED BADGES TO PROFILE *
       function loadBadges(varBadgesString) {
         var badgesContainer = document.getElementById('badges');
 
@@ -199,12 +213,13 @@
             
             // Set source attribute to the badge SVG
             img.src = '/profile/badges/' + badgeName.trim() + '.png';
+            img.title = badgeName;
             
             // Append image to badges container
             badgesContainer.appendChild(img);
         });
       }
-
+      // * CREATING DEFAULT PFP *
       function createSquareImage(text, size, bgColor, textColor, fontSize) {
         const canvas = document.createElement('canvas');
         canvas.width = size;
@@ -223,7 +238,7 @@
         const base64String = canvas.toDataURL();
         return base64String;
       }
-
+      // * BIO EDITOR SETUP + TOGGLING *
         var editing = 0;
         var previewing = 0;
         var bioDiv = document.getElementById("prof-bio");
@@ -261,10 +276,12 @@
                   editProf.setAttribute('datalabel', 'Edit Bio');
                   headerText.innerText = "Bio";
                   discardEdits.style.display = 'none';
+                  emojiPicker.style.display = 'none';
+                  badgePicker.style.display = 'none';
                 }, 1500);
             }
         }
-
+        // * DISCARDING EDITS *
         discardEdits.addEventListener("click", function() {
           bioDiv.blur();
           bioDiv.contentEditable = false;
@@ -282,7 +299,7 @@
           }, 1500);
           bioDiv.innerHTML = presavedBio;
         });
-        
+        // * TEXT COLOR STUFF *
         function openColorPicker() {
           var btn = document.getElementById('colorpickerbutton');
           var inp = document.getElementById('colorpickerinput');
@@ -327,9 +344,11 @@
           }
         }
         */
+       // * TEMPLATE FOR TEXT STYLING COMMANDS * (bold, italic, underline, strikethrough)
         function text(e) {
           document.execCommand(e, true, null);
         }
+        // * LINKS STUFF *
         function insertLink(url) {
           var selection = window.getSelection();
           var range = selection.getRangeAt(0);
@@ -343,7 +362,15 @@
         bioDiv.addEventListener('click', function (event) {
             var target = event.target;
             if (!target.closest('#linkEditorModal') && !target.closest('#editable a')) {
-                document.getElementById('linkEditorModal').style.display = 'none';
+              document.getElementById('linkEditorModal').style.display = 'none';
+            }
+            if (!target.closest('#emojiPicker') && !target.closest('#emojiToggle')) {
+              document.getElementById('emojiPicker').classList.remove('shown');
+              document.getElementById('emojiToggle').classList.remove('eps');
+            }
+            if (!target.closest('#badgePicker') && !target.closest('#badgeToggle')) {
+              document.getElementById('badgePicker').classList.remove('shown');
+              document.getElementById('badgeToggle').classList.remove('eps');
             }
         });
         bioDiv.addEventListener('click', function (event) {
@@ -370,6 +397,7 @@
                 bioDiv.focus();
             }
         }
+        // * EMOJI STUFF *
         var emojiToggle = document.getElementById('emojiToggle');
         var emojiPicker = document.getElementById('emojiPicker');
         emojiToggle.addEventListener("click", function() {
@@ -397,7 +425,47 @@
             }
           }
         }
+        // * BADGE STUFF *
+        document.querySelectorAll('.badgeOpt').forEach(function(el) {
+          var dataLabel = el.getAttribute('datalabel');
+          if (dataLabel) {
+            el.style.backgroundImage = 'url(./badges/' + dataLabel + '.png)';
+          }
+        });
+        var badgeToggle = document.getElementById('badgeToggle');
+        var badgePicker = document.getElementById('badgePicker');
+        badgeToggle.addEventListener("click", function() {
+          badgePicker.classList.toggle("shown");
+          badgeToggle.classList.toggle("eps");
+        });
+        document.querySelectorAll('.badgeOpt').forEach(badgeOpt => {
+            badgeOpt.addEventListener('click', function() {
+                const badgeLabel = this.getAttribute('datalabel');
+                const badgeElement = document.createElement('img');
+                badgeElement.className = 'badge';
+                badgeElement.src = './badges/' + badgeLabel + '.png';
+                insertBadgeAtCursor(badgeElement);
+            });
+        });
+        function insertBadgeAtCursor(badgeElement) {
+            const selection = window.getSelection();
+            if (!selection.rangeCount) return;
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(badgeElement);
+            // Move the caret after the inserted badge
+            range.setStartAfter(badgeElement);
+            range.setEndAfter(badgeElement);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+        // * FONT STUFF *
+        var fontToggle = document.getElementById('fontToggle');
+        var fontPicker = document.getElementById('fontDropdown');
+        // bro i cant do this anymore ive been coding for like a week straight im taking a break XD
+
         
+        // -----------------------------------
         function preventFocusLoss(event) {
           if (!bioDiv.contains(event.target) && !linkEditorModal.contains(event.target) && !emojiPicker.contains(event.target)) {
             event.preventDefault();
