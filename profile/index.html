@@ -40,11 +40,14 @@
         #editingControls i {margin: 0; position: relative; width: 26px; text-align: center;}
         i:hover {color: var(--subtle-text-diff-col); cursor: pointer;}
         i:hover:after {content: attr(datalabel); position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); background-color: var(--medium-2); color: var(--main-text-col); padding: 5px 8px; border: 1px solid var(--subtle-text-diff-gry); border-radius: 5px; font-size: 12px; font-family: Manrope; font-weight: bold; white-space: nowrap; z-index: 7; pointer-events: none;}
+			
         #colorpickerbutton {display: flex; align-items: center; justify-content: center;}
         #discard-edits {position: absolute; right: 38px; display: none;}
+
         #linkEditorModal {display: none; position: absolute; background: var(--medium-3); padding: 8px; transform: translateX(-50%); border-radius: 8px; width: 200px;}
         #linkEditorModal input, #linkEditorModal button {width: 100%; padding: 5px 8px; color: var(--main-text-col); border: 1px solid var(--main-text-col); border-radius: 6px; background: transparent; margin-bottom: 4px;}
         #linkEditorModal button:hover {cursor: pointer; background: var(--medium-2);}
+			
         emoji-picker {position: relative; z-index: 6; top: 50px; left: 230px; height: 300px; display: none; --background: var(--medium-1);}
         emoji-picker.shown {display: block;}
         i.eps:hover:after {display: none;}
@@ -53,7 +56,8 @@
         .badgeOpt {background-image: none; height: 40px; width: 40px; background-size: 1.625rem 1.625rem; background-position: center; background-repeat: no-repeat; border-radius: 50%;}
         .badgeOpt:hover {cursor: pointer; background-color: var(--medium-3); display: flex;}
         #badgePicker.shown {display: flex;}
-        .bio .badge {height: 1.52rem; aspect-ratio: 1/1; display: inline-block; vertical-align: middle;}
+        .bio .badge {height: 1.1rem; aspect-ratio: 1/1; display: inline-block; vertical-align: middle;}
+			
     </style>
   </head>
   <body>
