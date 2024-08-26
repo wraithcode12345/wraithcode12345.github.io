@@ -16,7 +16,6 @@ function updateNavAndFooter() {
             
             const footer = document.getElementById("footer");
             footer.innerHTML = `
-                <div class='summeralert'><p>Summer break is here! I will be pretty busy from June to September, so expect development be much slower than usual.</p></div> 
                 <h4 style="margin-bottom: 5px;">Contact</h4>
                 <a><i class="fa-brands fa-github"></i> &nbsp;&nbsp; <a href="https://github.com/wraithcode20haha">Github</a></a><br>
                 <a><i class="fa-brands fa-stack-overflow"></i> &nbsp;&nbsp; <a href="https://stackoverflow.com/users/22487123/wraithcode">Stack Overflow</a></a><br>
