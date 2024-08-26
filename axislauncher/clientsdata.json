@@ -1,0 +1,74 @@
+[
+    {
+        "id": "resent40",
+        "name": "Resent Client 4.0", 
+        "description": "1.8.8 with added features", 
+        "icon": "end",
+        "info": "Lorem ipsum",
+        "url": "/eagler/resent40/"
+    }, 
+    {
+        "id": "u35",
+        "name": "u35", 
+        "description": "Eaglercraft 1.8.8 Update 35", 
+        "icon": "overworld",
+        "info": "Dolor sit amet",
+        "url": "/eagler/u35/"
+    }, 
+    {
+        "id": "152",
+        "name": "Eaglercraft 1.5.2", 
+        "description": "The original eaglercraft v 1.5.2", 
+        "icon": "overworld",
+        "info": "erm wat da simga",
+        "url": "/eagler/152/"
+    }, 
+    {
+        "id": "beta13",
+        "name": "Eaglercraft Beta 1.3", 
+        "description": "The original eaglercraft v b1.3", 
+        "icon": "overworld",
+        "info": "idk lol",
+        "url": "/eagler/beta13/"
+    }, 
+    {
+        "id": "shadow",
+        "name": "Shadow Client for 1.8.8", 
+        "description": "Rendering optimizations for 1.8.8", 
+        "icon": "end",
+        "info": "ooh a mod???? omg thats so skibidi hahhaha",
+        "url": "/eagler/shadowclient/"
+    }, 
+    {
+        "id": "dragonx4",
+        "name": "Dragon X4 1.8.8 Hack Client", 
+        "description": "Cheating for 1.8.8", 
+        "icon": "nether",
+        "info": "hack",
+        "url": "/eagler/dragonx4/"
+    }, 
+    {
+        "id": "pi",
+        "name": "PiClient 1.8.8 Hack Client", 
+        "description": "Cheating for 1.8.8", 
+        "icon": "nether",
+        "info": "hack",
+        "url": "/eagler/piclient/"
+    }, 
+    {
+        "id": "oddfuture",
+        "name": "OddFuture 1.5.2 Hack Client", 
+        "description": "Cheating for 1.5.2", 
+        "icon": "nether",
+        "info": "hack",
+        "url": "/eagler/oddfuture/"
+    }, 
+    {
+        "id": "eagforge",
+        "name": "Eaglerforge", 
+        "description": "Javascript mods", 
+        "icon": "end",
+        "info": "ooh mod :0",
+        "url": "/eagler/eaglerforge/"
+    }
+]
