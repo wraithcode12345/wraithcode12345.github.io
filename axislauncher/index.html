@@ -46,7 +46,7 @@
       .mcicon {height: 1em; aspect-ratio: 1/1;}
 
       .left {height: 100%; width: calc(40% - 1px); border-right: 1px solid var(--ln);}
-      .browseclients {border: none; width: 100%; height: 50px; background: #ffffff08; text-align: left; color: var(--textg); display: flex; padding: 0; position: relative;}
+      .browseclients {border: none; width: 100%; height: 50px; background: #0000001f; text-align: left; color: var(--textg); display: flex; padding: 0; position: relative;}
       .browseclients:hover {cursor: pointer; background: #ffffff0a}
       .browseclients p {font-weight: bold; margin-top: 15px;}
       .iwtnt {height: 4px; width: calc(100% - 60px); background: var(--ln); position: absolute; left: 50px; bottom: 10px;}
@@ -55,8 +55,8 @@
       #savedclients {height: calc(100% - 81px); width: 100%; overflow: scroll;}
       .saveditem {height: 50px; width: 100%; background: transparent; margin: 0; display: flex; position: relative; cursor: pointer;}
       .saveditem:hover {background: #ffffff0f; cursor: pointer;}
-      .saveditem .title {margin: 0; position: absolute; top: 5px; left: 50px;}
-      .saveditem .desc {margin: 0; position: absolute; bottom: 5px; left: 50px; font-size: 12px;}
+      .title {margin: 0; position: absolute; top: 5px; left: 50px;}
+      .desc {margin: 0; position: absolute; bottom: 5px; left: 50px; font-size: 12px;}
       .saveditem i {position: absolute; top: 15px; right: 10px; color: var(--textg); font-size: 20px;}
       
 
@@ -68,9 +68,18 @@
       .abds {background: var(--ibd); pointer-events: none;}
       #infocontent {width: calc(100% - 30px); height: calc(100% - 100px); padding: 15px; display: block; overflow: scroll; text-wrap: wrap;}
 
-      #clientlibrary {height: 100%; width: calc(100% - 60px); position: absolute; bottom: 100%; right: 0; background: var(--bg); z-index: 50; transition: 0.4s ease-in;}
+      #clientlibrary {height: 100%; width: 100%; position: absolute; bottom: 100%; right: 0; background: var(--bg); z-index: 50; transition: 0.2s ease-in;}
       .exitlibrary {width: 40px; aspect-ratio: 1/1; margin: 10px; background: transparent; border-radius: 50%; border: none; color: var(--text); font-size: 25px; transition: 0.1s linear; position: absolute; top: 0; right: 0;}
       .exitlibrary:hover {background: var(--ibd); cursor: pointer;}
+      #searchclients {border: 2px solid var(--ln); border-radius: 10px; padding: 8px 10px; background: none; width: 60%; max-width: 600px; min-width: 300px; margin: 10px; font-size: 18px; color: var(--textg); position: absolute; top: 56px; left: 50%; transform: translateX(-50%);}
+      #searchclients:focus {outline: none; border-top: none; border-bottom: none;}
+      #clientlist {height: calc(100% - 126px); width: 100%; overflow: scroll; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80%; max-width: 800px; min-width: 400px; border-left: 1px solid var(--ln); border-right: 1px solid var(--ln);}
+      .clitem {height: 80px; width: 100%; background: #44444444; margin: 0; display: flex; position: relative; cursor: pointer;}
+      .clitem .title {position: absolute; left: 10px; top: 5px; font-weight: bold;}
+      .clitem .desc {top: 30px; width: calc(100% - 110px); text-wrap: wrap; overflow-x: hidden;}
+      .clitem .mcicon {font-size: 40px; margin: 5px; position: absolute; bottom: 0;}
+      .clitem button {position: absolute; top: calc(50% - 20px); right: 10px; background: none; border: none; color: var(--text); font-size: 22px; transition: 0.1s linear; border-radius: 50%; height: 40px; width: 40px;}
+      .clitem button:hover {cursor: pointer; background: #ffffff0a;}
 
       .m {font-family:'Courier New', Courier, monospace; margin: 0; font-size: 12px;}
       .screentoosmall {height: 100vh; width: 100vw; background: var(--bg); display: none; align-items: center; justify-content: center; font-size: 1.4rem; z-index: 1001; position: absolute; top: 0; left: 0; text-align: center;}
@@ -93,6 +102,7 @@
       <button class="gamebtn lblablbtn" data-label="Eaglercraft"><img src="./eaglogo.jpeg"></button>
       <button class="gamebtn lblablbtn d" data-label="GD (Coming soon)"><img src="./gd.jpg" style="filter: brightness(0.5);"></button>
     </nav>
+
     <div id="content">
       <div id="banner">
         <button>Launch Latest</button>
@@ -117,13 +127,15 @@
         </div>
       </div>
     </div>
-
+    <!-- BROWSE CLIENTS -->
     <div id="clientlibrary">
-      <p class="m">placeholder</p>
       <button class="exitlibrary" onclick="toggleLibrary()"><i class="fa-light fa-xmark"></i></button>
+      <input id="searchclients" type="text" placeholder="Search...">
+      <div id="clientlist">
+        <!-- javascript adds items here -->
+      </div>
     </div>
-
-
+    <!-- SCRIPTS -->
     <script>
       function toggleLibrary() {
         var libElem = document.getElementById("clientlibrary");
@@ -173,12 +185,12 @@
             }
         });
         updateProgress();
-        localStorage.setItem("axisSavedClients", "resent40, u35, 152, beta13, shadow, dragonx4, pi, oddfuture, eagforge");
       });
 
       async function loadSaved() {
         var container = document.getElementById("savedclients");
         var saved = localStorage.getItem("axisSavedClients");
+        container.innerHTML = "";
 
         if (!saved) return; // Return if there are no saved clients
 
@@ -233,6 +245,93 @@
 
       document.addEventListener("DOMContentLoaded", function() {
         loadSaved();
+      });
+
+      document.addEventListener("DOMContentLoaded", async function() {
+        const searchInput = document.getElementById("searchclients");
+        const clientListContainer = document.getElementById("clientlist");
+
+        // Function to load and display clients
+        async function loadClients() {
+            // Fetch the clients list JSON
+            const response = await fetch('./clientsdata.json');
+            const clientsList = await response.json();
+
+            // Sort the clients alphabetically by name
+            clientsList.sort((a, b) => a.name.localeCompare(b.name));
+
+            // Display clients
+            displayClients(clientsList);
+
+            // Event listener for search input
+            searchInput.addEventListener("input", function() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                const filteredClients = clientsList.filter(client => client.name.toLowerCase().includes(searchTerm));
+                displayClients(filteredClients);
+            });
+        }
+
+        // Function to display clients
+        function displayClients(clients) {
+            // Clear the current list
+            clientListContainer.innerHTML = "";
+
+            clients.forEach(client => {
+                // Determine the correct icon based on the "icon" value
+                var iconSrc;
+                switch(client.icon) {
+                    case "overworld":
+                        iconSrc = './grass.png';
+                        break;
+                    case "nether":
+                        iconSrc = './nylium.png';
+                        break;
+                    case "end":
+                        iconSrc = './purpur.png';
+                        break;
+                    default:
+                        iconSrc = './grass.png'; // Fallback icon if necessary
+                }
+
+                // Create the item element
+                var item = document.createElement("div");
+                item.className = "clitem";
+                item.innerHTML = `
+                    <img class='mcicon' src='${iconSrc}' style='font-size: 40px; margin: 5px;'>
+                    <p class='title'>${client.name}</p>
+                    <p class='desc'>${client.description || "No description available"}</p>
+                    <button title="Save"><i class="fa-duotone fa-bookmark"></i></button>
+                `;
+
+                // Add event listener to the Save button
+                item.querySelector("button").addEventListener("click", function() {
+                    saveClient(client.id);
+                });
+
+                // Append the item to the list container
+                clientListContainer.appendChild(item);
+            });
+        }
+
+        // Function to save a client's ID to localStorage
+        function saveClient(clientId) {
+            var saved = localStorage.getItem("axisSavedClients");
+
+            if (saved) {
+                var savedArray = saved.split(', ');
+                // Check if the client is already saved
+                if (!savedArray.includes(clientId)) {
+                    savedArray.push(clientId);
+                    localStorage.setItem("axisSavedClients", savedArray.join(', '));
+                }
+            } else {
+                // If no clients are saved yet, start a new list
+                localStorage.setItem("axisSavedClients", clientId);
+            }
+            loadSaved();
+        }
+        // Load and display clients on page load
+        loadClients();
       });
     </script>
   </body>
