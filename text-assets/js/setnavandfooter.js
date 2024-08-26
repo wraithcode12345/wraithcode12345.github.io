@@ -8,7 +8,7 @@ function updateNavAndFooter() {
                 </div>
                 <div class="right">
                     <a href="/nexturl"><i class="fa-solid fa-globe"></i>&nbsp; Next URL</a>
-                    <a href="/eaglauncher"><i class="fa-solid fa-cube"></i>&nbsp; Eaglercraft</a>
+                    <a href="/axislauncher"><i class="fa-solid fa-cube"></i>&nbsp; Axis</a>
                     <a href="/more"><i class="fa-solid fa-circle-plus"></i>&nbsp; More</a>
                     <a href="/settings"><i class="fa-solid fa-gear"></i>&nbsp; Settings</a>
                 </div>
