@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axis Launcher</title>
+    <link rel="icon" href="/logo.png">
+    <link rel="stylesheet" href="/fontawesomepro6.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: linear-gradient(120deg, #072536, #010b1c);
+        --bgl: #08293d;
+        --con: #d84635;
+        --conl: #e25b4c;
+        --text: #ffffff;
+        --textg: #cacaca;
+        --ln: #084858;
+        --ib1: #1a6088;
+        --ib2: #2375a4;
+        --ibd: #25465a;
+      }
+      body {background: var(--bg); margin: 0; height: 100vh; width: 100vw; color: var(--text); font-family: Manrope; overflow: hidden;}
+      #loading-screen {background: var(--bg); height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; z-index: 1000; color: var(--text); flex-direction: column; font-family: Manrope; opacity: 1; transition: 0.5s linear;}
+      #loading-screen img {width: 150px; margin-bottom: 20px;}
+      #progress-bar {width: 80%; height: 10px; background: #ffffff30; border-radius: 5px; overflow: hidden; margin-top: 20px;}
+      #progress-bar div {height: 100%; width: 0; background: var(--con); border-radius: 5px; transition: width 0.3s ease;}
+      #loading-text {font-size: 18px; margin-top: 20px;}
+
+      nav {background: var(--bgl); height: 100%; width: 60px; position: relative;}
+      .logo {width: calc(100% - 10px); aspect-ratio: 1/1; margin: 5px;}
+      .gamebtn {width: calc(100% - 10px); aspect-ratio: 1/1; margin: 5px; margin-top: 0; background: transparent; border-radius: 50%; border: none; color: var(--text); font-size: 20px; transition: 0.1s linear; display: flex; align-items: center; justify-content: center; position: relative;}
+      .gamebtn img {width: 80%; height: 80%; object-fit: contain;}
+      .gamebtn:hover {background: var(--ibd); cursor: pointer;}
+      .gamebtn.d:hover {background: transparent; cursor: default;}
+      .lblablbtn:before {display: block; content: attr(data-label); background: var(--bgl); width: auto; border-radius: 10px; position: absolute; bottom: 50%; left: calc(100% + 18px); user-select: none; pointer-events: none; padding: 5px 8px; font-size: 15px; opacity: 0; transform: translateY(50%); transition: 0.1s linear; z-index: 1000;}
+      .lblablbtn:after {display: block; content: ""; background: var(--bgl); clip-path: polygon(33% 50%, 100% 97%, 100% 0); height: 14px; width: 14px; position: absolute; bottom: 50%; left: calc(100% + 6px); user-select: none; pointer-events: none; transform: translateY(50%); transition: 0.1s linear; opacity: 0; z-index: 1000;}
+      .lblablbtn:hover:before, .lblablbtn:hover:after {opacity: 1;}
+
+      #content {height: 100%; width: calc(100% - 60px); position: absolute; top: 0; right: 0;}
+
+      #banner {height: 40%; width: 100%; background-image: url("/banner.jpg"); background-position: center; background-size: cover; background-repeat: no-repeat; position: relative;}
+      #banner button {position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: var(--con); border: none; padding: 5px 8px; color: var(--text); transition: 0.15s linear;}
+      #banner button:hover {cursor: pointer; background: var(--conl);}
+      .wrap {height: 60%; width: 100%; display: flex;}
+      .mcicon {height: 1em; aspect-ratio: 1/1;}
+
+      .left {height: 100%; width: calc(40% - 1px); border-right: 1px solid var(--ln);}
+      .browseclients {border: none; width: 100%; height: 50px; background: #ffffff08; text-align: left; color: var(--textg); display: flex; padding: 0; position: relative;}
+      .browseclients:hover {cursor: pointer; background: #ffffff0a}
+      .browseclients p {font-weight: bold; margin-top: 15px;}
+      .iwtnt {height: 4px; width: calc(100% - 60px); background: var(--ln); position: absolute; left: 50px; bottom: 10px;}
+      .browseclients i {font-size: 20px; position: absolute; top: 10px; right: 15px; color: var(--ln)}
+      .sl {width: calc(100% - 10px); height: 20px; margin: 0; background: #0000001f; text-align: center; padding: 5px; border-bottom: 1px solid var(--ln); font-size: 15px;}
+      #savedclients {height: calc(100% - 81px); width: 100%; overflow: scroll;}
+
+      .right {height: 100%; width: 60%; position: relative;}
+      .a, .b {font-size: 15px; border: none; background: var(--ib1); padding: 8px 10px; width: calc(50% - 30px); color: var(--text); position: absolute; bottom: 20px;}
+      .a {left: 20px;}
+      .b {right: 20px;}
+      .a:hover, .b:hover {cursor: pointer; background: var(--ib2);}
+      .abds {background: var(--ibd);}
+      .abds:hover {background: var(--ibd); cursor: default;}
+
+      #clientlibrary {height: 100%; width: calc(100% - 60px); position: absolute; bottom: 100%; right: 0; background: var(--bg); z-index: 50; transition: 0.4s ease-in;}
+      .exitlibrary {width: 40px; aspect-ratio: 1/1; margin: 10px; background: transparent; border-radius: 50%; border: none; color: var(--text); font-size: 25px; transition: 0.1s linear; position: absolute; top: 0; right: 0;}
+      .exitlibrary:hover {background: var(--ibd); cursor: pointer;}
+
+      .m {font-family:'Courier New', Courier, monospace; margin: 0; font-size: 12px;}
+      .screentoosmol {height: 100vh; width: 100vw; background: var(--bg); display: none; align-items: center; justify-content: center; font-size: 1.4rem; z-index: 1001; position: absolute; top: 0; left: 0; text-align: center;}
+      @media (max-width: 600px) {
+        .screentoosmol {display: flex;}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screentoosmol"><p>Uh oh...<br>u screen 2 smol 3:</p></div>
+    <div id="loading-screen">
+      <img src="/logo.png" alt="Logo">
+      <div id="progress-bar"><div></div></div>
+      <p id="loading-text">Loading... 0%</p>
+    </div>
+
+    <nav>
+      <img src="/logo.png" class="logo"></img>
+      <button class="gamebtn lblablbtn" data-label="Eaglercraft"><img src="/eaglogo.jpeg"></button>
+      <button class="gamebtn lblablbtn d" data-label="GD (Coming soon)"><img src="/gd.jpg" style="filter: brightness(0.5);"></button>
+    </nav>
+    <div id="content">
+      <div id="banner">
+        <button>Launch Latest</button>
+      </div>
+      <div class="wrap">
+        <div class="left">
+          <button class="browseclients" onclick="toggleLibrary()">
+            <img class="mcicon" src="/grass.png" style="font-size: 40px; margin: 5px;">
+            <p>Browse Clients...</p>
+            <div class="iwtnt"></div>
+            <i class="fa-duotone fa-books"></i>
+          </button>
+          <p class="sl">Saved Clients</p>
+          <div id="savedclients">
+            <p class="m">placeholder</p>
+          </div>
+        </div>
+        <div class="right">
+          <p class="m">ver info... placeholder</p>
+          <button class="a">Launch/Launch Latest</button>
+          <button class="b abds">Remove from saved/Eaglercraft website</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="clientlibrary">
+      <p class="m">placeholder</p>
+      <button class="exitlibrary" onclick="toggleLibrary()"><i class="fa-light fa-xmark"></i></button>
+    </div>
+
+
+    <script>
+      function toggleLibrary() {
+        var libElem = document.getElementById("clientlibrary");
+        if (libElem.style.bottom === "" || libElem.style.bottom === "100%") {
+          libElem.style.bottom = "0";
+        } else {
+          libElem.style.bottom = "100%";
+        }
+      }
+      window.onload = function() {
+        var progressBar = document.querySelector("#progress-bar div");
+        var loadingText = document.getElementById("loading-text");
+        var progress = 0;
+        var interval = setInterval(function() {
+          progress += 1;
+          progressBar.style.width = progress + "%";
+          loadingText.textContent = "Loading... " + progress + "%";
+          if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => { 
+              document.getElementById("loading-screen").style.opacity = "0";
+              document.getElementById("loading-screen").style.pointerEvents = "none";
+              setTimeout(() => { 
+                document.getElementById("loading-screen").style.display = "none";
+              }, 500);
+            }, 400);
+          }
+        }, 10);
+      };
+    </script>
+  </body>
+</html>
