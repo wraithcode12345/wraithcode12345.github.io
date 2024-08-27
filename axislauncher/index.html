@@ -53,7 +53,7 @@
       .browseclients i {font-size: 20px; position: absolute; top: 10px; right: 15px; color: var(--textg)}
       .sl {width: calc(100% - 10px); height: 20px; margin: 0; background: #0000001f; text-align: center; padding: 5px; border-bottom: 1px solid var(--ln); font-size: 15px;}
       #savedclients {height: calc(100% - 81px); width: 100%; overflow: scroll;}
-      .saveditem {height: 50px; width: 100%; background-color: transparent; margin: 0; display: flex; position: relative; cursor: pointer; transition: background-color 0.15s linear, opacity 0.4s ease; opacity: 1;}
+      .saveditem {height: 50px; width: 100%; background-color: transparent; margin: 0; display: flex; position: relative; cursor: pointer; transition: background-color 0.15s linear, opacity 0.4s ease, height 0.3s ease; opacity: 1;}
       .saveditem:hover {background-color: #ffffff0f; cursor: default;}
       .title {margin: 0; position: absolute; top: 5px; left: 50px;}
       .desc {margin: 0; position: absolute; bottom: 5px; left: 50px; font-size: 12px;}
@@ -261,7 +261,10 @@
               localStorage.setItem("axisSavedClients", savedArray.join(', '));
               event.target.parentNode.parentNode.style.opacity = "0"; // Now you can use event.target
               setTimeout(function() {
+                event.target.parentNode.parentNode.style.height = "0px";
+                setTimeout(function() {
                   loadSaved();
+                }, 400)
               }, 400)
           }
       }
