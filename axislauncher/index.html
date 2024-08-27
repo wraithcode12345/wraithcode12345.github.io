@@ -53,11 +53,14 @@
       .browseclients i {font-size: 20px; position: absolute; top: 10px; right: 15px; color: var(--textg)}
       .sl {width: calc(100% - 10px); height: 20px; margin: 0; background: #0000001f; text-align: center; padding: 5px; border-bottom: 1px solid var(--ln); font-size: 15px;}
       #savedclients {height: calc(100% - 81px); width: 100%; overflow: scroll;}
-      .saveditem {height: 50px; width: 100%; background: transparent; margin: 0; display: flex; position: relative; cursor: pointer;}
-      .saveditem:hover {background: #ffffff0f; cursor: pointer;}
+      .saveditem {height: 50px; width: 100%; background-color: transparent; margin: 0; display: flex; position: relative; cursor: pointer; transition: background-color 0.15s linear, opacity 0.4s ease; opacity: 1;}
+      .saveditem:hover {background-color: #ffffff0f; cursor: default;}
       .title {margin: 0; position: absolute; top: 5px; left: 50px;}
       .desc {margin: 0; position: absolute; bottom: 5px; left: 50px; font-size: 12px;}
-      .saveditem i {position: absolute; top: 15px; right: 10px; color: var(--textg); font-size: 20px;}
+      .saveditem > i {position: absolute; top: 15px; right: 10px; color: var(--textg); font-size: 20px;}
+      .saveditem button {position: absolute; text-align: center; top: calc(50% - 15px); right: 35px; background: transparent; border: none; color: var(--text); font-size: 22px; transition: 0.1s linear; border-radius: 50%; height: 30px; width: 30px;}
+      .saveditem button:hover {background: #ffffff12; cursor: pointer;}
+      .saveditem button i {color: var(--text); font-size: 20px;}
       
 
       .right {height: 100%; width: 60%; position: relative;}
@@ -74,11 +77,11 @@
       #searchclients {border: 2px solid var(--ln); border-radius: 10px; padding: 8px 10px; background: none; width: 60%; max-width: 600px; min-width: 300px; margin: 10px; font-size: 18px; color: var(--textg); position: absolute; top: 56px; left: 50%; transform: translateX(-50%);}
       #searchclients:focus {outline: none; border-top: none; border-bottom: none;}
       #clientlist {height: calc(100% - 126px); width: 100%; overflow: scroll; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80%; max-width: 800px; min-width: 400px; border-left: 1px solid var(--ln); border-right: 1px solid var(--ln);}
-      .clitem {height: 80px; width: 100%; background: #44444444; margin: 0; display: flex; position: relative; cursor: pointer;}
+      .clitem {height: 80px; width: 100%; background: #44444444; margin: 0; display: flex; position: relative;}
       .clitem .title {position: absolute; left: 10px; top: 5px; font-weight: bold;}
       .clitem .desc {top: 30px; width: calc(100% - 110px); text-wrap: wrap; overflow-x: hidden;}
       .clitem .mcicon {font-size: 40px; margin: 5px; position: absolute; bottom: 0;}
-      .clitem button {position: absolute; top: calc(50% - 20px); right: 10px; background: none; border: none; color: var(--text); font-size: 22px; transition: 0.1s linear; border-radius: 50%; height: 40px; width: 40px;}
+      .clitem button {position: absolute; background: transparent; top: calc(50% - 15px); right: 30px; border: none; color: var(--text); font-size: 22px; transition: 0.1s linear; border-radius: 50%; height: 40px; width: 40px;}
       .clitem button:hover {cursor: pointer; background: #ffffff0a;}
 
       .m {font-family:'Courier New', Courier, monospace; margin: 0; font-size: 12px;}
@@ -102,7 +105,7 @@
       <button class="gamebtn lblablbtn" data-label="Eaglercraft"><img src="./eaglogo.jpeg"></button>
       <button class="gamebtn lblablbtn d" data-label="GD (Coming soon)"><img src="./gd.jpg" style="filter: brightness(0.5);"></button>
     </nav>
-    <button onclick="localStorage.clear('axisSavedClients')" style="position: absolute; bottom: 5px; left: 5px; cursor: pointer; z-index: 999;">Clear saved (dev)</button>
+    <button onclick="localStorage.clear('axisSavedClients'); loadSaved();" style="display: none; position: absolute; bottom: 5px; left: 5px; cursor: pointer; z-index: 999;">Clear saved (dev)</button>
 
     <div id="content">
       <div id="banner">
@@ -114,7 +117,7 @@
             <img class="mcicon" src="./crafting.png" style="font-size: 40px; margin: 5px;">
             <p>Browse Clients...</p>
             <div class="iwtnt"></div>
-            <i class="fa-duotone fa-books"></i>
+            <i class="fa-regular fa-books"></i>
           </button>
           <p class="sl">Saved Clients</p>
           <div id="savedclients">
@@ -226,22 +229,41 @@
                 var item = document.createElement("div");
                 item.className = "saveditem";
                 item.onclick = function() {
-                  document.getElementById("infocontent").textContent = clientData.info;
-                  document.getElementById("launchbutton").onclick = function() {
-                    window.open(clientData.url, "_blank");
-                  };
-                  document.getElementById("launchbutton").classList.remove("abds");
-                  document.getElementById("removebutton").innerText = "Remove from saved";
+                    document.getElementById("infocontent").textContent = clientData.info;
+                    document.getElementById("launchbutton").onclick = function() {
+                        window.open(clientData.url, "_blank");
+                    };
+                    document.getElementById("launchbutton").classList.remove("abds");
+                    document.getElementById("removebutton").innerText = "Remove from saved";
                 };
                 item.innerHTML = `
                     <img class='mcicon' src='${iconSrc}' style='font-size: 40px; margin: 5px;'>
                     <p class='title'>${clientData.name}</p>
                     <p class='desc'>${clientData.description || "No description available"}</p>
+                    <button class="remove-btn"><i class="fa-regular fa-trash"></i></button>
                     <i class="fa-regular fa-circle-info"></i>
                 `;
                 container.appendChild(item);
+
+                // Add event listener to the remove button
+                var removeBtn = item.querySelector('.remove-btn');
+                removeBtn.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent the parent’s onclick from being triggered
+                    removeFromSaved(clientData.id, event);
+                });
             }
         });
+      }
+      function removeFromSaved(id, event) { // Add event as a parameter
+          var saved = localStorage.getItem("axisSavedClients");
+          if (saved) {
+              var savedArray = saved.split(', ').filter(clientId => clientId !== id.toString());
+              localStorage.setItem("axisSavedClients", savedArray.join(', '));
+              event.target.parentNode.parentNode.style.opacity = "0"; // Now you can use event.target
+              setTimeout(function() {
+                  loadSaved();
+              }, 400)
+          }
       }
 
       document.addEventListener("DOMContentLoaded", function() {
@@ -301,7 +323,7 @@
                     <img class='mcicon' src='${iconSrc}' style='font-size: 40px; margin: 5px;'>
                     <p class='title'>${client.name}</p>
                     <p class='desc'>${client.description || "No description available"}</p>
-                    <button title="Save"><i class="fa-duotone fa-bookmark"></i></button>
+                    <button title="Save"><i class="fa-regular fa-bookmark"></i></button>
                 `;
 
                 // Add event listener to the Save button
