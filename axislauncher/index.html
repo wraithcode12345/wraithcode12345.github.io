@@ -109,7 +109,7 @@
 
     <div id="content">
       <div id="banner">
-        <button>Launch Latest</button>
+        <button onclick="launchLatestVersion()">Launch Latest</button>
       </div>
       <div class="wrap">
         <div class="left">
@@ -141,6 +141,11 @@
     </div>
     <!-- SCRIPTS -->
     <script>
+      var latestVersion = "u35";
+      function launchLatestVersion() {
+        window.open("/eagler/" + latestVersion, "_blank");
+      }
+      
       function toggleLibrary() {
         var libElem = document.getElementById("clientlibrary");
         if (libElem.style.bottom === "" || libElem.style.bottom === "100%") {
