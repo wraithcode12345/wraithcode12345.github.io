@@ -1,81 +1,105 @@
-<html>   
-  <head>
-    <title>Welcome to wraithcode</title>
-    <link rel="icon" href="/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/text-assets/css/navandfooter.css">
-	  <script src="/text-assets/js/setnavandfooter.js"></script>
-	  <link rel="stylesheet" href="/text-assets/css/themes.css">
-    <script src="/text-assets/js/theme.js"></script>
-    <style>
-      body {margin: 0; font-family: "Manrope"; color: var(--main-text-col); background: var(--background); padding-top: 80px;}
-      .bottom {width: 100%; height: 45px; margin-bottom: 20px; margin-top: 30px; background: var(--background); overflow: hidden; position: relative;}
-      .bottom:before {content: ""; display: block; background: var(--background); position: absolute; border-radius: 100%; width: 100%; height: 300px; border-top: 2px solid var(--main-text-col); right: -25%; top: 0px; clip-path: polygon(0 0, 100% 0%, 68% 10%, 0 4%);}
-      .bottom:after {content: ""; display: block; background: var(--background); position: absolute; border-radius: 100%; width: 100%; height: 300px; border-bottom: 2px solid var(--main-text-col); left: -25%; top: -258.5px; clip-path: polygon(32% 90%, 100% 90%, 100% 100%, 0% 100%);}
-      .counter {position: absolute; top: 70px; right: 10px; z-index: 15; box-shadow: 0 0 10px 10px var(--background); pointer-events: none; user-select: none;}
-      
-      h1 {font-size: 70px; margin: 0; margin-left: 20px; pointer-events: none; user-select: none; position: relative; z-index: 1;}
-      h3 {color: var(--subtle-text-diff-col); margin: 0; margin-left: 20px; width: calc(100% - 20px); font-size: 40px; position: relative; pointer-events: none; z-index: 1;}
-      #puddle-container {height: 190px; width: 100%; background: var(--background); position: absolute; left: 0; top: 70px; z-index: 0; user-select: none; pointer-events: auto; color: var(--puddle-text);}
-      #puddle-container:before {content: "Credit to batmannair"; color: var(--main-text-col); position: absolute; bottom: 0; right: 0; z-index: 2; font-size: 11px; margin: 5px; pointer-events: none; user-select: none;}
-      #puddle-container:after {height: 100%; width: 100%; content: ""; display: block; background: linear-gradient(var(--background) 0%, #00000000 50%, var(--background) 100%); position: absolute; z-index: 1; pointer-events: none;}
-      
-      .currentprojects {margin-left: 20px;}
-      .currentprojects h4 {margin: 0; text-decoration: underline;}
-      .currentprojects ul {margin: 0; padding-left: 20px; list-style-type: circle;}
-      .currentprojects li {margin-bottom: 0.2em;}
-    </style>
-  </head>
-  <body>
-    <nav id="navbar">
-      <!-- setnavandfooter.js adds content here -->
-    </nav>
-	  <img src='https://www.counter12.com/img-1d6BcZcZz0Y5CZ5Y-40.gif' border='0' class="counter">
-    <h1>wraithcode</h1>
-    <h3>Pushing static web dev to its limits</h3>
-    <div class="bottom"></div>
-    <p style="margin-left: 20px; margin-top: -20px; font-size: 12px;">I spent half an hour making this curvy thing haha</p>
-    <div class="currentprojects">
-      <h4>Current WIP Projects</h4>
-      <ul>
-        <li>Irae</li>
-        <li>Accounts System</li>
-        <li>Custom Themes</li>
-        <li>Paid Ranks (mb)</li>
-      </ul>
-    </div>
-    <h4 style="margin-left: 20px; margin-top: 5px;">I've seen a lot of people playing snow rider 3d so i put it on my website <a href="/snowrider3d/">here</a> :)</h4>
-    <div id="puddle-container"></div>
-	  <footer id="footer">
-      
-    	<!-- setnavandfooter.js adds content here -->
-    </footer>
-    <script src="/text-assets/js/puddle.js"></script>
-    <script src="https://batmannair.com/js/mobile-check.js"></script>
-    <script>
-		  let isTouchDevice = window.mobileAndTabletcheck();
 
-      var puddle = new Puddle("#puddle-container");
-      puddle.setNodeStyle("ascii");
-      puddle.setRandomRippleGenerationInterval(300);
-      puddle.setupGrid();
-      let defaultMathMode = "helias";
-      let defaultMaxRippleStrength = 100;
-      if (isTouchDevice) { // Better mobile default options
-        defaultMathMode = "helias";
-        defaultMaxRippleStrength = 500;
-        puddle.setMathMode(defaultMathMode);
-        puddle.setMaxRippleStrength(defaultMaxRippleStrength);
-        puddle.toggleRippleOnMove();
-      }
-  
-      window.onresize = () => puddle.setupGrid();
-	  </script>
-	  <script>
-    	document.addEventListener("DOMContentLoaded", function (e) {
-        	updateNavAndFooter();
-        });
-    </script>
-  </body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The frontend is being rennovated.</title>
+        <link rel="icon" href="/favicon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --background: #061a20;
+                --background-light: #0a2730;
+                --text: #ffffff;
+                --btn-hover: #ffffff0f;
+            }
+            body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
+            nav.m {width: 80%; height: 60px; background: #ffffff05; border-radius: 30px; position: fixed; top: 15px; left: 10%; display: flex; transition: 0.15s ease; z-index: 100;}
+            nav.m .right {height: 100%; width: calc(100% - 60px); background: transparent; display: flex; justify-content: right;}
+            #smallnavbtn {height: 40px; width: 40px; margin: 10px; background: transparent; border: none; color: var(--text); font-size: 22px; transition: 0.15s ease; display: flex; position: fixed; top: 0; left: 0; z-index: 101; display: none;}
+            #smallnavbtn:hover {text-shadow: 0 0 10px var(--text); cursor: pointer;}
+            .navbtn {color: var(--text); background: transparent; border: none; height: 40px; margin: 10px; font-weight: bold; padding: 0; padding: 0 12px; border-radius: 20px; transition: background-color 0.15s ease; position: relative; font-family: "Manrope";}
+            .navbtn:hover {cursor: pointer;}
+            .navbtn i {padding-block-end: 0;}
+            .navbtn:after {content: ""; position: absolute; width: calc(100% - 40px); transform: scaleX(0); height: 1px; bottom: 0px; left: 20px; background-color: var(--text); transform-origin: bottom center; transition: transform 0.25s ease-out;}
+            .navbtn:hover::after {transform: scaleX(1); transform-origin: bottom center; box-shadow: 0 0 5px 1px var(--text);}
+            #sidenav {width: 200px; height: 100%; position: fixed; left: -200px; top: 0; background: var(--background); border-radius: 0; transition: left 0.2s ease; z-index: 100; display: none; flex-direction: column; overflow: scroll;}
+            #sidenav button {height: 40px; width: 100%; color: var(--text); background: transparent; border: none; font-size: 25px; font-family: "Manrope"; font-weight: bold; text-align: left; margin-bottom: 10px;}
+            #sidenav button:hover {background: var(--background-light); cursor: pointer;}
+            #sidenav button span {margin-left: 10px;}
+
+            .wrc {height: 100vh; width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; display: flex; align-items: center; justify-content: center;}
+            #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff, 0px 0px 300px #00ff00; width: 100%; text-align: center; margin: 0; padding: 0;}
+
+            @media screen and (max-width: 6in) {
+                .navtext {display: none;}
+                .navbtn {width: 40px; font-size: 22px;}
+                nav.m button {display: flex; justify-content: center; align-items: center;}
+                nav.m button:hover {text-shadow: 0 0 10px var(--text); cursor: pointer;}
+                #wr {font-size: 50px;}
+                .wrc {height: 300px;}
+            }
+            @media screen and (max-width: 5in) {
+                nav.m {display: none;}
+                #smallnavbtn {display: block;}
+                #sidenav {display: flex;}
+                .navbtn {display: none;}
+                #wr {font-size: 35px;}
+                .wrc {height: 200px;}
+            }
+        </style>
+    </head>
+    <body>
+        <button id="smallnavbtn" onclick="toggleSideNav()"><i class="fa fa-bars" id="snbtnsub"></i></button>
+        <nav class="m">
+            <button class="navbtn" onclick="window.location.href='/';"><i class="fa fa-home"></i><br><span class="navtext">Home</span></button>
+            <div class="right">
+                <button class="navbtn" onclick="window.location.href='/axis';"><i class="fa fa-cube"></i><br><span class="navtext">Axis</span></button>
+                <button class="navbtn" onclick="window.location.href='/chat';"><i class="fa fa-comment-dots"></i><br><span class="navtext">Games</span></button>
+                <button class="navbtn" onclick="window.location.href='/more';"><i class="fa fa-plus"></i><br><span class="navtext">Tools</span></button>
+                <button class="navbtn" onclick="window.location.href='/settings';"><i class="fa fa-gear"></i><br><span class="navtext">Settings</span></button>
+            </div>
+        </nav>
+        <nav id="sidenav">
+            <div style="height: 55px; width: 100%;"></div> <!-- spacer -->
+            <button onclick="window.location.href='/';"><i class="fa fa-home"></i><span>Home</span></button>
+            <button onclick="window.location.href='/axis';"><i class="fa fa-cube"></i><span>Axis</span></button>
+            <button onclick="window.location.href='/chat';"><i class="fa fa-comment-dots"></i><span>Games</span></button>
+            <button onclick="window.location.href='/more';"><i class="fa fa-plus"></i><span>Tools</span></button>
+            <button onclick="window.location.href='/settings';"><i class="fa fa-gear"></i><span>Settings</span></button>
+        </nav>
+
+        <div class="wrc">
+            <span id="wr"></span>
+        </div>
+
+        <script>
+            var typewriter = new Typewriter('#wr', {
+                cursor: "_",
+            });
+            typewriter
+                .typeString('wraithcode')
+                .start();
+            
+            var sidenav = document.getElementById("sidenav");
+            var snbtn = document.getElementById("smallnavbtn");
+            var snbtnsub = document.getElementById("snbtnsub");
+            sidenav.style.left = "-200px";
+            function toggleSideNav() {
+                if (sidenav.style.left == "-200px") {
+                    sidenav.style.left = "0";
+                    snbtnsub.classList.remove("fa-bars");
+                    snbtnsub.classList.add("fa-xmark");
+                    snbtn.style.left = "140px";
+                } else {
+                    sidenav.style.left = "-200px";
+                    snbtnsub.classList.add("fa-bars");
+                    snbtnsub.classList.remove("fa-xmark");
+                    snbtn.style.left = "0";
+                }
+            }   
+        </script>
+    </body>
 </html>
