@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>WIP</title>
         <link rel="icon" href="/favicon.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
         <style>
             :root {
@@ -23,8 +24,8 @@
             .navbtn:after {content: ""; position: absolute; width: calc(100% - 40px); transform: scaleX(0); height: 1px; bottom: 0px; left: 20px; background-color: var(--text); transform-origin: bottom center; transition: transform 0.25s ease-out;}
             .navbtn:hover::after {transform: scaleX(1); transform-origin: bottom center;}
 
-            .wrc {height: 600px; width: 100vw; background: radial-gradient(#04681A 0%, var(--background) 35%); position: relative; top: 60px; left: 0;}
-            #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 1px 1px 10px #00ff00, 1px 1px 10px #00aa00; position: absolute; top: 45%; left: 50%; transform: translateX(-50%);}
+            .wrc {height: 600px; width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; top: 60px; left: 0; display: flex; align-items: center; justify-content: center;}
+            #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff, 0px 0px 300px #00ff00; width: 100%; text-align: center; margin: 0; padding: 0;}
 
             @media screen and (max-width: calc(20vw + 300px)) {
                 nav {width: 60px; left: 0; top: 0;}
@@ -56,17 +57,12 @@
             <span id="wr"></span>
         </div>
         <script>
-            var typed = new Typed('#wr', {
-              strings: ['wraithcode'],
-              typeSpeed: 65,
-              backSpeed: 50,
-              showCursor: true,
-              cursorChar: "_",
-              loop: false,
-              loopCount: Infinity,
-              smartBackspace: false,
-              startDelay: 650,
+            var typewriter = new Typewriter('#wr', {
+                cursor: "_",
             });
+            typewriter
+                .typeString('wraithcode')
+                .start();
         </script>
     </body>
 </html>
