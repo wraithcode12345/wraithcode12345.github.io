@@ -1,60 +1,53 @@
-<html>   
-  <head>
-    <title>wraithcode Settings</title>
-    <link rel="icon" href="/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <link rel="stylesheet" href="/text-assets/css/navandfooter.css">
-	  <script src="/text-assets/js/setnavandfooter.js"></script>
-	  <link rel="stylesheet" href="/text-assets/css/themes.css">
-    <script src="/text-assets/js/theme.js"></script>
-    <style>
-      body {margin: 0; font-family: "Manrope"; color: var(--main-text-col); background: var(--background); padding-top: 80px;}
 
-      h1 {width: calc(100% - 10px); margin: 5px; text-align: center; font-size: 40px;}
-      .h2, .p {margin: 0; width: 100%; text-align: center;}
-      .h2 {color: var(--subtle-text-diff-col);}
-			.settings-content {width: 100%; display: flex; flex-wrap: wrap; justify-content: center;}
-      .themes-container {display: flex; flex-direction: column; justify-content: center; margin: 20px 0; background: var(--medium-1); padding: 15px; border-radius: 15px;} /* :) */
-			.dropbtnetcidk {display: flex; margin: 20px 30px;} /* this element is necessary, not sure why i made a class for it tho lol */
-      select {border: 2px solid var(--main-text-col); border-right: none; border-top-left-radius: 8px; border-bottom-left-radius: 8px; padding: 8px 24px; background: none; color: var(--main-text-col);}
-      option {background: var(--background); border: 2px solid var(--main-text-col); color: var(--main-text-col);}
-      #save-theme {border: 2px solid var(--main-text-col); border-top-right-radius: 8px; border-bottom-right-radius: 8px; padding: 8px 12px; background: none; color: var(--main-text-col);}
-      #save-theme:hover, select:hover, option:hover {background: #88888844; cursor: pointer;}
-    </style>
-  </head>
-  <body>
-    <nav id="navbar">
-      <!-- setnavandfooter.js adds content here -->
-    </nav>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Settings</title>
+        <link rel="icon" href="/favicon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/text/css/wicons.css">
+        <link rel="stylesheet" href="/assets/text/css/global.css">
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+        <script src="/assets/text/js/setnavandfooter.js"></script>
+        <style>
+            body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
 
-    <h1><i class="fa-solid fa-gear"></i>&nbsp; Settings</h1>
-		<div class="settings-content">
-			<div class="themes-container">
-	    	<h2 class="h2">Theme</h2>
-				<div class="dropbtnetcidk">
-			    <select id="theme-select">
-			      <option value="light">Light</option>
-			      <option value="dark">Shadow</option>
-						<option value="amethyst">Amethyst</option>
-						<option value="bloodred">Bloodred</option>
-						<option value="deepocean">Deep Ocean</option>
-						<option value="jungle">Jungle</option>
-						<option value="inferno">Inferno</option>
-			    </select>
-			    <button id="save-theme">Save</button>
-				</div>
-		  </div>
-		</div>
-    
-    <footer id="footer">
-    	<!-- setnavandfooter.js adds content here -->
-    </footer>
-	<script>
-    	document.addEventListener("DOMContentLoaded", function (e) {
-        	updateNavAndFooter();
-        });
-    </script>
-  </body>
+            .wrap {height: 100vh; width: 100vw; background: var(--background); position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;}
+            .wrap i {font-size: 60px;}
+            .wrap h2 {margin: 0;}
+            .wrap p {margin-top: 10px; color: var(--text-dull);}
+
+            @media screen and (max-width: 8in) {
+                #wr {font-size: 60px;}
+            }
+            @media screen and (max-width: 5in) {
+                #wr {font-size: 35px;}
+                .wrc {height: 300px;}
+            }
+        </style>
+    </head>
+    <body>
+        <button id="smallnavbtn" onclick="toggleSideNav()"><i class="wicon wicon-bar-menu" id="snbtnsub"></i></button>
+        <nav id="navm">
+            <!-- js! -->
+        </nav>
+        <nav id="sidenav">
+            <!-- js! -->
+        </nav>
+
+        <div class="wrap">
+            <i class="wicon wicon-construction"></i>
+            <h2>This page is under construction.</h2>
+            <p>The settings page is currently being rebuilt during rennovations.</p>
+        </div>
+        <footer id="footer">
+            <!-- js! -->
+        </footer>
+
+        <script>
+            
+        </script>
+        <script src="/assets/text/js/global.js"></script>
+    </body>
 </html>
-
