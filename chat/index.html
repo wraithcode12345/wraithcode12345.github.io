@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Chat</title>
+        <title>Placeholder.</title>
         <link rel="icon" href="/favicon.png">
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -13,10 +13,8 @@
         <style>
             body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
 
-            .wrap {height: 100vh; width: 100vw; background: var(--background); position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;}
-            .wrap i {font-size: 60px;}
-            .wrap h2 {margin: 0;}
-            .wrap p {margin-top: 10px; color: var(--text-dull);}
+            iframe {border: none; width: 100%; height: calc(100vh - 90px); margin-top: 90px;}
+            footer {padding-top: 10px; margin: 0;}
 
             @media screen and (max-width: 8in) {
                 #wr {font-size: 60px;}
@@ -36,11 +34,7 @@
             <!-- js! -->
         </nav>
 
-        <div class="wrap">
-            <i class="wicon wicon-construction"></i>
-            <h2>This page is under construction.</h2>
-            <p>The chat is currently being rebuilt during rennovations.</p>
-        </div>
+        <iframe src="https://go.arena.im/embed/chat/wraithcode/wraithcode-global"></iframe>
         <footer id="footer">
             <!-- js! -->
         </footer>
