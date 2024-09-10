@@ -1,79 +1,89 @@
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>The frontend is being rennovated.</title>
+        <title>Rennovation time!</title>
         <link rel="icon" href="/favicon.png">
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/text/css/wicons.css">
+        <link rel="stylesheet" href="/assets/text/css/global.css">
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+        <script src="/assets/text/js/setnavandfooter.js"></script>
         <style>
-            :root {
-                --background: #061a20;
-                --background-light: #0a2730;
-                --text: #ffffff;
-                --btn-hover: #ffffff0f;
-            }
             body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
-            nav.m {width: 80%; height: 60px; background: #ffffff05; border-radius: 30px; position: fixed; top: 15px; left: 10%; display: flex; transition: 0.15s ease; z-index: 100;}
-            nav.m .right {height: 100%; width: calc(100% - 60px); background: transparent; display: flex; justify-content: right;}
-            #smallnavbtn {height: 40px; width: 40px; margin: 10px; background: transparent; border: none; color: var(--text); font-size: 22px; transition: 0.15s ease; display: flex; position: fixed; top: 0; left: 0; z-index: 101; display: none;}
-            #smallnavbtn:hover {text-shadow: 0 0 10px var(--text); cursor: pointer;}
-            .navbtn {color: var(--text); background: transparent; border: none; height: 40px; margin: 10px; font-weight: bold; padding: 0; padding: 0 12px; border-radius: 20px; transition: background-color 0.15s ease; position: relative; font-family: "Manrope";}
-            .navbtn:hover {cursor: pointer;}
-            .navbtn i {padding-block-end: 0;}
-            .navbtn:after {content: ""; position: absolute; width: calc(100% - 40px); transform: scaleX(0); height: 1px; bottom: 0px; left: 20px; background-color: var(--text); transform-origin: bottom center; transition: transform 0.25s ease-out;}
-            .navbtn:hover::after {transform: scaleX(1); transform-origin: bottom center; box-shadow: 0 0 5px 1px var(--text);}
-            #sidenav {width: 200px; height: 100%; position: fixed; left: -200px; top: 0; background: var(--background); border-radius: 0; transition: left 0.2s ease; z-index: 100; display: none; flex-direction: column; overflow: scroll;}
-            #sidenav button {height: 40px; width: 100%; color: var(--text); background: transparent; border: none; font-size: 25px; font-family: "Manrope"; font-weight: bold; text-align: left; margin-bottom: 10px;}
-            #sidenav button:hover {background: var(--background-light); cursor: pointer;}
-            #sidenav button span {margin-left: 10px;}
 
-            .wrc {height: 100vh; width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; display: flex; align-items: center; justify-content: center;}
+            .wrc {height: calc(100vh - 10px); width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; display: flex; align-items: center; justify-content: center;}
             #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff, 0px 0px 300px #00ff00; width: 100%; text-align: center; margin: 0; padding: 0;}
 
-            @media screen and (max-width: 6in) {
-                .navtext {display: none;}
-                .navbtn {width: 40px; font-size: 22px;}
-                nav.m button {display: flex; justify-content: center; align-items: center;}
-                nav.m button:hover {text-shadow: 0 0 10px var(--text); cursor: pointer;}
-                #wr {font-size: 50px;}
-                .wrc {height: 300px;}
+            .downarrow {font-size: 26px; text-align: center; vertical-align: middle; position: absolute; top: calc(100vh - 80px); left: calc(50% - 15px); animation: ji 2.5s infinite ease; z-index: 10; transition: opacity 0.4s ease;}
+            @keyframes ji {0% {margin-top: 0;} 50% {margin-top: 20px;} 100% {margin-top: 0;}}
+
+            .content {width: calc(100% - 20px); height: auto; background: var(--background-light); padding: 10px; box-shadow: 0 0 10px 20px var(--background-light); position: relative; display: flex; z-index: 4;}
+            .content h2 {margin: 0; text-decoration: underline; font-size: 25px;}
+            .news {width: calc(50% - 5px);}
+            .post {width: 100%; position: relative; display: flex; flex-direction: column; border-bottom: 1px dashed var(--btn-hover);}
+            .post h4 {position: absolute; top: 0; left: 0; margin: 0;}
+            .post h5 {position: absolute; top: 0; right: 10px;}
+            .post p {margin: 0;}
+            .post a {color: var(--text); text-decoration: underline; text-decoration-color: var(--text-dull);}
+            .post a:hover {text-decoration-color: var(--text);}
+            .content p {margin: 0;}
+            .about {width: calc(50% - 6px); margin-left: 5px; border-left: 1px solid var(--btn-hover); padding-left: 5px;}
+
+            @media screen and (max-width: 8in) {
+                #wr {font-size: 60px;}
             }
             @media screen and (max-width: 5in) {
-                nav.m {display: none;}
-                #smallnavbtn {display: block;}
-                #sidenav {display: flex;}
-                .navbtn {display: none;}
                 #wr {font-size: 35px;}
-                .wrc {height: 200px;}
+                .wrc {height: 300px;}
+                .downarrow {display: none;}
+                .content {flex-direction: column;}
+                .news {width: 100%;}
+                .about {width: 100%; border-left: none; margin-left: 0; padding-left: 0;}
             }
         </style>
     </head>
     <body>
-        <button id="smallnavbtn" onclick="toggleSideNav()"><i class="fa fa-bars" id="snbtnsub"></i></button>
-        <nav class="m">
-            <button class="navbtn" onclick="window.location.href='/';"><i class="fa fa-home"></i><br><span class="navtext">Home</span></button>
-            <div class="right">
-                <button class="navbtn" onclick="window.location.href='/axis';"><i class="fa fa-cube"></i><br><span class="navtext">Axis</span></button>
-                <button class="navbtn" onclick="window.location.href='/chat';"><i class="fa fa-comment-dots"></i><br><span class="navtext">Chat</span></button>
-                <button class="navbtn" onclick="window.location.href='/more';"><i class="fa fa-plus"></i><br><span class="navtext">More</span></button>
-                <button class="navbtn" onclick="window.location.href='/settings';"><i class="fa fa-gear"></i><br><span class="navtext">Settings</span></button>
-            </div>
+        <button id="smallnavbtn" onclick="toggleSideNav()"><i class="wicon wicon-bar-menu" id="snbtnsub"></i></button>
+        <nav class="m" id="navm">
+            <!-- js! -->
         </nav>
         <nav id="sidenav">
-            <div style="height: 55px; width: 100%;"></div> <!-- spacer -->
-            <button onclick="window.location.href='/';"><i class="fa fa-home"></i><span>Home</span></button>
-            <button onclick="window.location.href='/axis';"><i class="fa fa-cube"></i><span>Axis</span></button>
-            <button onclick="window.location.href='/chat';"><i class="fa fa-comment-dots"></i><span>Chat</span></button>
-            <button onclick="window.location.href='/more';"><i class="fa fa-plus"></i><span>More</span></button>
-            <button onclick="window.location.href='/settings';"><i class="fa fa-gear"></i><span>Settings</span></button>
+            <!-- js! -->
         </nav>
 
         <div class="wrc">
             <span id="wr"></span>
         </div>
+        <i class="downarrow wicon wicon-downcaret"></i>
+        <div class="content">
+            <div class="news">
+                <h2>News</h2>
+                <div class="post">
+                    <h5>Sep 6 2024</h5>
+                    <h3>New frontend!</h3>
+                    <p>I decided that the old frontend (v2, we do not speak of version 1) was just a little too cluttered and was kind of half-assed, without a lot of thought put into it. I actually put a lot of effort into the design this time, making sure it wasn't too "gimmicky", while still incorporating some cool features.<br>
+                        So... yeah, here's the new site design, I hope you like it!
+                    </p>
+                </div>
+                <div class="post">
+                    <h5>Sep 9 2024</h5>
+                    <h3>New icons!</h3>
+                    <p>For the past 2 years or so, I've been using an icon library called <a href="https://fontawesome.com/search">Font Awesome</a>. It has several styles, it is very extensive and has <b>almost</b> every icon I needed. The best part was that every icon is fully affected by text modifications like color, size, text-shadow, et cetera. I encourage you to check it out if you're starting a project of your own!<br>
+                        It had its limitations, though, and adding custom icons was only available through paid features. Which is why, starting today, I will be making and using my own svg icon library to get the most out of css, and to create a better user experience. It's very small right now, with only about twenty icons, but as the website grows, the library will grow with it. I hope you like the new icons!<br>
+                        <i>Cheers, wraithcode</i>
+                    </p>
+                </div>
+            </div>
+
+            <div class="about">
+                <h2>About</h2>
+                <p>hi im just a rando who makes stuff :D</p>
+            </div>
+        </div>
+        <footer id="footer">
+            <!-- js! -->
+        </footer>
 
         <script>
             var typewriter = new Typewriter('#wr', {
@@ -83,23 +93,15 @@
                 .typeString('wraithcode')
                 .start();
             
-            var sidenav = document.getElementById("sidenav");
-            var snbtn = document.getElementById("smallnavbtn");
-            var snbtnsub = document.getElementById("snbtnsub");
-            sidenav.style.left = "-200px";
-            function toggleSideNav() {
-                if (sidenav.style.left == "-200px") {
-                    sidenav.style.left = "0";
-                    snbtnsub.classList.remove("fa-bars");
-                    snbtnsub.classList.add("fa-xmark");
-                    snbtn.style.left = "140px";
-                } else {
-                    sidenav.style.left = "-200px";
-                    snbtnsub.classList.add("fa-bars");
-                    snbtnsub.classList.remove("fa-xmark");
-                    snbtn.style.left = "0";
-                }
-            }   
+                window.addEventListener('scroll', function() {
+                    const downArrow = document.querySelector('.downarrow');
+                    if (window.scrollY > 20) {
+                        downArrow.style.opacity = '0';
+                    } else {
+                        downArrow.style.opacity = '1';
+                    }
+                });
         </script>
+        <script src="/assets/text/js/global.js"></script>
     </body>
 </html>
