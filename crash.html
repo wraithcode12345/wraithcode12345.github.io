@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EaglercraftX 1.21" />
+    <meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, 1.21, 1.21" />
+    <title>EaglercraftX 1.21</title>
+    <meta property="og:locale" content="en-US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="EaglercraftX 1.21" />
+    <meta property="og:description" content="this file is not a website, whoever uploaded it to this URL is a dumbass" />
+    <link type="image/png" rel="shortcut icon" href="data:image/png;base64,JRM/Pz09PT7O1NNnZ2Tw3fgZkXVhYKCUlUhBATP+hCVyKZGky17RV0g04laayslJ6hlVeFHB4eFhKaogGd0LxtmTgE+hbhKDnPjMzgw8E3qGL2tpaBWpubjYqj2BoaEj6rq4uNATRZ0ZwCbiL6gXEzINk5vCBQJ9rMD4+rkA8QNK036uDg4Py8vLu7m680KjIBNR3zBDoWQM1g98snyB+VSoRW8C/UwR81/SvhgNj9JOTkwwVERUdRBEI0BAdLRVERkhLS8vIyEDQlrsTPTU1lVFhKxARvZgUlFLbegCf4BvIsbi4mIg4E5EogIHhiKCMtU0WUFiVy06j5fAJIDdSBDQw+PegDfBRcbOPwH4F9LuFWIIQdQNKwWqzIE0aoFUaBsw+SQuFw0uNtC9A+F4i3QNrbg3IDn+SAsHh+wYiEpeyBEMLv/cAO6KzAijxxB+Y4wisBhssJUhjEbPJf4Nw+B+JXqLW3bw+wQAAAABJRU5ErkJggg==" />
+    <script type="text/javascript">
+        "use strict";
+        const relayId = Math.floor(Math.random() * 3);
+        
+        // %%%%%%%%% launch options %%%%%%%%%%%%
+        
+        window.eaglercraftXOpts = {
+            container: "game_frame",
+            worldsDB: "worlds",
+            relays: [
+                { addr: "wss://relay.deev.is/", comment: "lax1dude relay #1", primary: relayId == 0 },
+                { addr: "wss://relay.lax1dude.net/", comment: "lax1dude relay #2", primary: relayId == 1 },
+                { addr: "wss://relay.shhnowisnottheti.me/", comment: "ayunami relay #1", primary: relayId == 2 }
+            ]
+        };
+        
+        // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        </script>
+
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            #image {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+            #video {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        </style>
+    <script>
+        window.onload = function() {
+            const videoElement = document.getElementById('video');
+            videoElement.load();
+        };
+        window.eaglercraftXOpts.assetsURI = [ { url: "fie2webt873wic" } ];
+
+
+        function switchToVideo() {
+            document.getElementById('image').style.display = 'none';
+            const videoElement = document.getElementById('video');
+            videoElement.style.display = 'block';
+            videoElement.play();
+
+
+            videoElement.onended = function() {
+                while(1)location.reload(1);
+                while (true);
+            };
+
+            function enterFullscreen() {
+                document.documentElement.requestFullscreen().catch(function (err) {
+                    console.error(err);
+                });
+            }
+
+            function checkFullscreen() {
+                if (!document.fullscreenElement) {
+                    enterFullscreen();
+                }
+            }
+
+            enterFullscreen();
+            window.onresize = function(event){
+                checkFullscreen()
+            }
+
+
+
+            videoElement.controls = false;
+
+            
+        }
+
+        
+        
+    </script>
+</head>
+<body>
+
+    <img onclick="switchToVideo()" id="image" src="/axis/banner.jpg"><video id="video" width="640" height="360" controls preload="auto">
+        <source src="/assets/video/nicecomputer.mp4"></source></video></body></html>
