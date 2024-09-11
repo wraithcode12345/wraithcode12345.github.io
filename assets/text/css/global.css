@@ -15,6 +15,7 @@ nav.m .right {height: 100%; width: calc(100% - 55px); padding-right: 5px; backgr
 .navbtn {color: var(--text); filter: drop-shadow(0 0 4px var(--background)); background: transparent; border: none; height: 40px; margin: 10px 5px; font-weight: bold; padding: 0 12px; border-radius: 20px; transition: background-color 0.15s ease, filter 0.2s ease; position: relative; font-family: "Manrope";}
 .navbtn:hover {cursor: pointer;}
 .navbtn i {padding-block-end: 0;}
+.navbtn .wicon, .smallnavtbn .wicon {height: 1.2rem; width: 1.2rem;}
 .navbtn:after {content: ""; position: absolute; width: calc(100% - 40px); transform: scaleX(0); height: 1px; bottom: 0px; left: 20px; background-color: var(--text); transform-origin: bottom center; transition: transform 0.25s ease-out;}
 .navbtn:hover::after {transform: scaleX(1); transform-origin: bottom center; box-shadow: 0 0 5px 1px var(--text);}
 #sidenav {width: 200px; height: 100%; position: fixed; left: -200px; top: 0; background: var(--background); border-radius: 0; transition: left 0.2s ease; z-index: 100; display: none; flex-direction: column; overflow: scroll;}
