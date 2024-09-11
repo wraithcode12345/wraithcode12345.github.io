@@ -35,6 +35,7 @@ function updateNavAndFooter() {
             <a href="https://open.spotify.com/user/31ssxskpd7xxb24mhzvbwlwgnv6u"><i class="wicon wicon-spotify"></i> Spotify</a><br>
             <a href="https://wraithcode.straw.page"><i class="wicon wicon-strawpage"></i> Straw.page</a>
         </div>
+        <a class="crashlink" onclick="window.location.href='/crash.html';">Eagler 1.21.3 (think fast)</a>
     `;
 }
 document.addEventListener("DOMContentLoaded", updateNavAndFooter)
