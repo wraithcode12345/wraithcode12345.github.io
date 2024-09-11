@@ -30,6 +30,8 @@ footer .ext-links {width: 33%; background: #ffffff0f; margin-top: 25px;}
 footer .ext-links p {margin: 0;}
 footer .ext-links a {color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 5px;}
 footer .ext-links a:hover {text-decoration: underline;}
+footer .crashlink {color: var(--text); margin: 0; position: absolute; bottom: 10px; right: 10px; text-shadow: 0 0 5px var(--text-dull); transition: text-shadow 0.2s ease;}
+footer .crashlink:hover {cursor: pointer; text-shadow: 0 0 10px var(--text-dull);}
 
 @media screen and (max-width: 8in) {
     .navtext {display: none;}
