@@ -159,7 +159,7 @@
                 // Handle messages from the new tab
                 window.addEventListener('message', function(event) {
                     if (event.data === 'variableChanged') {
-                        newTab.location.href = `/${id}`;
+                        newTab.location.href = `/g/${id}`;
                     }
                 }, false);
             }
