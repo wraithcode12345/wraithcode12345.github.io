@@ -69,6 +69,11 @@
                     <p>Cluster Rush</p>
                     <button onclick="launchGame('Cluster Rush', 'clusterrush')">Launch</button>
                 </div>
+                <div class="game" data-name="Bit Planes">
+                    <img src="/assets/image/bitplanes.png">
+                    <p>Bit Planes</p>
+                    <button onclick="launchGame('Bit Planes', 'g/bitplanes')">Launch</button>
+                </div>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSdPYkxyycGpLgrK4mE-xBtcjKkm6opMpZxyrKUQKU9PSv_6pw/viewform?usp=sf_link" style="color: var(--text); font-size: 13px;">Game Request Form</a>
             </div>
         </div>
@@ -159,7 +164,7 @@
                 // Handle messages from the new tab
                 window.addEventListener('message', function(event) {
                     if (event.data === 'variableChanged') {
-                        newTab.location.href = `/g/${id}`;
+                        newTab.location.href = `/${id}`;
                     }
                 }, false);
             }
