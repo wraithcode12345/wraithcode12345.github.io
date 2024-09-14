@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+</head>
+<body>
+    <h1>YouTube Video Downloader</h1>
+    <input id='videoidinput' placeholder='Video ID'>
+    <button id="downloadButton">Download Video</button>
+    <script>
+        document.getElementById('downloadButton').addEventListener('click', async () => {
+            const videoUrl = 'http://www.youtube.com/watch?v=' + document.getElementById('videoidinput).value;
+            const proxyUrl = 'https://api.allorigins.win/get?url=';
+
+            try {
+                // Fetch the HTML content of the YouTube page via proxy
+                const response = await fetch(proxyUrl + encodeURIComponent(videoUrl));
+                const data = await response.json();
+                const html = data.contents;
+
+                // Parse the HTML to extract the swfArgs variable
+                const swfArgsMatch = html.match(/var swfArgs = ({.*?});/);
+                if (swfArgsMatch) {
+                    const swfArgs = JSON.parse(swfArgsMatch[1]);
+                    const sessionToken = swfArgs.t;
+                    var videoID = document.getElementById('videoidinput').value;
+
+                    if (sessionToken) {
+                        // Construct the download URL
+                        const downloadUrl = `http://www.youtube.com/get_video?video_id=${videoID}&t=${sessionToken}`;
+
+                        // Create a link element and trigger the download
+                        const link = document.createElement('a');
+                        link.href = downloadUrl;
+                        link.download = 'video.flv';  // Change filename as needed
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    } else {
+                        alert('Session token not found.');
+                    }
+                } else {
+                    alert('swfArgs variable not found.');
+                }
+            } catch (error) {
+                alert('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
