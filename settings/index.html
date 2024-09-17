@@ -16,7 +16,7 @@
             .wrap {height: 100vh; width: 100vw; background: var(--background); position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;}
             .wrap i {font-size: 60px;}
             .wrap h2 {margin: 0;}
-            .wrap p {margin-top: 10px; color: var(--text-dull);}
+            .wrap p {margin-top: 10px; color: var(--text-dull); display: none;}
 
             @media screen and (max-width: 8in) {
                 #wr {font-size: 60px;}
@@ -37,16 +37,28 @@
         </nav>
 
         <div class="wrap">
-            <i class="wicon wicon-construction"></i>
-            <h2>This page is under construction.</h2>
-            <p>The settings page is currently being rebuilt during rennovations.</p>
+            <h2>Tab Cloak</h2>
+            <input id="cloakTitle">
+            <input id="cloakFavicon">
+            <button onclick="setCloak()">Set</button>
+            <p id="reloadTo">Reload to apply changes.</p>
         </div>
         <footer id="footer">
             <!-- js! -->
         </footer>
 
         <script>
-            
+            function setCloak() {
+                var cloakTitle = document.getElementById("cloakTitle").value;
+                var cloakFavicon = document.getElementById("cloakFavicon").value;
+                if (!cloakTitle.trim() == "" && !cloakFavicon.trim() == "") {
+                    localStorage.setItem("wcCloak", `${cloakTitle}, ${cloakFavicon}`)
+                    document.getElementById("reloadTo").style.display = "block";
+                } else {
+                    document.getElementById("reloadTo").textContent = "Blank values are not permitted.";
+                    document.getElementById("reloadTo").style.display = "block";
+                }
+            }
         </script>
         <script src="/assets/text/js/global.js"></script>
     </body>
