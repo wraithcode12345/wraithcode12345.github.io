@@ -1,46 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>404</title>
+        <link rel="icon" href="/favicon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/text/css/wicons.css">
+        <link rel="stylesheet" href="/assets/text/css/global.css">
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+        <script src="/assets/text/js/setnavandfooter.js"></script>
+        <style>
+            body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
 
-<html>   
-  <head>
-    <title>wraithcode - 404</title>
-    <link rel="icon" href="/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <style>
-      body {margin: 0; font-family: "Manrope"; color: #ffffff; background: radial-gradient(#212121, #000000); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; width: 100vw;}
-      
-      h1 {font-size: 70px; margin: 0; position: relative; z-index: 1; color: #ffa400;}
-      p {margin: 0; position: relative; z-index: 1; color: #dd8455;}
-      a {color: #dddddd; margin-top: 10px;}
-    </style>
-  </head>
-  <body>
-	<h1>404</h1>
-    <p id="message">|</p>
-    <a href="/">Go Home</a>
-      <script>
-      	var messages = [
-        "Looks like somebody got lost :)",
-        "How did <strong>you</strong> get here?",
-        "Error: The requested URL was not found on this server.",
-        "It seems this page is on a permanent vacation.",
-        "You’ve found a page that doesn’t exist. Impressive, but unhelpful.",
-        "The page you requested is hiding from you.",
-        "Looks like the page you’re looking for wandered off.",
-        "You’ve found our 404 page. Unfortunately, it’s the wrong treasure.",
-        "The page you're looking for went out for a coffee and never came back.",
-        "There is no secret page I promise",
-	"ಠ_ʖಠ"
-      ];
-      function setRandomMessage() {
-        var randomIndex = Math.floor(Math.random() * messages.length);
-        var motdElement = document.getElementById("message");
-        if (motdElement) {
-          motdElement.innerHTML = messages[randomIndex];
-        } else {
-          console.error("Element with id 'motd' not found.");
-        }
-      }
-      window.onload = setRandomMessage;
-      </script>
-  </body>
+            .wrc {height: calc(100vh - 10px); width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; display: flex; align-items: center; justify-content: center;}
+            #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff, 0px 0px 300px #00ff00; width: 100%; text-align: center; margin: 0; padding: 0;}
+
+            .downarrow {font-size: 26px; text-align: center; vertical-align: middle; position: absolute; top: calc(100vh - 80px); left: calc(50% - 15px); animation: ji 2.5s infinite ease; z-index: 10; transition: opacity 0.4s ease;}
+            @keyframes ji {0% {margin-top: 0;} 50% {margin-top: 20px;} 100% {margin-top: 0;}}
+
+            .content {width: calc(100% - 20px); height: auto; background: var(--background-light); padding: 10px; box-shadow: 0 0 10px 20px var(--background-light); position: relative; display: flex; z-index: 4;}
+            .content h2 {margin: 0; text-decoration: underline; font-size: 25px;}
+            .news {width: calc(50% - 5px);}
+            .post {width: 100%; position: relative; display: flex; flex-direction: column; border-bottom: 1px dashed var(--btn-hover);}
+            .post h4 {position: absolute; top: 0; left: 0; margin: 0;}
+            .post h5 {position: absolute; top: 0; right: 10px;}
+            .post p {margin: 0;}
+            .post a {color: var(--text); text-decoration: underline; text-decoration-color: var(--text-dull);}
+            .post a:hover {text-decoration-color: var(--text);}
+            .content p {margin: 0;}
+            .about {width: calc(50% - 6px); margin-left: 5px; border-left: 1px solid var(--btn-hover); padding-left: 5px;}
+
+            @media screen and (max-width: 8in) {
+                #wr {font-size: 60px;}
+            }
+            @media screen and (max-width: 5in) {
+                #wr {font-size: 35px;}
+                .wrc {height: 300px;}
+                .downarrow {display: none;}
+                .content {flex-direction: column;}
+                .news {width: 100%;}
+                .about {width: 100%; border-left: none; margin-left: 0; padding-left: 0;}
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrc">
+            <span id="wr"></span>
+        </div>
+        <footer id="footer">
+            <!-- js! -->
+        </footer>
+
+        <script>
+            var typewriter = new Typewriter('#wr', {
+                cursor: "_",
+            });
+            typewriter
+                .typeString('404 Page Not Found')
+                .start();
+        </script>
+        <script src="/assets/text/js/global.js"></script>
+    </body>
 </html>
