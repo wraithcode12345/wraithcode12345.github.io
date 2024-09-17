@@ -14,8 +14,9 @@ document.write(`
     .input-wrap {position: relative;}
     button {background: transparent; border: none; border-radius: 50%; height: 32px; width: 32px; color: var(--text); font-size: 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; margin-left: 10px; transition: background-color 0.2s ease;}
     button:hover {cursor: pointer; background: #ffffff22;}
-    .wrapper {background: #ffffff22; aspect-ratio: 17/9; max-height: calc(100vh - 100px); overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center;}
+    .wrapper {background: #ffffff22; aspect-ratio: 17/9; max-height: calc(100vh - 100px); overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; position: relative;}
     #yt-embed {background: #ffffff22; height: 100%; aspect-ratio: 16/9;}
+    #fullscreen-btn {position: absolute; bottom: 5; right: 5; font-size: 24px;}
     
     .container {max-width: 800px; margin: 0 auto; padding: 20px; background: #ffffff22; margin: 10px auto;}
     .container h3 {margin: 0; margin-bottom: 10px; color: var(--text);}
@@ -47,7 +48,10 @@ document.write(`
           </nav>
         
           <div class="wrapper">
-            <embed src="" id="yt-embed">
+            <embed src="" id="yt-embed" allow="fullscreen">
+            <button onclick="attemptFullscreen()" id="fullscreen-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7 14H5v5h5v-2H7zm-2-4h2V7h3V5H5zm12 7h-3v2h5v-5h-2zM14 5v2h3v3h2V5z"/></svg>
+            </button>
           </div>
         
           <div class="container">
@@ -92,6 +96,10 @@ function setVideoFromUrl() {
     let embed = document.getElementById('yt-embed');
     embed.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
   }
+}
+
+function attemptFullscreen() {
+  document.getElementById('yt-embed').requestFullscreen();
 }
 
 // Set video on page load if ?v parameter exists
