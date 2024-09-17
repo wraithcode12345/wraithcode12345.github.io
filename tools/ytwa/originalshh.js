@@ -72,9 +72,30 @@ function getVid() {
   let videoId = ytInput.includes('youtube.com') || ytInput.includes('youtu.be') ?
     ytInput.split('v=')[1]?.split('&')[0] || ytInput.split('be/')[1] :
     ytInput;
+
+  // Update the URL parameter
+  let newUrl = new URL(window.location.href);
+  newUrl.searchParams.set('v', videoId);
+  window.history.replaceState({}, '', newUrl);
+
+  // Set the video
   let embed = document.getElementById('yt-embed');
   embed.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
 }
+
+function setVideoFromUrl() {
+  let urlParams = new URLSearchParams(window.location.search);
+  let videoId = urlParams.get('v');
+
+  if (videoId) {
+    document.getElementById('yt-id').value = videoId;
+    let embed = document.getElementById('yt-embed');
+    embed.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+  }
+}
+
+// Set video on page load if ?v parameter exists
+window.onload = setVideoFromUrl;
 document.getElementById('yt-id').addEventListener("keypress", function(event) {
   if (event.keyCode == 13) {
     event.preventDefault();
