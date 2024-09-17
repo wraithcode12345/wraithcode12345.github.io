@@ -44,7 +44,23 @@ var sidenav = document.getElementById("sidenav");
             }
             elem.innerHTML = "Status: <span style='color: " + col + "; text-shadow: 0px 0px 10px " + col + "'>" + STATUS + "</span>";
          }
+         function cloakTab() {
+             if (localStorage.getItem("wcCloak")) {
+                 var a = localStorage.getItem("wcCloak").split(", ");
+                 document.head.title = a[1];
+                 var favicon = document.querySelector("link[rel~='icon']");
+                 if (!favicon) {
+                     favicon = document.createElement('link');
+                     favicon.rel = 'icon';
+                     document.head.appendChild(favicon);
+                 }
+                 favicon.href = a[2];
+             } else {
+                 return;
+             }
+         }
          document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("footerYear").innerText = new Date().getFullYear();
             updateStatus(document.getElementById("status"));
+            cloakTab();
         });
