@@ -11,24 +11,10 @@
         <style>
             body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
 
-            .wrc {font-family: "Pixelify Sans"; color: #00ff00; height: calc(100vh - 10px); width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; display: flex; align-items: center; justify-content: center;}
+            .wrc {font-family: "Pixelify Sans"; color: #00ff00; height: calc(100vh - 10px); width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;}
             .h {font-size: 80px; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff, 0px 0px 300px #00ff00; width: 100%; text-align: center; margin: 0; padding: 0;}
             #wr {font-size: 26px; color: #00b000; text-shadow: 0px 0px 8px #00b000, 0px 0px 40px #cab0ca, 0px 0px 120px #00b0b0, 0px 0px 240px #00b000; width: 100%; text-align: center; margin: 0; padding: 0;}
-
-            .downarrow {font-size: 26px; text-align: center; vertical-align: middle; position: absolute; top: calc(100vh - 80px); left: calc(50% - 15px); animation: ji 2.5s infinite ease; z-index: 10; transition: opacity 0.4s ease;}
-            @keyframes ji {0% {margin-top: 0;} 50% {margin-top: 20px;} 100% {margin-top: 0;}}
-
-            .content {width: calc(100% - 20px); height: auto; background: var(--background-light); padding: 10px; box-shadow: 0 0 10px 20px var(--background-light); position: relative; display: flex; z-index: 4;}
-            .content h2 {margin: 0; text-decoration: underline; font-size: 25px;}
-            .news {width: calc(50% - 5px);}
-            .post {width: 100%; position: relative; display: flex; flex-direction: column; border-bottom: 1px dashed var(--btn-hover);}
-            .post h4 {position: absolute; top: 0; left: 0; margin: 0;}
-            .post h5 {position: absolute; top: 0; right: 10px;}
-            .post p {margin: 0;}
-            .post a {color: var(--text); text-decoration: underline; text-decoration-color: var(--text-dull);}
-            .post a:hover {text-decoration-color: var(--text);}
-            .content p {margin: 0;}
-            .about {width: calc(50% - 6px); margin-left: 5px; border-left: 1px solid var(--btn-hover); padding-left: 5px;}
+            .wrc a {font-size: 20px; color: #00d000; text-shadow: 0px 0px 6px #00d000, 0px 0px 30px #cad0ca, 0px 0px 90px #00d0d0, 0px 0px 190px #00d000;}
 
             @media screen and (max-width: 8in) {
                 .h {font-size: 60px;}
