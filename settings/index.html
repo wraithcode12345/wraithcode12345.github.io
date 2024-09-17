@@ -35,7 +35,7 @@
         <nav id="sidenav">
             <!-- js! -->
         </nav>
-
+        <!--
         <div class="wrap">
             <h2>Tab Cloak</h2>
             <input id="cloakTitle" placeholder="Title">
@@ -43,6 +43,7 @@
             <button onclick="setCloak()">Set</button>
             <p id="reloadTo">Reload to apply changes.</p>
         </div>
+        -->
         <footer id="footer">
             <!-- js! -->
         </footer>
@@ -52,7 +53,8 @@
                 var cloakTitle = document.getElementById("cloakTitle").value;
                 var cloakFavicon = document.getElementById("cloakFavicon").value;
                 if (!cloakTitle.trim() == "" && !cloakFavicon.trim() == "") {
-                    localStorage.setItem("wcCloak", `${cloakTitle}, ${cloakFavicon}`)
+                    localStorage.setItem("wcCloak", `${cloakTitle}, ${cloakFavicon}`);
+                    document.getElementById("reloadTo").textContent = "Reload to apply changes.";
                     document.getElementById("reloadTo").style.display = "block";
                 } else {
                     document.getElementById("reloadTo").textContent = "Blank values are not permitted.";
