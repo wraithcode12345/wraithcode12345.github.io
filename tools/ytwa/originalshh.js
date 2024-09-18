@@ -34,6 +34,11 @@ document.write(`
     .user-info img {border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;}
     .channel-title {color: var(--text); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;}
     .date {color: var(--text-dull); font-size: 12px; margin-top: -2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;}
+
+    #pagination {display: flex; width: 100%; align-items: center; justify-content: center; margin-top: 20px;}
+    #pagination button {margin: 0 10px;}
+    #pagination button[disabled] {color: var(--text-dull);}
+    #pagenumber {margin: 0; color: var(--text-dull);}
     </style>
         <nav>
             <div class="input-wrap">
@@ -49,7 +54,7 @@ document.write(`
         
           <div class="wrapper">
             <embed src="" id="yt-embed" allow="fullscreen">
-            <button onclick="attemptFullscreen()" id="fullscreen-btn">
+            <button onclick="attemptToggleFullscreen()" id="fullscreen-btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7 14H5v5h5v-2H7zm-2-4h2V7h3V5H5zm12 7h-3v2h5v-5h-2zM14 5v2h3v3h2V5z"/></svg>
             </button>
           </div>
@@ -68,6 +73,11 @@ document.write(`
                 </button>
             </div>
             <ul id="results" class="results"></ul>
+            <div id="pagination">
+              <button id="prevPageBtn" onclick="prevPage()" disabled><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M168.49 199.51a12 12 0 0 1-17 17l-80-80a12 12 0 0 1 0-17l80-80a12 12 0 0 1 17 17L97 128Z"/></svg></button>
+              <span id="pageNumber">1</span>  <!-- Display the current page number -->
+              <button id="nextPageBtn" onclick="nextPage()" disabled><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="m184.49 136.49l-80 80a12 12 0 0 1-17-17L159 128L87.51 56.49a12 12 0 1 1 17-17l80 80a12 12 0 0 1-.02 17"/></svg></button>
+            </div>
           </div>
     `);
 
@@ -98,9 +108,28 @@ function setVideoFromUrl() {
   }
 }
 
-function attemptFullscreen() {
-  document.getElementById('yt-embed').requestFullscreen();
+function attemptToggleFullscreen() {
+  const ytEmbed = document.getElementById('yt-embed');
+
+  if (!document.fullscreenElement) {
+    ytEmbed.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 }
+
+document.addEventListener('keydown', function(event) {
+  if (event.target.id !== 'searchQuery' && event.target.id !== 'yt-id') {
+    const key = event.key.toLowerCase();
+    if (key === 'f') {
+      attemptToggleFullscreen();
+    } else if (key === 'escape') {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    }
+  }
+});
 
 // Set video on page load if ?v parameter exists
 window.onload = setVideoFromUrl;
@@ -112,18 +141,36 @@ document.getElementById('yt-id').addEventListener("keypress", function(event) {
   }
 });
 
-async function searchVideos() {
+let nextPageToken = '';
+let prevPageToken = '';
+let currentPage = 1; // Track the current page number
+const resultsPerPage = 30; // Number of results per page
+
+async function searchVideos(pageToken = '') {
   const query = document.getElementById('searchQuery').value;
   const aK = atob('QUl6YVN5QUliOFJjLUtvOGZWeDJnLTFvZGxmeklkVl8weHVINjZj');
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${encodeURIComponent(query)}&type=video&key=${aK}`;
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${resultsPerPage}&q=${encodeURIComponent(query)}&type=video&key=${aK}&pageToken=${pageToken}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
+    nextPageToken = data.nextPageToken || '';
+    prevPageToken = data.prevPageToken || '';
     displayResults(data.items);
+    updatePaginationButtons();
+    updatePageNumber(); // Update the page number display
   } catch (error) {
     alert('Caught error fetching YouTube data: ', error);
   }
+}
+
+function updatePaginationButtons() {
+  document.getElementById('nextPageBtn').disabled = !nextPageToken;
+  document.getElementById('prevPageBtn').disabled = !prevPageToken;
+}
+
+function updatePageNumber() {
+  document.getElementById('pageNumber').innerText = `${currentPage}`;
 }
 
 async function getChannelDetails(channelId) {
@@ -169,32 +216,44 @@ async function displayResults(items) {
     const channelId = item.snippet.channelId;
 
     const profilePictureUrl = await getChannelDetails(channelId);
-
-    // Fetch the video length
     const duration = await getVideoDetails(videoId);
-    const videoLength = parseDuration(duration); // This is in ISO 8601 format, so it needs to be parsed if you want it in hours, minutes, seconds
+    const videoLength = parseDuration(duration);
 
     const li = document.createElement('li');
     li.classList.add('result-item');
 
     li.innerHTML = `
-            <img class="thumbnail" src="${thumbnailUrl}" alt="${title}" width="120">
-            <div class="details">
-              <a onclick="document.getElementById('yt-id').value='${videoId}'; getVid(); window.scrollTo({ top: 0, behavior: 'smooth' });" target="_blank" class="title" title="${title}">${title}</a>
-              <span class="description">${description}</span>
-              <div class="user-info">
-                <img src="${profilePictureUrl}" alt="${channelTitle}'s profile picture">
-                <div>
-                  <span class="channel-title">${channelTitle}</span><br>
-                  <span class="date">Published on: ${publishedAt} | <b>${videoLength}</b></span>
-                </div>
-              </div>
-            </div>
-          `;
-
+      <img class="thumbnail" src="${thumbnailUrl}" alt="${title}" width="120">
+      <div class="details">
+        <a onclick="document.getElementById('yt-id').value='${videoId}'; getVid(); window.scrollTo({ top: 0, behavior: 'smooth' });" target="_blank" class="title" title="${title}">${title}</a>
+        <span class="description">${description}</span>
+        <div class="user-info">
+          <img src="${profilePictureUrl}" alt="${channelTitle}'s profile picture">
+          <div>
+            <a href="/channel/?u=${channelId}" class="channel-title">${channelTitle}</a><br>
+            <span class="date">Published on: ${publishedAt} | <b>${videoLength}</b></span>
+          </div>
+        </div>
+      </div>
+    `;
     resultsContainer.appendChild(li);
   }
 }
+
+function nextPage() {
+  if (nextPageToken) {
+    searchVideos(nextPageToken);
+    currentPage++; // Increment the current page number
+  }
+}
+
+function prevPage() {
+  if (prevPageToken) {
+    searchVideos(prevPageToken);
+    currentPage--; // Decrement the current page number
+  }
+}
+
 document.getElementById("searchQuery").addEventListener("keypress", function(event) {
   if (event.keyCode == 13) {
     event.preventDefault();
