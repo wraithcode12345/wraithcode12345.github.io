@@ -23,7 +23,8 @@ nav.m .right {height: 100%; width: calc(100% - 55px); padding-right: 5px; backgr
 #sidenav button:hover {box-shadow: 0 0 10px 2px var(--background-lighter); cursor: pointer;}
 #sidenav button span {margin-left: 10px;}
 
-footer {width: calc(100% - 20px); padding: 10px; padding-top: 40px; background: var(--dark); position: relative; z-index: 3; margin: 0;}
+footer {width: calc(100% - 20px); padding: 10px; background: var(--dark); position: relative; z-index: 3; margin: 0;}
+footer .top {height: 24px; width: 100%; background: #ffffff1f;}
 footer h5 {margin: 0; font-size: 15px; position: absolute;}
 footer h5#status {right: 10px; top: 40px;}
 footer .ext-links {width: 33%; background: #ffffff0f; margin-top: 25px;}
