@@ -24,6 +24,7 @@ function updateNavAndFooter() {
             
     const footer = document.getElementById("footer");
     footer.innerHTML += `
+        <div class="top"></div>
         <h5>Made with <span class="wicon wicon-coffee"></span> by wraithcode <i class="wicon wicon-copyright"></i> <span id="footerYear">****</span></h5>
         <h5 id="status">Status: <span>LOADING</span></h5>
         <div class="ext-links">
