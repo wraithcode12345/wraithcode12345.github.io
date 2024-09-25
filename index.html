@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,12 +14,16 @@
             body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
 
             .wrc {height: calc(100vh - 10px); width: 100vw; background: linear-gradient(180deg, var(--background), var(--background-light)); position: relative; display: flex; align-items: center; justify-content: center;}
-            #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff, 0px 0px 300px #00ff00; width: 100%; text-align: center; margin: 0; padding: 0;}
-            .separator {--width: 75%; filter: drop-shadow(0 0 2px var(--text)); display: flex; align-items: center; justify-content: space-between; width: var(--width); z-index: 4; position: absolute; top: calc(100vh - 15px); left: calc((100% - var(--width)) / 2);}
+            .circle {box-sizing: border-box; filter: drop-shadow(0 0 8px var(--background-lighter)); width: 150px; height: 150px; border-width: 4px; border-style: solid; border-color: transparent var(--background-lighter); border-radius: 50%; animation: rotating 4s linear infinite;}
+            .circle::after {content: ""; position: absolute; box-sizing: border-box; top: 6px; left: 6px; width: 130px; height: 130px; border: 1px solid var(--background-light); border-radius: 50%; background-image: url("https://lh3.googleusercontent.com/-3tDDLblJVgI/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfkmYdU_3igF5C7VAw36qoSQAv6wjOA/s256-c/photo.jpg"); background-size: cover; animation: 4s rotating infinite reverse linear;}
+            @keyframes rotating {from {transform: rotate(0deg);} to {transform: rotate(360deg);}}
+            #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff; width: 100%; text-align: center; margin: 0; padding: 0;}
+            .separator {--width: 75%; animation: sepgrow 1s ease; filter: drop-shadow(0 0 2px var(--text)); display: flex; align-items: center; justify-content: space-between; width: var(--width); z-index: 6; position: absolute; top: calc(100vh - 15px); left: calc((100% - var(--width)) / 2);}
             .separator::before, .separator::after { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--text-dull); position: absolute;}
             .separator::before {left: -8px;}
             .separator::after {right: -8px;}
             .separator {border-bottom: 1px dashed var(--text-dull); height: 0;}
+            @keyframes sepgrow {from {transform: scaleX(0);} to {transform: scaleX(calc(var(--width) * 1.33));}}
 
             .downarrow {font-size: 26px; text-align: center; vertical-align: middle; position: absolute; top: calc(100vh - 80px); left: calc(50% - 15px); animation: ji 2.5s infinite ease; z-index: 10; transition: opacity 0.4s ease;}
             @keyframes ji {0% {margin-top: 0;} 50% {margin-top: 20px;} 100% {margin-top: 0;}}
@@ -26,7 +31,7 @@
             .content {width: calc(100% - 20px); height: auto; background: var(--background-light); padding: 10px; position: relative; display: flex; z-index: 4;}
             .content h2 {margin: 0; text-decoration: underline; font-size: 25px;}
             .news {width: calc(50% - 5px);}
-            .post {width: 100%; position: relative; display: flex; flex-direction: column; border-bottom: 1px dashed var(--btn-hover);}
+            .post {width: 100%; position: relative; display: flex; flex-direction: column; border-bottom: 1px dashed var(--btn-hover); padding-bottom: 10px;}
             .post h4 {position: absolute; top: 0; left: 0; margin: 0;}
             .post h5 {position: absolute; top: 0; right: 10px;}
             .post p {margin: 0;}
@@ -36,7 +41,7 @@
             .about {width: calc(50% - 6px); margin-left: 5px; border-left: 1px solid var(--btn-hover); padding-left: 5px;}
 
             @media screen and (max-width: 8in) {
-                #wr {font-size: 60px;}
+                #wr {font-size: 60px; transform: none;}
             }
             @media screen and (max-width: 5in) {
                 #wr {font-size: 35px;}
@@ -84,7 +89,7 @@
                     <h5>Sep 11 2024</h5>
                     <h3>Added 1v1.lol</h3>
                     <p>I know you guys have been asking for 1v1.lol for a long time, and it's finally here! Sorry it took so long, the javascript Unity build was very hard to find.<br>
-                        The games page isn't finished yet (or started tbh >_<) so y'all can just play it at <a href="/1v1lol">/1v1lol</a>. Also I added <a href="/justfall">Just Fall</a> because it was in the same place as the 1v1.lol source code so why not?<br>
+                        The games page isn't finished yet (or started tbh &gt;_&lt;) so y'all can just play it at <a href="/1v1lol">/1v1lol</a>. Also I added <a href="/justfall">Just Fall</a> because it was in the same place as the 1v1.lol source code so why not?<br>
                         Have fun! <i class="wicon wicon-cat-face"></i>
                         (Edit: 9/12/24 created <a href="/games">games page</a>.)
                     </p>
@@ -94,6 +99,7 @@
             <div class="about">
                 <h2>About</h2>
                 <p>hi im just a rando who makes stuff &nbsp;<i class="wicon  wicon-cat-face"></i></p>
+                <div class="circle"></div>
             </div>
         </div>
         <footer id="footer">
