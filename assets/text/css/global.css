@@ -31,6 +31,7 @@
     footer .section {width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--background-light); border-radius: 8px; padding: 8px;}
     footer .section p {margin: 0; margin-bottom: 10px;}
     footer a {display: flex; align-items: center; margin-bottom: 5px; color: var(--text-dull);}
+    footer a:hover {cursor: url('/pointer.svg'), pointer;}
     footer .leftwrapper {background: transparent; display: flex; width: calc(66.66% + 7.5px); gap: 15px;}
     footer .rightwrapper {background: transparent; display: flex; flex-direction: column; width: calc(33.33% - 7.5px);}
     footer .rightwrapper .section {width: calc(100% - 15px);}
