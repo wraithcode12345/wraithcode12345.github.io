@@ -24,17 +24,37 @@ function updateNavAndFooter() {
             
     const footer = document.getElementById("footer");
     footer.innerHTML += `
-        <div class="top"></div>
-        <h5>Made with <span class="wicon wicon-coffee"></span> by wraithcode <i class="wicon wicon-copyright"></i> <span id="footerYear">****</span></h5>
-        <h5 id="status">Status: <span>LOADING</span></h5>
-        <div class="ext-links">
-            <p>Visit my:</p>
-            <a href="https://github.com/wraithcode2018"><i class="wicon wicon-github"></i> Github</a><br>
-            <a href="https://app.revolt.chat"><span class="wicon wicon-revoltchat"></span> Revolt</a><br>
-            <a href="https://www.reddit.com/user/wraithcode18/"><i class="wicon wicon-reddit"></i> Reddit</a><br>
-            <a href="https://youtube.com/@wraithcoding"><i class="wicon wicon-youtube"></i> Youtube</a><br>
-            <a href="https://open.spotify.com/user/31ssxskpd7xxb24mhzvbwlwgnv6u"><i class="wicon wicon-spotify"></i> Spotify</a><br>
-            <a href="https://wraithcode.straw.page"><i class="wicon wicon-strawpage"></i> Straw.page</a>
+        <div class="top">
+            <h5>Made with <span class="wicon wicon-coffee"></span> by wraithcode <i class="wicon wicon-copyright"></i> <span id="footerYear">****</span></h5>
+            <div class="spacer"></div>
+            <h5 id="status">Status: <span>LOADING</span></h5>
+        </div>
+        <div class="bottom">
+            <div class="leftwrapper">
+                <div class="section">
+                    <p>Personal links</p>
+                    <a href="https://github.com/wraithcode2018"><i class="wicon wicon-github"></i>&nbsp;Github</a>
+                    <a href="https://app.revolt.chat"><span class="wicon wicon-revoltchat"></span>&nbsp; Revolt</a>
+                    <a href="https://www.reddit.com/user/wraithcode18/"><i class="wicon wicon-reddit"></i>&nbsp;Reddit</a>
+                    <a href="https://youtube.com/@wraithcoding"><i class="wicon wicon-youtube"></i>&nbsp;Youtube</a>
+                    <a href="https://open.spotify.com/user/31ssxskpd7xxb24mhzvbwlwgnv6u"><i class="wicon wicon-spotify"></i>&nbsp;Spotify</a>
+                    <a href="https://wraithcode.straw.page"><i class="wicon wicon-strawpage"></i>&nbsp;Straw.page</a>
+                </div>
+                <div class="section">
+                    <p>Navigation</p>
+                    <a href="https://forms.gle/AVzecxUqzPSVxCGa9"><i class="wicon wicon-gamepad-handles"></i>&nbsp;Game Request Form</a>
+                </div>
+            </div>
+            <div class="rightwrapper">
+                <div class="section exc">
+                    <p>Community</p>
+                    <a href="mailto:kai.pollack@dcinternationalschool.org"><i class="wicon wicon-email"></i>&nbsp;Email</a>
+                    <a href="https://www.reddit.com/r/wraithcode/"><i class="wicon wicon-reddit"></i>&nbsp;Join the wraiths</a>
+                    <div class="spacer"></div>
+                </div>
+                <div class="spacer"></div>
+                <a href="#"><i class="wicon wicon-buymeacoffee"></i>&nbsp;Buy me a coffee (WIP)</a>
+            </div>
         </div>
     `;
 }
