@@ -7,7 +7,7 @@
         --text-dull: #94a4a6;
         --btn-hover: #ffffff0f;
     }
-    body {margin: 0; color: var(--text); font-family: Manrope; background: var(--background);}
+    body {margin: 0; color: var(--text); font-family: Manrope; background: var(--background); cursor: url('/cursor.svg'), default !important;}
     nav.m {width: calc(80% - 5px); height: 60px; padding-left: 5px; background: #ffffff05; box-shadow: 0 0 10px 2px var(--background-light); border-radius: 30px; position: fixed; top: 15px; left: 10%; display: flex; transition: 0.15s ease; z-index: 100; overflow: hidden;}
     nav.m .right {height: 100%; width: calc(100% - 55px); padding-right: 5px; background: transparent; display: flex; justify-content: right;}
     #smallnavbtn {height: 40px; width: 40px; margin: 10px; background: transparent; border: none; color: var(--text); font-size: 22px; transition: filter 0.2s ease, left 0.2s ease; display: flex; position: fixed; top: 0; left: 0; z-index: 101; display: none;}
