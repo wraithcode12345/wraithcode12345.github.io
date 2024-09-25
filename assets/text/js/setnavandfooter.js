@@ -53,7 +53,7 @@ function updateNavAndFooter() {
                     <div class="spacer"></div>
                 </div>
                 <div class="spacer"></div>
-                <a href="#"><i class="wicon wicon-buymeacoffee"></i>&nbsp;Buy me a coffee (WIP)</a>
+                <a href="https://buymeacoffee.com/wraithcode"><i class="wicon wicon-buymeacoffee"></i>&nbsp;Buy me a coffee (WIP)</a>
             </div>
         </div>
     `;
