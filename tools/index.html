@@ -3,28 +3,23 @@
 <html>
     <head>
         <title>Tools</title>
-        <link rel="icon" href="/favicon.png">
+        <link rel="icon" href="https://wraithcode2018.github.io/favicon.png">
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/text/css/wicons.css">
-        <link rel="stylesheet" href="/assets/text/css/global.css">
+        <link rel="stylesheet" href="https://wraithcode2018.github.io/assets/text/css/wicons.css">
+        <link rel="stylesheet" href="https://wraithcode2018.github.io/assets/text/css/global.css">
         <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-        <script src="/assets/text/js/setnavandfooter.js"></script>
+        <script src="https://wraithcode2018.github.io/assets/text/js/setnavandfooter.js"></script>
         <style>
             body {background: var(--background); margin: 0; font-family: "Manrope"; color: var(--text);}
 
-            .wrap {height: 100vh; width: 100vw; background: var(--background); position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;}
-            .wrap i {font-size: 60px;}
-            .wrap h2 {margin: 0;}
-            .wrap p {margin-top: 10px; color: var(--text-dull);}
-
-            @media screen and (max-width: 8in) {
-                #wr {font-size: 60px;}
-            }
-            @media screen and (max-width: 5in) {
-                #wr {font-size: 35px;}
-                .wrc {height: 300px;}
-            }
+            .wrap {height: 100vh; width: 100vw; background: var(--background); position: relative; display: flex; align-content: center; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center;}
+            .toolsoption {height: 250px; width: calc(40% - 10px); background: var(--dark); margin: 10px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-direction: column;}
+            .toolsoption a {display: block; height: 130px; width: calc(80% - 20px); padding: 10px; background: var(--background-light); color: var(--text); text-decoration: none; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+            .toolsoption a span {font-size: 14px; color: var(--text-dull);}
+            .toolsoption a:hover {background: var(--background); cursor: var(--cursor);}
+            .toolsoption.disabled a:hover {background: var(--background-light); cursor: var(--cursor);}
+            .toolsoption.disabled {filter: saturate(0.6);}
         </style>
     </head>
     <body>
@@ -37,9 +32,18 @@
         </nav>
 
         <div class="wrap">
-            <i class="wicon wicon-construction"></i>
-            <h2>This page is under construction.</h2>
-            <p>The tools page is currently being rebuilt during rennovations.</p>
+            <div class="toolsoption disabled">
+                <h2>Javascript functions</h2>
+                <a>I did the work for you, now you can use these awesome functions in your projects.<br><span>{coming soon}</span></a><!-- href="/tools/functions/"-->
+            </div>
+            <div class="toolsoption disabled">
+                <h2>Web Components</h2>
+                <a>Compact element kits integratable with a single script tag. This is for nerds.<br><span>{coming soon}</span></a><!-- href="/tools/webcomponents/"-->
+            </div>
+            <div class="toolsoption disabled">
+                <h2>Other</h2>
+                <a>Random fun stuff :]<br><span>{coming soon}</span></a><!-- href="/tools/other/"-->
+            </div>
         </div>
         <footer id="footer">
             <!-- js! -->
@@ -48,6 +52,6 @@
         <script>
             
         </script>
-        <script src="/assets/text/js/global.js"></script>
+        <script src="https://wraithcode2018.github.io/assets/text/js/global.js"></script>
     </body>
 </html>
