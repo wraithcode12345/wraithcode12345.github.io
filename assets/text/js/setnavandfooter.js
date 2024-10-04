@@ -48,14 +48,12 @@ function updateNavAndFooter() {
                 </div>
             </div>
             <div class="rightwrapper">
-                <div class="section exc">
+                <div class="section ">
                     <p>Community</p>
                     <a href="mailto:kai.pollack@dcinternationalschool.org"><i class="wicon wicon-email"></i>&nbsp;Email</a>
                     <a href="https://www.reddit.com/r/wraithcode/"><i class="wicon wicon-reddit"></i>&nbsp;Join the wraiths</a>
-                    <div class="spacer"></div>
+                    <a href="https://buymeacoffee.com/wraithcode"><i class="wicon wicon-buymeacoffee"></i>&nbsp;Buy me a coffee (WIP)</a>
                 </div>
-                <div class="spacer"></div>
-                <a href="https://buymeacoffee.com/wraithcode"><i class="wicon wicon-buymeacoffee"></i>&nbsp;Buy me a coffee (WIP)</a>
             </div>
         </div>
     `;
