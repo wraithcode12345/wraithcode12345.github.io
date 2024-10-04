@@ -3,6 +3,7 @@ function updateNavAndFooter() {
     navm.classList.add("m");
     navm.innerHTML = `
         <button class="navbtn" onclick="window.location.href='/';"><i class="wicon wicon-home"></i><br><span class="navtext">Home</span></button>
+        <button class="navbtn" onclick="window.location.href='/news/';"><i class="wicon wicon-newspaper"></i><br><span class="navtext">News</span></button>
         <div class="right">
             <button class="navbtn" onclick="window.location.href='/chat/';"><i class="wicon wicon-chat"></i><br><span class="navtext">Chat</span></button>
             <button class="navbtn" onclick="window.location.href='/axis/';"><i class="wicon wicon-axis"></i><br><span class="navtext">Axis</span></button>
@@ -15,6 +16,7 @@ function updateNavAndFooter() {
     navs.innerHTML = `
         <div style="height: 55px; width: 100%;"></div> <!-- spacer -->
         <button onclick="window.location.href='/';"><i class="wicon wicon-home"></i><span>Home</span></button>
+        <button onclick="window.location.href='/news/';"><i class="wicon wicon-newspaper"></i><span>News</span></button>
         <button onclick="window.location.href='/chat/';"><i class="wicon wicon-chat"></i><span>Chat</span></button>
         <button onclick="window.location.href='/axis/';"><i class="wicon wicon-axis"></i><span>Axis</span></button>
         <button onclick="window.location.href='/games/';"><i class="wicon wicon-gamepad-handles"></i><span>Games</span></button>
