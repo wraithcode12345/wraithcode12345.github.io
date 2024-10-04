@@ -1,12 +1,12 @@
 :root {
-        --background: #061a20;
-        --background-light: #0a2730;
-        --background-lighter: #1d5b6e;
-        --dark: #021318;
-        --text: #c9e8ed;
-        --text-dull: #94a4a6;
-        --btn-hover: #ffffff0f;
-    }
+    --background: #010b0e;
+    --background-light: #152024;
+    --background-lighter: #152428;
+    --dark: #021318;
+    --text: #c9e8ed;
+    --text-dull: #94a4a6;
+    --btn-hover: #ffffff0f;
+}
     body {margin: 0; color: var(--text); font-family: Manrope; background: var(--background); cursor: url('/cursor.svg'), default;}
     nav.m {width: calc(80% - 5px); height: 60px; padding-left: 5px; background: #ffffff05; box-shadow: 0 0 10px 2px var(--background-light); border-radius: 30px; position: fixed; top: 15px; left: 10%; display: flex; transition: 0.15s ease; z-index: 100; overflow: hidden; backdrop-filter: blur(8px);}
     nav.m .right {height: 100%; width: calc(100% - 55px); padding-right: 5px; background: transparent; display: flex; justify-content: right;}
