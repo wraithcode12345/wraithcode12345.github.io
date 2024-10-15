@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>404</title>
+        <link rel="icon" href="https://wraithcode2023.github.io/favicon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://wraithcode2023.github.io/assets/text/css/wicons.css">
+        <link rel="stylesheet" href="https://wraithcode2023.github.io/assets/text/css/global.css">
+        <style>
+            body {background: var(--background); margin: 0; font-family: "Inter"; color: var(--text);}
+
+            .wrc {font-family: "Inter"; height: calc(100vh - 10px); width: 100vw; background: radial-gradient( 0%, var(--background) 35%); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+            .h {font-size: 40px; text-shadow: 0px 0px 10px #ffffff; width: 100%; text-align: center; margin: 0; padding: 0; background: linear-gradient(90deg, #ffffff, #000000); background-clip: text; -webkit-text-fill-color: transparent;}
+            #wr {font-size: 16px; color: #b0b0d0; text-shadow: 0px 0px 8px #b0b0d0; width: 100%; text-align: center; margin: 0; padding: 0;}
+            .wrc a {font-size: 20px; color: #9090b0; text-shadow: 0px 0px 30px #9090bb;}
+            i {font-size: 60px; color: #cdcdcd; filter: drop-shadow(0 0 10px #ffffff); margin-bottom: 8px;}
+
+            @media screen and (max-width: 8in) {
+                .h {font-size: 60px;}
+            }
+            @media screen and (max-width: 5in) {
+                .h {font-size: 35px;}
+                .wrc {height: 300px;}
+                .downarrow {display: none;}
+                .content {flex-direction: column;}
+                .news {width: 100%;}
+                .about {width: 100%; border-left: none; margin-left: 0; padding-left: 0;}
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrc">
+            <i class="wicon wicon-cart-check"></i>
+            <span class="h">Success!</span>
+            <span id="wr">Thank you for your purchase.<br>Your account info has been sent and your account will be active within a few days.</span>
+            <a href="/">Homepage</a>
+        </div>
+        <script src="https://wraithcode2023.github.io/assets/text/js/global.js"></script>
+    </body>
+</html>
