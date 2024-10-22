@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rennovation time!</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/text/css/wicons.css">
+        <link rel="stylesheet" href="/assets/text/css/global.css">
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+        <script src="/assets/text/js/setnavandfooter.js"></script>
+        <style>
+            body {background: var(--background); margin: 0; font-family: "Inter"; color: var(--text); height: 100vh; width: 100vw;}
+
+            .wrc {height: calc(100vh - 10px); width: 100vw; background: linear-gradient(180deg, var(--background), var(--background-light)); position: relative; display: flex; align-items: center; justify-content: center;}
+            .circle {box-sizing: border-box; filter: drop-shadow(0 0 8px var(--background-lighter)); width: 150px; height: 150px; border-width: 4px; border-style: solid; border-color: transparent var(--background-lighter); border-radius: 50%; animation: rotating 4s linear infinite;}
+            .circle::after {content: ""; position: absolute; box-sizing: border-box; top: 6px; left: 6px; width: 130px; height: 130px; border: 1px solid var(--background-light); border-radius: 50%; background-image: url("https://lh3.googleusercontent.com/-3tDDLblJVgI/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfkmYdU_3igF5C7VAw36qoSQAv6wjOA/s256-c/photo.jpg"); background-size: cover; animation: 4s rotating infinite reverse linear;}
+            @keyframes rotating {from {transform: rotate(0deg);} to {transform: rotate(360deg);}}
+            #wr {font-family: "Pixelify Sans"; font-size: 80px; color: #00ff00; text-shadow: 0px 0px 10px #00ff00, 0px 0px 50px #caffca, 0px 0px 150px #00ffff; width: 100%; text-align: center; margin: 0; padding: 0; background: linear-gradient(#000, #fff); background-clip: text; -webkit-text-fill-color: transparent;}
+            .separator {--width: 75%; animation: sepgrow 1s ease; filter: drop-shadow(0 0 2px var(--text)); display: flex; align-items: center; justify-content: space-between; width: var(--width); z-index: 6; position: absolute; top: calc(100vh - 15px); left: calc((100% - var(--width)) / 2);}
+            .separator::before, .separator::after { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--text-dull); position: absolute;}
+            .separator::before {left: -8px;}
+            .separator::after {right: -8px;}
+            .separator {border-bottom: 1px dashed var(--text-dull); height: 0;}
+            @keyframes sepgrow {from {transform: scaleX(0);} to {transform: scaleX(calc(var(--width) * 1.33));}}
+
+            .downarrow {font-size: 26px; text-align: center; vertical-align: middle; position: absolute; top: calc(100vh - 80px); left: calc(50% - 15px); animation: ji 2.5s infinite ease; z-index: 10; transition: opacity 0.4s ease;}
+            @keyframes ji {0% {margin-top: 0;} 50% {margin-top: 20px;} 100% {margin-top: 0;}}
+
+            .content {width: calc(100% - 20px); height: auto; background: var(--background-light); padding: 10px; position: relative; display: flex; z-index: 4;}
+            .content h2 {margin: 0; text-decoration: underline; font-size: 25px;}
+            .news {width: calc(50% - 5px);}
+            .post {width: 100%; position: relative; display: flex; flex-direction: column; border-bottom: 1px dashed var(--btn-hover); padding-bottom: 10px;}
+            .post h4 {position: absolute; top: 0; left: 0; margin: 0;}
+            .post h5 {position: absolute; top: 0; right: 10px;}
+            .post p {margin: 0;}
+            .post a {color: var(--text); text-decoration: underline; text-decoration-color: var(--text-dull);}
+            .post a:hover {text-decoration-color: var(--text);}
+            .content p {margin: 0;}
+            .about {width: calc(50% - 6px); margin-left: 5px; border-left: 1px solid var(--btn-hover); padding-left: 5px;}
+
+            @media screen and (max-width: 8in) {
+                #wr {font-size: 60px; transform: none;}
+            }
+            @media screen and (max-width: 5in) {
+                #wr {font-size: 35px;}
+                .wrc {height: 300px;}
+                .downarrow {display: none;}
+                .content {flex-direction: column;}
+                .news {width: 100%;}
+                .about {width: 100%; border-left: none; margin-left: 0; padding-left: 0;}
+            }
+        </style>
+    </head>
+    <body>
+        <button id="smallnavbtn" onclick="toggleSideNav()"><i class="wicon wicon-bar-menu" id="snbtnsub"></i></button>
+        <nav class="m" id="navm">
+            <!-- js! -->
+        </nav>
+        <nav id="sidenav">
+            <!-- js! -->
+        </nav>
+
+        <div class="wrc">
+            <span id="wr"></span>
+        </div>
+        <div class="separator"></div>
+        <i class="downarrow wicon wicon-downcaret"></i>
+        <div><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdSkAt0mNPaGgLq_0cnYwD3vMLcH0Xy4j80es2R-b7dcdv9Ew/viewform?embedded=true" width="1000" height="3099" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+        <footer id="footer">
+            <!-- js! -->
+        </footer>
+
+        <script>
+            var typewriter = new Typewriter('#wr', {
+                cursor: "_",
+            });
+            typewriter
+                .typeString('wraithcode')
+                .start();
+            
+                window.addEventListener('scroll', function() {
+                    const downArrow = document.querySelector('.downarrow');
+                    if (window.scrollY > 20) {
+                        downArrow.style.opacity = '0';
+                    } else {
+                        downArrow.style.opacity = '1';
+                    }
+                });
+        </script>
+        <script src="/assets/text/js/global.js"></script>
+    </body>
+</html>
